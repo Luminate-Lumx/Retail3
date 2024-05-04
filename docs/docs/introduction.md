@@ -37,11 +37,13 @@ Retail3 is a platform that aims to revolutionize the way we interact with retail
 
 Here are some mockups of the Retail3 platform:
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FsBrPBeQl96o6TseI7TJ30p%2FWorkspace%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3DIz8Cmgkc6VXPcjNN-1" allowfullscreen></iframe>
+<iframe style={{border: '1px solid rgba(0, 0, 0, 0.1);'}} width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FsBrPBeQl96o6TseI7TJ30p%2FWorkspace%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3DIz8Cmgkc6VXPcjNN-1" allowfullscreen></iframe>
 
 
 ## Pitch Deck - Slides
 
 Here are the slides from our pitch deck:
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FsBrPBeQl96o6TseI7TJ30p%2FWorkspace%3Ftype%3Ddesign%26node-id%3D1%253A2%26mode%3Ddesign%26t%3DIz8Cmgkc6VXPcjNN-1" allowfullscreen></iframe>
+### Figma
+
+<iframe style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FsBrPBeQl96o6TseI7TJ30p%2FWorkspace%3Ftype%3Ddesign%26node-id%3D1%253A2%26mode%3Ddesign%26t%3DIz8Cmgkc6VXPcjNN-1" allowfullscreen></iframe>
