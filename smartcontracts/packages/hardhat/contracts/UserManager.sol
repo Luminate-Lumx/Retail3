@@ -1,23 +1,23 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+struct User {
+	string name;
+	string ipfsHash;
+	address walletAddress;
+	string walletId;
+}
+
+struct Retailer {
+	string name;
+	string ipfsHash;
+	string companyName;
+	string cnpj;
+	address walletAddress;
+	string walletId;
+}
+
 contract UserManager {
-	struct User {
-		string name;
-		string ipfsHash;
-		address walletAddress;
-		string walletId;
-	}
-
-	struct Retailer {
-		string name;
-		string ipfsHash;
-		string companyName;
-		string cnpj;
-		address walletAddress;
-		string walletId;
-	}
-
 	mapping(address => User) public users;
 	mapping(address => Retailer) public retailers;
 
