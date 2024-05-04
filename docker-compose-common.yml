@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+    scaffold-build:
+        build:
+            context: .
+            dockerfile: Dockerfile.Node
+        command: sh -c "rm -rf ./packages/hardhat/deployments && yarn install"
+        volumes:
+            - ./smartcontracts:/workspace

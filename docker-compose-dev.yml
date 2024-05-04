@@ -1,0 +1,32 @@
+services:
+    scaffold-build:
+        extends:
+            file: docker-compose-common.yml
+            service: scaffold-build
+
+    scaffold-deploy:
+        build:
+            context: .
+            dockerfile: Dockerfile.Node
+        command: yarn deploy --network sepolia
+        volumes:
+            - ./smartcontracts:/workspace
+        env_file:
+            - .env
+        depends_on:
+            scaffold-build:
+                condition: service_completed_successfully
+
+    scaffold-next:
+        build:
+            context: .
+            dockerfile: Dockerfile.Node
+        command: yarn start
+        volumes:
+            - ./smartcontracts:/workspace
+        ports:
+            - '3000:3000'
+        tty: true
+        depends_on:
+            scaffold-deploy:
+                condition: service_completed_successfully
