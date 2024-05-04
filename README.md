@@ -17,10 +17,10 @@ You can find more information about the project in the [documentation](https://l
 
 ## Links
 
--   [Documentation](https://luminate-lumx.github.io/Retail3/)
--   [Demo deployment](https://ipresence.vercel.app/)
--   [Pitch video](https://youtu.be/C6Knx3dPk0w)
--   [Demo video](https://www.youtube.com/watch?v=W0rheKsxDSw)
+-   [Documentation](www.google.com)
+-   [Demo deployment](www.google.com)
+-   [Pitch video](www.google.com)
+-   [Demo video](www.google.com)
 
 ## Authors
 
