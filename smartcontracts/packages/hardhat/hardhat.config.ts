@@ -39,7 +39,7 @@ const config: HardhatUserConfig = {
   },
   networks: {
     sepolia: {
-      url: `https://ethereum-sepolia-rpc.publicnode.com	`,
+      url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
     },
   },

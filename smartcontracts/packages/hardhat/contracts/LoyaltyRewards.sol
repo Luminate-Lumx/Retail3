@@ -2,25 +2,42 @@
 pragma solidity >=0.8.0 <0.9.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+/**
+ * @title Loyalty Rewards
+ * @dev Manages loyalty points for retailers and customers in a retail ecosystem
+ */
 contract LoyaltyRewards {
-	mapping(address => uint) public scores;
-
+	// Maps a retailer to a user and their associated loyalty score
+	mapping(address => mapping(address => uint32)) public scores;
+	// Total scores pool per retailer
+	mapping(address => uint64) public scorePool;
+	// Redeemable tokens pool per retailer
+	mapping(address => uint64) public redeemPool;
+	// Address of the authorized contract that can call restricted functions
 	address private authorizedContract;
-	uint public redemptionPool;
-	uint public scorePool;
 
+	// ERC20 token used for handling payments and rewards
 	IERC20 public paymentToken;
 
+	/**
+	 * @dev Constructor to initialize the Loyalty Rewards contract
+	 * @param _authorizedContract Address of the contract authorized to call restricted methods
+	 * @param _paymentTokenAddress ERC20 token address for handling rewards and payments
+	 */
 	constructor(address _authorizedContract, address _paymentTokenAddress) {
 		paymentToken = IERC20(_paymentTokenAddress);
 		authorizedContract = _authorizedContract;
 	}
 
-	event RedeemScore(address user, uint score, uint redeemTokens);
-	event ContributeToPoll(uint amount);
-	event AddScore(address user, uint score);
-	event TransferScore(address from, address to, uint score);
+	// Events to emit on various operations
+	event RedeemScore(address user, uint32 score, uint64 redeemTokens);
+	event ContributeToPool(uint32 amount);
+	event AddScore(address user, uint32 score);
+	event TransferScore(address from, address to, uint32 score);
 
+	/**
+	 * @dev Ensures only the authorized contract can call certain functions
+	 */
 	modifier onlyAuthorized() {
 		require(
 			msg.sender == authorizedContract,
@@ -29,48 +46,82 @@ contract LoyaltyRewards {
 		_;
 	}
 
-	function addScore(address user, uint score) public onlyAuthorized {
-		scores[user] += score;
-		scorePool += score;
-
-		emit AddScore(user, score);
+	/**
+	 * @dev Adds loyalty score for a user under a specific retailer
+	 * @param retailAddress Address of the retailer
+	 * @param userAddress Address of the user
+	 * @param score Amount of score to add
+	 */
+	function addScore(
+		address retailAddress,
+		address userAddress,
+		uint32 score
+	) public onlyAuthorized {
+		scores[retailAddress][userAddress] += score;
+		scorePool[retailAddress] += score;
+		emit AddScore(userAddress, score);
 	}
 
-	function redeemScore(address user, uint score) public onlyAuthorized {
-		uint redeemTokens = (redemptionPool / scorePool) * score;
-
+	/**
+	 * @dev Redeems loyalty score for tokens from the redeem pool
+	 * @param retailAddress Address of the retailer
+	 * @param userAddress Address of the user wishing to redeem their score
+	 * @param score Amount of score to redeem
+	 */
+	function redeemScore(
+		address retailAddress,
+		address userAddress,
+		uint32 score
+	) public onlyAuthorized {
+		uint64 redeemTokens = (redeemPool[retailAddress] * score) /
+			scorePool[retailAddress];
 		require(
-			redeemTokens <= redemptionPool,
-			"Redemption pool does not have enough tokens"
+			redeemTokens <= redeemPool[retailAddress],
+			"Redeem pool does not have enough tokens"
+		);
+		require(
+			scores[retailAddress][userAddress] >= score,
+			"User does not have enough score"
 		);
 
-		require(scores[user] >= score, "User does not have enough score");
+		scores[retailAddress][userAddress] -= score;
+		redeemPool[retailAddress] -= redeemTokens;
+		scorePool[retailAddress] -= score;
+		paymentToken.transfer(userAddress, redeemTokens);
 
-		scores[user] -= score;
-		redemptionPool -= redeemTokens;
-		scorePool -= score;
-
-		paymentToken.transfer(user, redeemTokens);
-
-		emit RedeemScore(user, score, redeemTokens);
+		emit RedeemScore(userAddress, score, redeemTokens);
 	}
 
+	/**
+	 * @dev Transfers score from one user to another under the same retailer
+	 * @param retailer Address of the retailer
+	 * @param from Address of the user transferring the score
+	 * @param to Address of the recipient
+	 * @param score Amount of score to transfer
+	 */
 	function transferScore(
+		address retailer,
 		address from,
 		address to,
-		uint score
+		uint32 score
 	) public onlyAuthorized {
-		require(scores[from] >= score, "User does not have enough score");
+		require(
+			scores[retailer][from] >= score,
+			"Sender does not have enough score"
+		);
 
-		scores[from] -= score;
-		scores[to] += score;
+		scores[retailer][from] -= score;
+		scores[retailer][to] += score;
 
 		emit TransferScore(from, to, score);
 	}
 
-	function contributeToPoll(uint amount) public onlyAuthorized {
-		redemptionPool += amount;
-
-		emit ContributeToPoll(amount);
+	/**
+	 * @dev Contributes to the redeem pool with an amount of tokens
+	 * @param amount Tokens to add to the redeem pool
+	 */
+	function contributeToPool(uint32 amount) public onlyAuthorized {
+		redeemPool[msg.sender] += amount;
+		emit ContributeToPool(amount);
 	}
 }
