@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/static/img/logo.png" width="100" alt="project-logo">
+  <img src="./docs/static/img/logo_full.png" width="100" alt="project-logo">
 </p>
 <p align="center">
 	<h1 align="center">Retail3</h1>
