@@ -1,0 +1,20 @@
+services:
+    client-build:
+        extends:
+            file: docker-compose-common.yml
+            service: client-build
+
+    client-vite:
+        build:
+            context: .
+            dockerfile: Dockerfile.Node
+        command: yarn dev --host
+        volumes:
+            - ./client:/workspace
+            - ./smartcontracts/packages/hardhat/deployments:/deployments
+        ports:
+            - '5173:5173'
+        tty: true
+        depends_on:
+            client-build:
+                condition: service_completed_successfully

@@ -7,3 +7,11 @@ services:
         command: sh -c "rm -rf ./packages/hardhat/deployments && yarn install"
         volumes:
             - ./smartcontracts:/workspace
+
+    client-build:
+        build:
+            context: .
+            dockerfile: Dockerfile.Node
+        command: yarn install
+        volumes:
+            - ./client:/workspace
