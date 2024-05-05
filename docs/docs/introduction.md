@@ -78,3 +78,7 @@ Here are the slides from our pitch deck:
 ### Canva
 
 <iframe style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} width="800" height="450" src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGEE4bJmVw&#x2F;tI6SEBOIl8g0GAngSmlQEA&#x2F;view?embed" allowfullscreen></iframe>
+
+### Vídeo
+
+<iframe style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} width="800" height="450" src="https://www.youtube.com/embed/u8ZqOdzZW4A" allowfullscreen></iframe>
