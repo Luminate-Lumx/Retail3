@@ -18,3 +18,5 @@ services:
         depends_on:
             client-build:
                 condition: service_completed_successfully
+        env_file:
+            - .env

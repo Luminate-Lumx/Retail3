@@ -41,19 +41,27 @@ describe("Retail Management System", function () {
 
     await loyaltyRewards.connect(addr1).setAuthorizedContract(inventoryManagement.target);
     await transactionManager.connect(addr1).setInventoryManagement(inventoryManagement.target);
-
-    await userManager
-      .connect(addr2)
-      .createRetailer("Retailer One", "retailer@one.com", "hash1", "Company One", "1234567890", "wallet1");
-
-    await userManager.connect(addr3).createUser("User Two", "user@two.com", "hash2", "wallet2");
   });
 
   describe("Unique User and Retailer Registrations", function () {
+    it("Should allow creating a new entities", async function () {
+      await expect(
+        userManager
+          .connect(addr2)
+          .createRetailer("Retailer One", "retailer@one.com", "hash1", "Company One - 1234567890", "wallet1"),
+      )
+        .to.emit(userManager, "EntityCreated")
+        .withArgs(addr2.address, 1);
+
+      await expect(userManager.connect(addr3).createUser("User Two", "user@two.com", "hash2", "wallet2"))
+        .to.emit(userManager, "EntityCreated")
+        .withArgs(addr3.address, 0);
+    });
+
     it("Should prevent creating a user with an already registered address", async function () {
       await expect(
         userManager.connect(addr3).createUser("Duplicate User", "newuser@unique.com", "hashUnique", "walletUnique"),
-      ).to.be.revertedWith("User/retailer already exists");
+      ).to.be.revertedWith("Entity already registered");
     });
 
     it("Should prevent creating a retailer with an already registered address", async function () {
@@ -64,11 +72,10 @@ describe("Retail Management System", function () {
             "Duplicate Retailer",
             "newretailer@unique.com",
             "hashRetailerUnique",
-            "Company Unique",
-            "987654321",
+            "Company Unique - 987654321",
             "walletUnique",
           ),
-      ).to.be.revertedWith("User/retailer already exists");
+      ).to.be.revertedWith("Entity already registered");
     });
 
     it("Should prevent creating a user with an already registered email", async function () {
@@ -85,8 +92,7 @@ describe("Retail Management System", function () {
             "New Retailer",
             "retailer@one.com",
             "hashNewRetailer",
-            "New Company",
-            "123987456",
+            "New Company - 123987456",
             "newWallet",
           ),
       ).to.be.revertedWith("Email already exists");

@@ -3,197 +3,158 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-/**
- * @title User structure
- * @dev Stores basic user information within the system
- */
-struct User {
-	string name; // Name of the user
-	string email; // Email address of the user
-	string ipfsHash; // IPFS hash for user-related data
-	string walletId; // Identifier for user's wallet
+enum EntityType {
+	User,
+	Retailer
 }
 
-/**
- * @title Retailer structure
- * @dev Stores detailed retailer information
- */
-struct Retailer {
-	string name; // Name of the retailer
-	string email; // Email address of the retailer
-	string ipfsHash; // IPFS hash for retailer-related data
-	string companyName; // Official company name
-	string cnpj; // CNPJ (tax identification number in Brazil)
-	string walletId; // Identifier for retailer's wallet
+struct Entity {
+	string name;
+	string email;
+	string ipfsHash;
+	address wallet;
+	EntityType entityType;
+	string walletId;
+	string additionalInfo;
 }
 
-/**
- * @title UserManager
- * @dev Contract for managing users and retailers, handling their registration and information retrieval
- */
 contract UserManager {
-	// Maps an address to a User, storing user information
-	mapping(address => User) public users;
-	// Maps an address to a Retailer, storing retailer information
-	mapping(address => Retailer) public retailers;
-	// Maps and email to a wallet address
+	mapping(address => Entity) public entities;
 	mapping(string => address) public emailToWallet;
 
-	// Users address list
-	address[] public usersList;
-	// Retailers address list
-	address[] public retailersList;
+	address[] public entitiesList;
 
-	// ERC20 token for handling rewards and payments
 	IERC20 public paymentToken;
 
-	// Events to emit on various operations
-	event UserCreated(address userAddress);
-	event RetailerCreated(address retailerAddress);
+	event EntityCreated(address indexed entityAddress, EntityType entityType);
+	event EntityUpdated(
+		address indexed entityAddress,
+		string indexed property,
+		string newValue
+	);
 
-	/**
-	 * @dev Constructor to initialize the Loyalty Rewards contract
-	 * @param paymentTokenAddress ERC20 token address for handling rewards and payments
-	 */
 	constructor(address paymentTokenAddress) {
 		paymentToken = IERC20(paymentTokenAddress);
 	}
 
-	/**
-	 * @dev Modifier to ensure the user and retailer is unique
-	 */
-	modifier isUniqueAddress() {
+	modifier isUniqueEntity() {
 		require(
-			!isUser(msg.sender) && !isRetailer(msg.sender),
-			"User/retailer already exists"
+			entities[msg.sender].wallet == address(0),
+			"Entity already registered"
 		);
 		_;
 	}
 
-	/**
-	 * @dev Modifier to ensure the email is unique
-	 */
 	modifier isUniqueEmail(string memory email) {
-		require(getWalletByEmail(email) == address(0), "Email already exists");
+		require(emailToWallet[email] == address(0), "Email already exists");
 		_;
 	}
 
-	/**
-	 * @dev Registers a new user with their details
-	 * @param name Name of the user
-	 * @param ipfsHash IPFS hash containing the user's additional data
-	 * @param walletId Unique identifier for the user's wallet
-	 */
+	function registerEntity(
+		string memory name,
+		string memory email,
+		string memory ipfsHash,
+		EntityType entityType,
+		string memory walletId,
+		string memory additionalInfo
+	) public isUniqueEntity isUniqueEmail(email) {
+		entities[msg.sender] = Entity(
+			name,
+			email,
+			ipfsHash,
+			msg.sender,
+			entityType,
+			walletId,
+			additionalInfo
+		);
+		entitiesList.push(msg.sender);
+		emailToWallet[email] = msg.sender;
+
+		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
+
+		emit EntityCreated(msg.sender, entityType);
+	}
+
 	function createUser(
 		string memory name,
 		string memory email,
 		string memory ipfsHash,
 		string memory walletId
-	) public isUniqueAddress isUniqueEmail(email) {
-		users[msg.sender] = User(name, email, ipfsHash, walletId);
-
-		usersList.push(msg.sender);
-		emailToWallet[email] = msg.sender;
-
-		// Transfer 10000 tokens to the user
-		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
-
-		emit UserCreated(msg.sender);
+	) public {
+		registerEntity(name, email, ipfsHash, EntityType.User, walletId, "");
 	}
 
-	/**
-	 * @dev Registers a new retailer with their detailed information
-	 * @param name Name of the retailer
-	 * @param ipfsHash IPFS hash containing the retailer's additional data
-	 * @param companyName Official name of the company
-	 * @param cnpj CNPJ number (Brazilian tax identification number)
-	 * @param walletId Unique identifier for the retailer's wallet
-	 */
 	function createRetailer(
 		string memory name,
 		string memory email,
 		string memory ipfsHash,
-		string memory companyName,
-		string memory cnpj,
-		string memory walletId
-	) public isUniqueAddress isUniqueEmail(email) {
-		retailers[msg.sender] = Retailer(
+		string memory walletId,
+		string memory additionalInfo
+	) public {
+		registerEntity(
 			name,
 			email,
 			ipfsHash,
-			companyName,
-			cnpj,
-			walletId
+			EntityType.Retailer,
+			walletId,
+			additionalInfo
+		);
+	}
+
+	function updateEntity(
+		string memory property,
+		string memory newValue
+	) public {
+		require(
+			entities[msg.sender].wallet != address(0),
+			"Entity not registered"
 		);
 
-		retailersList.push(msg.sender);
-		emailToWallet[email] = msg.sender;
+		if (
+			keccak256(abi.encodePacked(property)) ==
+			keccak256(abi.encodePacked("name"))
+		) {
+			entities[msg.sender].name = newValue;
+		} else if (
+			keccak256(abi.encodePacked(property)) ==
+			keccak256(abi.encodePacked("email"))
+		) {
+			entities[msg.sender].email = newValue;
+		} else if (
+			keccak256(abi.encodePacked(property)) ==
+			keccak256(abi.encodePacked("ipfsHash"))
+		) {
+			entities[msg.sender].ipfsHash = newValue;
+		} else if (
+			keccak256(abi.encodePacked(property)) ==
+			keccak256(abi.encodePacked("additionalInfo"))
+		) {
+			entities[msg.sender].additionalInfo = newValue;
+		} else {
+			revert("Invalid property");
+		}
 
-		// Transfer 10000 tokens to the retailer
-		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
-
-		emit RetailerCreated(msg.sender);
+		emit EntityUpdated(msg.sender, property, newValue);
 	}
 
-	/**
-	 * @dev Retrieves user information by wallet address
-	 * @param walletAddress Address of the user's wallet
-	 * @return User User's stored data
-	 */
-	function getUser(address walletAddress) public view returns (User memory) {
-		return users[walletAddress];
-	}
-
-	/**
-	 * @dev Retrieves retailer information by wallet address
-	 * @param walletAddress Address of the retailer's wallet
-	 * @return Retailer Retailer's stored data
-	 */
-	function getRetailer(
+	function getEntity(
 		address walletAddress
-	) public view returns (Retailer memory) {
-		return retailers[walletAddress];
+	) public view returns (Entity memory) {
+		return entities[walletAddress];
 	}
 
-	/**
-	 * @dev Checks if a given address belongs to a registered retailer
-	 * @param walletAddress Address to check
-	 * @return bool True if the address belongs to a registered retailer
-	 */
 	function isRetailer(address walletAddress) public view returns (bool) {
-		return bytes(retailers[walletAddress].walletId).length != 0;
+		return entities[walletAddress].entityType == EntityType.Retailer;
 	}
 
-	/**
-	 * @dev Checks if a given address belongs to a registered user
-	 * @param walletAddress Address to check
-	 * @return bool True if the address belongs to a registered user
-	 */
 	function isUser(address walletAddress) public view returns (bool) {
-		return bytes(users[walletAddress].walletId).length != 0;
+		return entities[walletAddress].entityType == EntityType.User;
 	}
 
-	/**
-	 * @dev Retrieves the list of registered users
-	 * @return address[] List of registered users
-	 */
-	function getUsersList() public view returns (address[] memory) {
-		return usersList;
+	function getEntitiesList() public view returns (address[] memory) {
+		return entitiesList;
 	}
 
-	/**
-	 * @dev Retrieves the list of registered retailers
-	 * @return address[] List of registered retailers
-	 */
-	function getRetailersList() public view returns (address[] memory) {
-		return retailersList;
-	}
-
-	/**
-	 * @dev Retrieves the wallet address associated with a given email
-	 * @param email Email address to check
-	 * @return address Wallet address associated with the email
-	 */
 	function getWalletByEmail(
 		string memory email
 	) public view returns (address) {
