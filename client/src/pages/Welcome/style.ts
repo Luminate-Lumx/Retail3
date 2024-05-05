@@ -82,7 +82,6 @@ export const LoginForms = styled.div`
             text-decoration: underline;
         }
     }
-
   }
 `;
 
