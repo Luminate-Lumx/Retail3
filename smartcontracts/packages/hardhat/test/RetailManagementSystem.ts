@@ -169,7 +169,6 @@ describe("Retail Management System", function () {
 
   describe("Product Lifecycle", function () {
     it("Should allow updating a product details by the retailer", async function () {
-      // Assuming the product at index 0 is already added by addr2
       await inventoryManagement
         .connect(addr2)
         .updateProduct(0, "Updated Product One", ["Electronics"], ethers.parseEther("1100"), 100, 20);
