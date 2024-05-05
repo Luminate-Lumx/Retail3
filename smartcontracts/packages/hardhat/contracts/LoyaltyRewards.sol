@@ -124,4 +124,35 @@ contract LoyaltyRewards {
 		redeemPool[msg.sender] += amount;
 		emit ContributeToPool(amount);
 	}
+
+	/**
+	 * @dev Gets the loyalty score of a user under a retailer
+	 * @param retailer Address of the retailer
+	 * @param user Address of the user
+	 * @return score The loyalty score of the user
+	 */
+	function getScore(
+		address retailer,
+		address user
+	) public view returns (uint32 score) {
+		return scores[retailer][user];
+	}
+
+	/**
+	 * @dev Gets the score pool of a retailer
+	 * @param retailer Address of the retailer
+	 * @return scorePool The total score pool of the retailer
+	 */
+	function getScorePool(address retailer) public view returns (uint64) {
+		return scorePool[retailer];
+	}
+
+	/**
+	 * @dev Gets the redeem pool of a retailer
+	 * @param retailer Address of the retailer
+	 * @return redeemPool The total redeem pool of the retailer
+	 */
+	function getRedeemPool(address retailer) public view returns (uint64) {
+		return redeemPool[retailer];
+	}
 }

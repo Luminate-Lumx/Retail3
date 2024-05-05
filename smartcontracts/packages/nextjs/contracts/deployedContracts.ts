@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   11155111: {
     InventoryManagement: {
-      address: "0x88b37B25199614454655E09B9Ab70E700D27841C",
+      address: "0xd6FD04b9e822Ef11c8a5c590C5571C046ca5D22F",
       abi: [
         {
           inputs: [
@@ -38,9 +38,9 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
+              internalType: "uint128",
               name: "_productCode",
-              type: "uint256",
+              type: "uint128",
             },
             {
               internalType: "string",
@@ -58,19 +58,19 @@ const deployedContracts = {
               type: "string[]",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_price",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_stock",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "addProduct",
@@ -86,14 +86,14 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_index",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint16",
               name: "_quantity",
-              type: "uint256",
+              type: "uint16",
             },
           ],
           name: "buyProduct",
@@ -109,9 +109,9 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_index",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "getProductOfRetailer",
@@ -119,9 +119,9 @@ const deployedContracts = {
             {
               components: [
                 {
-                  internalType: "uint256",
+                  internalType: "uint128",
                   name: "code",
-                  type: "uint256",
+                  type: "uint128",
                 },
                 {
                   internalType: "string",
@@ -139,14 +139,14 @@ const deployedContracts = {
                   type: "string[]",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "price",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "score",
-                  type: "uint256",
+                  type: "uint32",
                 },
               ],
               internalType: "struct Product",
@@ -170,9 +170,9 @@ const deployedContracts = {
             {
               components: [
                 {
-                  internalType: "uint256",
+                  internalType: "uint128",
                   name: "code",
-                  type: "uint256",
+                  type: "uint128",
                 },
                 {
                   internalType: "string",
@@ -190,14 +190,14 @@ const deployedContracts = {
                   type: "string[]",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "price",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "score",
-                  type: "uint256",
+                  type: "uint32",
                 },
               ],
               internalType: "struct Product[]",
@@ -229,17 +229,17 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "uint128",
               name: "",
-              type: "uint256",
+              type: "uint128",
             },
           ],
           name: "productStock",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           stateMutability: "view",
@@ -253,9 +253,9 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_index",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "removeProduct",
@@ -279,9 +279,9 @@ const deployedContracts = {
           name: "retailerProducts",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "uint128",
               name: "code",
-              type: "uint256",
+              type: "uint128",
             },
             {
               internalType: "string",
@@ -294,14 +294,14 @@ const deployedContracts = {
               type: "string",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "price",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           stateMutability: "view",
@@ -310,9 +310,9 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_index",
-              type: "uint256",
+              type: "uint32",
             },
             {
               internalType: "string",
@@ -320,19 +320,19 @@ const deployedContracts = {
               type: "string",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_price",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_stock",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "updateProduct",
@@ -344,7 +344,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     LoyaltyRewards: {
-      address: "0x1eE4c57DCaa69406efDf4EdC9dB483BEF3c3d185",
+      address: "0x4D2A838Cd3270795a2c4D9e5d3a92ED469030C38",
       abi: [
         {
           inputs: [
@@ -373,9 +373,9 @@ const deployedContracts = {
             },
             {
               indexed: false,
-              internalType: "uint256",
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "AddScore",
@@ -386,12 +386,12 @@ const deployedContracts = {
           inputs: [
             {
               indexed: false,
-              internalType: "uint256",
+              internalType: "uint32",
               name: "amount",
-              type: "uint256",
+              type: "uint32",
             },
           ],
-          name: "ContributeToPoll",
+          name: "ContributeToPool",
           type: "event",
         },
         {
@@ -405,15 +405,15 @@ const deployedContracts = {
             },
             {
               indexed: false,
-              internalType: "uint256",
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
             {
               indexed: false,
-              internalType: "uint256",
+              internalType: "uint64",
               name: "redeemTokens",
-              type: "uint256",
+              type: "uint64",
             },
           ],
           name: "RedeemScore",
@@ -436,9 +436,9 @@ const deployedContracts = {
             },
             {
               indexed: false,
-              internalType: "uint256",
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "TransferScore",
@@ -448,13 +448,18 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "user",
+              name: "retailAddress",
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "address",
+              name: "userAddress",
+              type: "address",
+            },
+            {
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "addScore",
@@ -465,12 +470,12 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "amount",
-              type: "uint256",
+              type: "uint32",
             },
           ],
-          name: "contributeToPoll",
+          name: "contributeToPool",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -492,13 +497,37 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "user",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "redeemPool",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailAddress",
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "address",
+              name: "userAddress",
+              type: "address",
+            },
+            {
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "redeemScore",
@@ -507,26 +536,19 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
-          name: "redemptionPool",
-          outputs: [
+          inputs: [
             {
-              internalType: "uint256",
+              internalType: "address",
               name: "",
-              type: "uint256",
+              type: "address",
             },
           ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
           name: "scorePool",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "uint64",
               name: "",
-              type: "uint256",
+              type: "uint64",
             },
           ],
           stateMutability: "view",
@@ -539,13 +561,18 @@ const deployedContracts = {
               name: "",
               type: "address",
             },
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
           ],
           name: "scores",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           stateMutability: "view",
@@ -553,6 +580,11 @@ const deployedContracts = {
         },
         {
           inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
             {
               internalType: "address",
               name: "from",
@@ -564,9 +596,9 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "score",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "transferScore",
@@ -578,7 +610,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Tether: {
-      address: "0xCf4CB7Fc3d1265E7c85Fd67D6Bfa52516EbD33C5",
+      address: "0xf1dF9E99CbfD0bB74f223DE4ed1B63B5A01F32B0",
       abi: [
         {
           inputs: [],
@@ -1029,7 +1061,7 @@ const deployedContracts = {
       },
     },
     TransactionManager: {
-      address: "0x008F162E0cecC425B79fAEf9E9F17BD0a71acD69",
+      address: "0x2Fcc0ec06b87C6671cA19ce7Bf8AC562902AcE89",
       abi: [
         {
           inputs: [
@@ -1111,9 +1143,9 @@ const deployedContracts = {
                 {
                   components: [
                     {
-                      internalType: "uint256",
+                      internalType: "uint128",
                       name: "code",
-                      type: "uint256",
+                      type: "uint128",
                     },
                     {
                       internalType: "string",
@@ -1131,14 +1163,14 @@ const deployedContracts = {
                       type: "string[]",
                     },
                     {
-                      internalType: "uint256",
+                      internalType: "uint32",
                       name: "price",
-                      type: "uint256",
+                      type: "uint32",
                     },
                     {
-                      internalType: "uint256",
+                      internalType: "uint32",
                       name: "score",
-                      type: "uint256",
+                      type: "uint32",
                     },
                   ],
                   internalType: "struct Product",
@@ -1146,19 +1178,19 @@ const deployedContracts = {
                   type: "tuple",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint16",
                   name: "quantity",
-                  type: "uint256",
+                  type: "uint16",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "totalPrice",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "totalScore",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
                   internalType: "uint256",
@@ -1166,7 +1198,7 @@ const deployedContracts = {
                   type: "uint256",
                 },
               ],
-              internalType: "struct TransactionManager.Transaction[]",
+              internalType: "struct Transaction[]",
               name: "",
               type: "tuple[]",
             },
@@ -1177,9 +1209,9 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_index",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "getTransaction",
@@ -1243,9 +1275,9 @@ const deployedContracts = {
                 {
                   components: [
                     {
-                      internalType: "uint256",
+                      internalType: "uint128",
                       name: "code",
-                      type: "uint256",
+                      type: "uint128",
                     },
                     {
                       internalType: "string",
@@ -1263,14 +1295,14 @@ const deployedContracts = {
                       type: "string[]",
                     },
                     {
-                      internalType: "uint256",
+                      internalType: "uint32",
                       name: "price",
-                      type: "uint256",
+                      type: "uint32",
                     },
                     {
-                      internalType: "uint256",
+                      internalType: "uint32",
                       name: "score",
-                      type: "uint256",
+                      type: "uint32",
                     },
                   ],
                   internalType: "struct Product",
@@ -1278,19 +1310,19 @@ const deployedContracts = {
                   type: "tuple",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint16",
                   name: "quantity",
-                  type: "uint256",
+                  type: "uint16",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "totalPrice",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "totalScore",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
                   internalType: "uint256",
@@ -1298,7 +1330,7 @@ const deployedContracts = {
                   type: "uint256",
                 },
               ],
-              internalType: "struct TransactionManager.Transaction",
+              internalType: "struct Transaction",
               name: "",
               type: "tuple",
             },
@@ -1375,9 +1407,9 @@ const deployedContracts = {
                 {
                   components: [
                     {
-                      internalType: "uint256",
+                      internalType: "uint128",
                       name: "code",
-                      type: "uint256",
+                      type: "uint128",
                     },
                     {
                       internalType: "string",
@@ -1395,14 +1427,14 @@ const deployedContracts = {
                       type: "string[]",
                     },
                     {
-                      internalType: "uint256",
+                      internalType: "uint32",
                       name: "price",
-                      type: "uint256",
+                      type: "uint32",
                     },
                     {
-                      internalType: "uint256",
+                      internalType: "uint32",
                       name: "score",
-                      type: "uint256",
+                      type: "uint32",
                     },
                   ],
                   internalType: "struct Product",
@@ -1410,19 +1442,19 @@ const deployedContracts = {
                   type: "tuple",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint16",
                   name: "quantity",
-                  type: "uint256",
+                  type: "uint16",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "totalPrice",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "totalScore",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
                   internalType: "uint256",
@@ -1430,7 +1462,7 @@ const deployedContracts = {
                   type: "uint256",
                 },
               ],
-              internalType: "struct TransactionManager.Transaction[]",
+              internalType: "struct Transaction[]",
               name: "",
               type: "tuple[]",
             },
@@ -1464,24 +1496,24 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_productIndex",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint16",
               name: "_quantity",
-              type: "uint256",
+              type: "uint16",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_totalCost",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "_totalScore",
-              type: "uint256",
+              type: "uint32",
             },
           ],
           name: "recordTransaction",
@@ -1593,9 +1625,9 @@ const deployedContracts = {
             {
               components: [
                 {
-                  internalType: "uint256",
+                  internalType: "uint128",
                   name: "code",
-                  type: "uint256",
+                  type: "uint128",
                 },
                 {
                   internalType: "string",
@@ -1613,14 +1645,14 @@ const deployedContracts = {
                   type: "string[]",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "price",
-                  type: "uint256",
+                  type: "uint32",
                 },
                 {
-                  internalType: "uint256",
+                  internalType: "uint32",
                   name: "score",
-                  type: "uint256",
+                  type: "uint32",
                 },
               ],
               internalType: "struct Product",
@@ -1628,19 +1660,19 @@ const deployedContracts = {
               type: "tuple",
             },
             {
-              internalType: "uint256",
+              internalType: "uint16",
               name: "quantity",
-              type: "uint256",
+              type: "uint16",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "totalPrice",
-              type: "uint256",
+              type: "uint32",
             },
             {
-              internalType: "uint256",
+              internalType: "uint32",
               name: "totalScore",
-              type: "uint256",
+              type: "uint32",
             },
             {
               internalType: "uint256",
@@ -1679,7 +1711,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     UserManager: {
-      address: "0xE98E049DE74c41796F4edbae4AE9abC39586FCFb",
+      address: "0xA763Ea32FAC34C2ECb9be46BD6bb6eACf2A16029",
       abi: [
         {
           inputs: [
