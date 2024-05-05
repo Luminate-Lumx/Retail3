@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import { Modal } from '@mui/material';
-import { Container, ContentContainer, HeaderContent, ButtonContainer, TableProducts, ButtonTable, DeleteModal, DeleteModalButtons, ButtonsInicioItem } from './style';
+import { Container, ContentContainer, HeaderContent, ButtonContainer, TableProducts, ButtonTable, CreateProductModal, CreateProductModalHeader, CreateProductModalHeaderIcon, IconContainer, CreateProductModalHeaderIntro, ButtonsCreate, CancelButton, CorfirmButton, ContainerForm, InputForms, ContainerForms } from './style';
 import Navbar from '../../components/Navbar';
 import SideBar from '../../components/SideBar';
 import Button from '../../components/Button';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 interface Product {
     code: number;
@@ -32,8 +33,9 @@ const Products: React.FC<Product> = () => {
   // Modal de delete produto
   const [confirmModalOpenProduct, setConfirmModalOpenProduct] = useState<boolean>(false);
 
-  const handleDeleteClickProduct = (atividade: Product) => {
-      setSelectedProduct(atividade);
+  const handleDeleteClickProduct = (product: Product) => {
+      setSelectedProduct(product);
+      console.log('selectedProduct', selectedProduct)
       setConfirmModalOpenProduct(true);
   };
 
@@ -41,15 +43,47 @@ const Products: React.FC<Product> = () => {
       setConfirmModalOpenProduct(false);
   };
 
-  const confirmDeleteModalAtividade = async (id: number) => {
+  const confirmDeleteModalProduct = async (id: number) => {
       try {
-          console.log('Excluir atividade...',id);
+          console.log('toExcluir produto...',id);
           console.log(selectedProduct)
           // atualizar lista (handle)
           handleConfirmModalCloseProduct();
       } catch (error) {
-          console.error('Erro ao excluir a atividade:', error);
+          console.error('Erro ao excluir o produto:', error);
       }
+  };
+
+  // Modal de edit produto
+  const [confirmModalOpenEditProduct, setconfirmModalOpenEditProduct] = useState<boolean>(false);
+
+  const handleDeleteClickEditProduct = (product: Product) => {
+      setSelectedProduct(product);
+      console.log('selectedProduct', selectedProduct)
+      setconfirmModalOpenEditProduct(true);
+  };
+
+  const handleConfirmModalCloseEditProduct = () => {
+      setconfirmModalOpenEditProduct(false);
+  };
+
+  const confirmDeleteModalEditProduct = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const name = form.product_name.value;
+    const tags = form.product_tags.value;
+    const price = form.product_price.value;
+    const score = form.product_score.value;
+
+    try {
+        console.log('edit produto...');
+        console.log(name, tags, price, score);
+        console.log(selectedProduct)
+        // atualizar lista (handle)
+        handleConfirmModalCloseEditProduct();
+    } catch (error) {
+        console.error('Erro ao editar o produto:', error);
+    }
   };
 
   function createData(
@@ -115,7 +149,7 @@ const Products: React.FC<Product> = () => {
                     <TableCell sx={{color:'white'}} align="center">{row.tags}</TableCell>
                     <TableCell sx={{color:'white'}} align="center">{row.score}</TableCell>
                     <TableCell sx={{color:'white'}} align="center">{row.price}</TableCell>
-                    <TableCell sx={{color:'white'}} align="center"><ButtonTable style={{backgroundColor:'#407BFF'}}><EditIcon sx={{color:'#ABC5FF', width:'18px', height:'18px'}}/></ButtonTable></TableCell>
+                    <TableCell sx={{color:'white'}} align="center"><ButtonTable onClick={() => handleDeleteClickEditProduct(row)} style={{backgroundColor:'#407BFF'}}><EditIcon sx={{color:'#ABC5FF', width:'18px', height:'18px'}}/></ButtonTable></TableCell>
                     <TableCell sx={{color:'white'}} align="center"><ButtonTable onClick={() => handleDeleteClickProduct(row)} style={{backgroundColor:'#407BFF'}}><DeleteIcon sx={{color:'#ABC5FF', width:'18px', height:'18px'}}/></ButtonTable></TableCell>
                   </TableRow>
                 ))}
@@ -139,13 +173,74 @@ const Products: React.FC<Product> = () => {
             },
           }}
       >
-          <DeleteModal>
-              <p>Você tem certeza que deseja excluir esse produto?</p>
-              <DeleteModalButtons>
-                  <ButtonsInicioItem style={{backgroundColor:'#0043CE'}} onClick={handleConfirmModalCloseProduct}>Cancelar</ButtonsInicioItem>
-                  <ButtonsInicioItem style={{backgroundColor:'#DA1E28'}} onClick={() => selectedProduct && confirmDeleteModalAtividade(selectedProduct.code)}>Confirmar</ButtonsInicioItem>
-              </DeleteModalButtons>
-          </DeleteModal>
+          <CreateProductModal>
+              <CreateProductModalHeader>
+                  <CreateProductModalHeaderIcon>
+                      <IconContainer>
+                        <ShoppingCartIcon sx={{color:'4F4F4F'}} />
+                      </IconContainer>
+                  </CreateProductModalHeaderIcon>
+                  <CreateProductModalHeaderIntro>
+                      <h2>Delete product</h2>
+                      <p>Are you sure you want to delete the product “{selectedProduct ? selectedProduct.name : ''}” from your list of registered products?</p>
+                  </CreateProductModalHeaderIntro>
+               </CreateProductModalHeader>
+              <ButtonsCreate>
+                <CancelButton onClick={handleConfirmModalCloseProduct}>No, cancel</CancelButton>
+                <CorfirmButton onClick={() => selectedProduct && confirmDeleteModalProduct(selectedProduct.code)}>Yes, confirm</CorfirmButton>
+              </ButtonsCreate>
+          </CreateProductModal>
+      </Modal>
+      <Modal
+          open={confirmModalOpenEditProduct}
+          onClose={handleConfirmModalCloseEditProduct}
+          aria-labelledby="confirm-modal-product-title"
+          aria-describedby="confirm-modal-product-description"
+          sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              '&:focus': {
+                outline: 'none',
+                border: 'none',
+            },
+          }}
+      >
+          <CreateProductModal>
+              <CreateProductModalHeader>
+                  <CreateProductModalHeaderIcon>
+                      <IconContainer>
+                        <ShoppingCartIcon sx={{color:'4F4F4F'}} />
+                      </IconContainer>
+                  </CreateProductModalHeaderIcon>
+                  <CreateProductModalHeaderIntro>
+                      <h2>Edit product - {selectedProduct ? selectedProduct.name : ''}</h2>
+                      <p>Are you sure you want to edit the product “{selectedProduct ? selectedProduct.name : ''}”?</p>
+                  </CreateProductModalHeaderIntro>
+               </CreateProductModalHeader>
+                    <ContainerForms onSubmit={confirmDeleteModalEditProduct}>
+                      <ContainerForm>
+                          <label htmlFor="product_name">Name:</label>
+                          <InputForms id="product_name" placeholder='' defaultValue={selectedProduct ? selectedProduct.name : ''} required></InputForms>
+                      </ContainerForm>
+                      <ContainerForm>
+                          <label htmlFor="product_tags">Tags:</label>
+                          <InputForms id="product_tags" placeholder='' defaultValue={selectedProduct ? selectedProduct.tags : ''} required></InputForms>
+                      </ContainerForm>
+                      <ContainerForm>
+                          <label htmlFor="product_price">Price:</label>
+                          <InputForms id="product_price" placeholder='' defaultValue={selectedProduct ? selectedProduct.price : ''} required></InputForms>
+                      </ContainerForm>
+                      <ContainerForm>
+                          <label htmlFor="product_score">Score:</label>
+                          <InputForms id="product_score" placeholder='' defaultValue={selectedProduct ? selectedProduct.score : ''} required></InputForms>
+                      </ContainerForm>
+                      <ButtonsCreate>
+                        <CancelButton onClick={handleConfirmModalCloseEditProduct}>No, Cancel</CancelButton>
+                        <CorfirmButton type='submit' >Yes, confirm</CorfirmButton>
+                      </ButtonsCreate>
+                  </ContainerForms>
+          </CreateProductModal>
       </Modal>
     </Container>
   );

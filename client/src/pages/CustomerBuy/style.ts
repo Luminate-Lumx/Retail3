@@ -291,6 +291,10 @@ export const CancelButton = styled.button`
     align-items: center;
     border: 1px solid #4F4F4F;
     border-radius: 8px;
+
+    &:hover{
+        cursor: pointer;
+    }
 `;
 
 export const CorfirmButton = styled.button`
@@ -302,4 +306,8 @@ export const CorfirmButton = styled.button`
     border-radius: 8px;
     background-color: var(--blue);
     color: white;
+
+    &:hover{
+        cursor: pointer;
+    }
 `;

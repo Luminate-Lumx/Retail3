@@ -108,3 +108,126 @@ export const ButtonsInicioItem = styled.div`
     cursor: pointer;
     text-decoration: none;
 `;
+
+// Modal delete
+
+export const CreateProductModal = styled.div`
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const CreateProductModalHeader = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+`;
+
+export const CreateProductModalHeaderIcon = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+`;
+
+export const CreateProductModalHeaderIntro = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    h2{
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        color: var(--blue);
+    }
+
+    p{
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        color: black;
+    }
+`;
+
+export const IconContainer = styled.div`
+    width: 54px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #E5E5E5;
+`;
+
+export const ButtonsCreate = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+    margin-top: 10px;
+`;
+
+export const CancelButton = styled.button`
+    width: 230px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #4F4F4F;
+    border-radius: 8px;
+
+    &:hover{
+        cursor: pointer;
+    }
+`;
+
+export const CorfirmButton = styled.button`
+    width: 230px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: var(--blue);
+    color: white;
+
+    &:hover{
+        cursor: pointer;
+    }
+`;
+
+export const ContainerForms = styled.form`
+    width: 590px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ContainerForm = styled.div`
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+`;
+
+export const InputForms = styled.input`
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgba(14, 23, 33, 0.2);
+    padding: 10px;
+    border-radius: 4px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+`;
