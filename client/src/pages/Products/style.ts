@@ -231,3 +231,37 @@ export const InputForms = styled.input`
     font-weight: 400;
     font-style: normal;
 `;
+
+export const ContainerFormTags = styled.div`
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+`;
+
+export const Tag = styled.span`
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 4px;
+`;
+
+export const InputFormsPhoto = styled.input`
+    display: none;
+`;
+
+export const LabelPhoto = styled.label`
+    padding: 10px 5px;
+    width: 150px;
+    background-color: var(--primary);
+    color: #FFF;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+    cursor: pointer;
+`;

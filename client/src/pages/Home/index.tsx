@@ -1,6 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-
-import { Container, ContentContainer, HeaderContent, RowGraphs, DoughnutChart, DoughnutChartContent, DoughnutChartImage, DoughnutChartText, DoughnutChartTextItem, ImageText, ValueText, BarChart, BarItem, BarChartContainer, LineBarChart, BarChartItems, BarChartItem, BarChartItemIcon, BarChartItemText, DownGaph, LineChart, LineChartContainer, TittleLineGraph, TotalValue } from './style';
+import React, { useEffect, useRef, useState } from 'react';
+import { Container, ContentContainer, HeaderContent, RowGraphs, DoughnutChart, DoughnutChartContent, DoughnutChartImage, DoughnutChartText, DoughnutChartTextItem, ImageText, ValueText, BarChart, BarChartContainer, LineBarChart, BarChartItems, BarChartItem, BarChartItemIcon, BarChartItemText, DownGaph, LineChart, LineChartContainer, TittleLineGraph, TotalValue } from './style';
 import Navbar from '../../components/Navbar';
 import SideBar from '../../components/SideBar';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -12,9 +11,9 @@ import { Line } from 'react-chartjs-2';
 
 const Home: React.FC = () => {
   const chartContainer = useRef<HTMLCanvasElement>(null);
+  const [renderLineChart, setRenderLineChart] = useState(false);
   const values = [11.77, 9.80, 9.80, 8.82];
   const total = values.reduce((acc, val) => acc + val, 0);
-  console.log(total)
   const marketValue = 143.4;
   const poolTokens = 5.5;
   const poolValue = 7.4;
@@ -67,6 +66,8 @@ const Home: React.FC = () => {
             }
           }
         });
+
+        setRenderLineChart(true); // Marca o gráfico de linha para renderização
       }
     }
   }, []);
@@ -133,12 +134,9 @@ const Home: React.FC = () => {
             <BarChartContainer>
               <LineBarChart>
                 {values.map((value, index) => (
-                  <BarItem
-                    key={index}
-                    style={{ width: `${(value / total) * 100}%` }}
-                  ></BarItem>
+                  <div key={index} style={{width: `${(value / total) * 100}%`, height:'100%'}}></div>
                 ))}
-              </LineBarChart> {/* To-do -> Line Bar % */}
+              </LineBarChart>
               <BarChartItems>
                  <BarChartItem> {/*Top 1 Payouts */}
                   <BarChartItemIcon><SquareIcon sx={{color:'#997AFC'}}/></BarChartItemIcon>
@@ -183,7 +181,7 @@ const Home: React.FC = () => {
               <p>Order over time:</p>
             </TittleLineGraph>
             <LineChartContainer>
-              <Line style={{width:'100%'}} data={dataLineChart} />;
+              {renderLineChart && <Line style={{width:'100%'}} data={dataLineChart} />}
             </LineChartContainer>
           </LineChart>
         </DownGaph>

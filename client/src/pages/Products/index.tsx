@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Modal } from '@mui/material';
-import { Container, ContentContainer, HeaderContent, ButtonContainer, TableProducts, ButtonTable, CreateProductModal, CreateProductModalHeader, CreateProductModalHeaderIcon, IconContainer, CreateProductModalHeaderIntro, ButtonsCreate, CancelButton, CorfirmButton, ContainerForm, InputForms, ContainerForms } from './style';
+import { Container, ContentContainer, HeaderContent, ButtonContainer, TableProducts, ButtonTable, CreateProductModal, CreateProductModalHeader, CreateProductModalHeaderIcon, IconContainer, CreateProductModalHeaderIntro, ButtonsCreate, CancelButton, CorfirmButton, ContainerForm, InputForms, ContainerForms, ContainerFormTags, Tag, LabelPhoto, InputFormsPhoto } from './style';
 import Navbar from '../../components/Navbar';
 import SideBar from '../../components/SideBar';
 import Button from '../../components/Button';
@@ -8,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface Product {
     code: number;
@@ -29,6 +30,27 @@ import Paper from '@mui/material/Paper';
 
 const Products: React.FC<Product> = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [fileUploaded, setFileUploaded] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
+  const [items, setItems] = useState<string[]>([]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && inputValue.trim() !== '') {
+      setItems([...items, inputValue.trim()]);
+      setInputValue('');
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
   
   // Modal de delete produto
   const [confirmModalOpenProduct, setConfirmModalOpenProduct] = useState<boolean>(false);
@@ -67,6 +89,17 @@ const Products: React.FC<Product> = () => {
       setconfirmModalOpenEditProduct(false);
   };
 
+  const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files ? event.target.files[0] : null;
+    if (selectedFile) {
+        setFileUploaded(true);
+        setSelectedFile(selectedFile);
+    } else {
+        setFileUploaded(false);
+        setSelectedFile(null);
+    }
+};
+
   const confirmDeleteModalEditProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -83,6 +116,36 @@ const Products: React.FC<Product> = () => {
         handleConfirmModalCloseEditProduct();
     } catch (error) {
         console.error('Erro ao editar o produto:', error);
+    }
+  };
+
+  // Modal Criação de produto
+  const [confirmModalOpenCreateProduct, setconfirmModalOpenCreateProduct] = useState<boolean>(false);
+
+  const handleCreateClickProduct = () => {
+      setconfirmModalOpenCreateProduct(true);
+  };
+
+  const handleConfirmModalCloseCreateProduct = () => {
+      setconfirmModalOpenCreateProduct(false);
+  };
+
+  const confirmCreateModalProduct = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const code = form.new_product_code.value;
+    const name = form.new_product_name.value;
+    const tags = items;
+    const price = form.new_product_price.value;
+    const score = form.new_product_score.value;
+
+    try {
+        console.log('create produto...');
+        console.log(code, name, tags, price, score);
+        console.log(selectedFile);
+        handleConfirmModalCloseCreateProduct();
+    } catch (error) {
+        console.error('Erro ao criar um produto:', error);
     }
   };
 
@@ -118,7 +181,7 @@ const Products: React.FC<Product> = () => {
         <HeaderContent>
           <h1>Products</h1>
           <ButtonContainer>
-            <Button icon={<AddIcon />}>New Product</Button>
+            <Button onClick={() => handleCreateClickProduct()} icon={<AddIcon />}>New Product</Button>
           </ButtonContainer>
         </HeaderContent>
         <TableProducts>
@@ -237,6 +300,82 @@ const Products: React.FC<Product> = () => {
                       </ContainerForm>
                       <ButtonsCreate>
                         <CancelButton onClick={handleConfirmModalCloseEditProduct}>No, Cancel</CancelButton>
+                        <CorfirmButton type='submit' >Yes, confirm</CorfirmButton>
+                      </ButtonsCreate>
+                  </ContainerForms>
+          </CreateProductModal>
+      </Modal>
+      {/* Modal de criação */}
+      <Modal
+          open={confirmModalOpenCreateProduct}
+          onClose={handleConfirmModalCloseCreateProduct}
+          disableEscapeKeyDown
+          aria-labelledby="confirm-modal-product-title"
+          aria-describedby="confirm-modal-product-description"
+          sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              '&:focus': {
+                outline: 'none',
+                border: 'none',
+            },
+          }}
+      >
+          <CreateProductModal onKeyDown={handleKeyDown}>
+              <CreateProductModalHeader>
+                  <CreateProductModalHeaderIcon>
+                      <IconContainer>
+                        <ShoppingCartIcon sx={{color:'4F4F4F'}} />
+                      </IconContainer>
+                  </CreateProductModalHeaderIcon>
+                  <CreateProductModalHeaderIntro>
+                      <h2>Create product</h2>
+                      <p>Fill in the information to create a new product</p>
+                  </CreateProductModalHeaderIntro>
+               </CreateProductModalHeader>
+                    <ContainerForms onSubmit={confirmCreateModalProduct}>
+                      <ContainerForm>
+                          <label htmlFor="new_product_code">Code:</label>
+                          <InputForms id="new_product_code" placeholder='' required></InputForms>
+                      </ContainerForm>
+                      <ContainerForm>
+                          <label>Product photo:</label>
+                          <LabelPhoto htmlFor="photo">
+                              {fileUploaded ? (
+                                  <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                                      <CheckIcon sx={{marginRight:'5px', color:'green'}} />
+                                      Image Sent
+                                  </div>
+                              ) : (
+                                  'Choose Image'
+                              )}
+                          </LabelPhoto>
+                          <InputFormsPhoto type="file" accept="image/*" name="photo" id="photo" placeholder='' onChange={handlePhotoChange} required></InputFormsPhoto>
+                      </ContainerForm>
+                      <ContainerForm>
+                          <label htmlFor="new_product_name">Name:</label>
+                          <InputForms id="new_product_name" placeholder='' required></InputForms>
+                      </ContainerForm>
+                      <ContainerFormTags>
+                          <label htmlFor="new_product_tags">Tags:</label>
+                          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                            <InputForms id="new_product_tags" placeholder='' type="text" value={inputValue} onChange={handleInputChange} onKeyDown={handleInputKeyDown} />
+                            {items.map((item, index) => (
+                              <Tag key={index}>{item}</Tag>
+                            ))}
+                          </div>
+                      </ContainerFormTags>
+                      <ContainerForm>
+                          <label htmlFor="new_product_price">Price:</label>
+                          <InputForms type='number' step="any" id="new_product_price" placeholder='' required></InputForms>
+                      </ContainerForm>
+                      <ContainerForm>
+                          <label htmlFor="new_product_score">Score:</label>
+                          <InputForms type='number' step="any" id="new_product_score" placeholder='' required></InputForms>
+                      </ContainerForm>
+                      <ButtonsCreate>
+                        <CancelButton onClick={handleConfirmModalCloseCreateProduct}>No, Cancel</CancelButton>
                         <CorfirmButton type='submit' >Yes, confirm</CorfirmButton>
                       </ButtonsCreate>
                   </ContainerForms>

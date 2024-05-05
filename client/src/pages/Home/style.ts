@@ -36,13 +36,45 @@ export const RowGraphs = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    // Mobile phones
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
+
+    // Extra small tablets
+    @media (min-width: 481px) and (max-width: 767px) {
+        flex-direction: column;
+    }
+
+    // Small Tablets
+    @media (min-width: 768px) and (max-width: 991px) {
+        flex-direction: column;
+    }
 `;
 
 export const DoughnutChart = styled.div`
-    width: 593px;
+    width: 503px;
     border-radius: 8px;
     background-color: var(--primary);
     padding: 20px 0px;
+
+    // Mobile phones
+    @media (max-width: 480px) {
+        margin-bottom: 20px;
+        width: 350px;
+    }
+
+    // Extra small tablets
+    @media (min-width: 481px) and (max-width: 767px) {
+        margin-bottom: 20px;
+        width: 405px;
+    }
+
+    // Small Tablets
+    @media (min-width: 768px) and (max-width: 991px) {
+        margin-bottom: 20px;
+    }
 
     h2{
         font-family: "Poppins", sans-serif;
@@ -109,10 +141,28 @@ export const ValueText = styled.div`
 `;
 
 export const BarChart = styled.div`
-    width: 493px;
+    width: 403px;
     border-radius: 8px;
     background-color: var(--primary);
     padding: 20px 0px;
+
+    // Mobile phones
+    @media (max-width: 480px) {
+        margin-bottom: 20px;
+        width: 350px;
+    }
+
+    // Extra small tablets
+    @media (min-width: 481px) and (max-width: 767px) {
+        margin-bottom: 20px;
+        width: 405px;
+    }
+
+    // Small Tablets
+    @media (min-width: 768px) and (max-width: 991px) {
+        margin-bottom: 20px;
+        width: 503px;
+    }
 
     h2{
         font-family: "Poppins", sans-serif;
@@ -144,31 +194,28 @@ export const LineBarChart = styled.div`
     background-color: #f2f2f2;
     border-radius: 5px;
     margin-bottom: 25px;
+    border: 1px solid #2E2E36;
+    display: flex;
     overflow: hidden;
-    position: relative;
-`;
 
-export const BarItem = styled.div`
-    height: 100%;
-    transition: width 0.5s;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-
-    &:nth-child(1) {
+    > div:nth-of-type(1) {
         background-color: #997AFC;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
 
-    &:nth-child(2) {
+    > div:nth-of-type(2) {
         background-color: #4B92E5;
     }
 
-    &:nth-child(3) {
+    > div:nth-of-type(3) {
         background-color: #da62c4;
     }
 
-    &:nth-child(4) {
+    > div:nth-of-type(4) {
         background-color: #4c9aaf;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
     }
 `;
 
