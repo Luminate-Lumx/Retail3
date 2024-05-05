@@ -6,25 +6,37 @@ import "./LoyaltyRewards.sol";
 import "./TransactionManager.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+/**
+ * @title Product structure
+ * @notice Stores details about products available in the retailer's inventory
+ * @dev This struct is used for managing product information including pricing, stock, and loyalty scores.
+ */
 struct Product {
-	uint128 code;
-	string ipfsHash;
-	string name;
-	string[] tags;
-	uint256 price;
-	uint32 score;
-	bool removed;
+	uint128 code; // Unique product code
+	string ipfsHash; // IPFS hash for storing product images or metadata
+	string name; // Name of the product
+	string[] tags; // Tags for search and categorization
+	uint256 price; // Price of the product in smallest token units
+	uint32 score; // Loyalty score awarded for purchasing this product
+	bool removed; // Flag indicating whether the product is removed from the inventory
 }
 
+/**
+ * @title Inventory Management for Retailer's Products
+ * @notice Manages adding, updating, and buying products in a decentralized store environment
+ * @dev This contract handles operations related to product management in a decentralized retail setup,
+ * including adding new products, updating existing ones, and processing purchases.
+ */
 contract InventoryManagement {
-	mapping(address => Product[]) public retailerProducts;
-	mapping(address => mapping(uint128 => uint32)) public productStock;
+	mapping(address => Product[]) public retailerProducts; // Mapping from retailer address to their list of products
+	mapping(address => mapping(uint128 => uint32)) public productStock; // Mapping from retailer address and product code to stock count
 
-	UserManager userManager;
-	LoyaltyRewards loyaltyRewards;
-	TransactionManager transactionManager;
-	IERC20 public paymentToken;
+	UserManager userManager; // UserManager contract instance
+	LoyaltyRewards loyaltyRewards; // LoyaltyRewards contract instance
+	TransactionManager transactionManager; // TransactionManager contract instance
+	IERC20 public paymentToken; // ERC20 token used for payment
 
+	// Events
 	event ProductAdded(address indexed retailer, uint128 productCode);
 	event ProductUpdated(address indexed retailer, uint128 productCode);
 	event ProductRemoved(address indexed retailer, uint128 productCode);
@@ -43,10 +55,15 @@ contract InventoryManagement {
 	) {
 		paymentToken = IERC20(paymentTokenAddress);
 		userManager = UserManager(userManagerAddress);
-		transactionManager = TransactionManager(transactionManagerAddress);
 		loyaltyRewards = LoyaltyRewards(loyaltyRewardsAddress);
+		transactionManager = TransactionManager(transactionManagerAddress);
 	}
 
+	// Modifiers
+	/**
+	 * @notice Ensures that only verified retailers can perform certain actions
+	 * @dev Modifier to restrict certain functions to be callable only by verified retailers.
+	 */
 	modifier onlyRetailer() {
 		require(
 			userManager.isRetailer(msg.sender),
@@ -55,6 +72,18 @@ contract InventoryManagement {
 		_;
 	}
 
+	// Functions
+	/**
+	 * @notice Adds a new product to the retailer's inventory
+	 * @dev Adds a product to the retailer's inventory and initializes its stock. Emits the ProductAdded event.
+	 * @param productCode Unique code for the product
+	 * @param ipfsHash IPFS hash containing product information
+	 * @param name Product name
+	 * @param tags Array of tags for categorization
+	 * @param price Price of the product in smallest token units
+	 * @param stock Initial stock quantity
+	 * @param score Loyalty score awarded for purchasing this product
+	 */
 	function addProduct(
 		uint128 productCode,
 		string memory ipfsHash,
@@ -79,6 +108,16 @@ contract InventoryManagement {
 		emit ProductAdded(msg.sender, productCode);
 	}
 
+	/**
+	 * @notice Updates existing product details
+	 * @dev Updates a product in the retailer's inventory and adjusts its stock. Emits the ProductUpdated event.
+	 * @param index Index of the product in the retailer's product array
+	 * @param name New name for the product
+	 * @param tags New tags for the product
+	 * @param price New price for the product
+	 * @param stock Updated stock quantity
+	 * @param score Updated loyalty score for the product
+	 */
 	function updateProduct(
 		uint32 index,
 		string memory name,
@@ -103,6 +142,12 @@ contract InventoryManagement {
 		emit ProductUpdated(msg.sender, product.code);
 	}
 
+	/**
+	 * @notice Removes a product from the retailer's inventory
+	 * @dev Marks a product as removed in the retailer's inventory. Emits the ProductRemoved event.
+	 * @param retailerAddress Address of the retailer
+	 * @param index Index of the product to remove
+	 */
 	function removeProduct(
 		address retailerAddress,
 		uint32 index
@@ -119,6 +164,14 @@ contract InventoryManagement {
 		emit ProductRemoved(retailerAddress, product.code);
 	}
 
+	/**
+	 * @notice Facilitates the purchase of a product from a retailer's inventory
+	 * @dev Processes the purchase of a product, handles payment transfer, updates stock, and registers the transaction.
+	 * Emits the ProductBought event and interacts with LoyaltyRewards and TransactionManager.
+	 * @param retailerAddress Address of the retailer
+	 * @param index Index of the product to buy
+	 * @param quantity Quantity of the product to buy
+	 */
 	function buyProduct(
 		address retailerAddress,
 		uint32 index,
@@ -140,6 +193,11 @@ contract InventoryManagement {
 		uint256 totalCost = product.price * quantity;
 		uint32 totalScore = product.score * quantity;
 		uint256 pollContribution = totalCost / 100;
+
+		require(
+			paymentToken.balanceOf(msg.sender) >= totalCost,
+			"Insufficient balance"
+		);
 
 		require(
 			paymentToken.transferFrom(msg.sender, address(this), totalCost),
@@ -181,12 +239,23 @@ contract InventoryManagement {
 		emit ProductBought(msg.sender, retailerAddress, product.name, quantity);
 	}
 
+	/**
+	 * @notice Retrieves all products of a specific retailer
+	 * @param retailerAddress Address of the retailer
+	 * @return Array of products
+	 */
 	function getProducts(
 		address retailerAddress
 	) public view returns (Product[] memory) {
 		return retailerProducts[retailerAddress];
 	}
 
+	/**
+	 * @notice Retrieves a specific product of a retailer
+	 * @param retailerAddress Address of the retailer
+	 * @param index Index of the product
+	 * @return Single product details
+	 */
 	function getProduct(
 		address retailerAddress,
 		uint32 index
@@ -198,6 +267,12 @@ contract InventoryManagement {
 		return retailerProducts[retailerAddress][index];
 	}
 
+	/**
+	 * @notice Retrieves the stock of a specific product
+	 * @param retailerAddress Address of the retailer
+	 * @param productCode Code of the product
+	 * @return Stock quantity
+	 */
 	function getProductStock(
 		address retailerAddress,
 		uint128 productCode

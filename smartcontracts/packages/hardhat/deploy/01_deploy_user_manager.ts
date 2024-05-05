@@ -17,7 +17,7 @@ const deployUserManager: DeployFunction = async function (hre: HardhatRuntimeEnv
 
   const UserManager = await hre.ethers.getContract("UserManager", deployer);
 
-  Tether.transfer(await UserManager.getAddress(), 1000000 * 10 ** 18);
+  Tether.transfer(await UserManager.getAddress(), 10000 * 10 ** 18);
 };
 
 export default deployUserManager;

@@ -21,7 +21,7 @@ describe("Retail Management System", function () {
     userManager = await UserManager.deploy(token.target);
     await userManager.waitForDeployment();
 
-    token.connect(addr1).transfer(userManager.target, ethers.parseEther("100000"));
+    token.connect(addr1).transfer(userManager.target, ethers.parseEther("10000"));
 
     const LoyaltyRewards = await ethers.getContractFactory("LoyaltyRewards");
     loyaltyRewards = await LoyaltyRewards.deploy(token.target);
@@ -104,7 +104,7 @@ describe("Retail Management System", function () {
       await expect(
         inventoryManagement
           .connect(addr2)
-          .addProduct(1, "ipfs://hash", "Product One", ["Electronics"], ethers.parseEther("1000"), 50, 10),
+          .addProduct(1, "ipfs://hash", "Product One", ["Electronics"], ethers.parseEther("10"), 50, 10),
       )
         .to.emit(inventoryManagement, "ProductAdded")
         .withArgs(addr2.address, 1);
@@ -115,26 +115,26 @@ describe("Retail Management System", function () {
 
     it("Allows a customer to buy a product", async function () {
       const initialBalance = await token.balanceOf(addr3.address);
-      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("1000"));
+      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("10"));
       await expect(inventoryManagement.connect(addr3).buyProduct(addr2.address, 0, 1))
         .to.emit(inventoryManagement, "ProductBought")
         .withArgs(addr3.address, addr2.address, "Product One", 1);
 
       const updatedStock = await inventoryManagement.getProductStock(addr2.address, 1);
       expect(updatedStock).to.equal(49);
-      expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("1000"));
+      expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("10"));
     });
   });
 
   describe("Loyalty and Rewards", function () {
     it("Allows accumulation and redemption of loyalty points", async function () {
       const initialBalance = await token.balanceOf(addr3.address);
-      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("2000"));
+      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("20"));
       await inventoryManagement.connect(addr3).buyProduct(addr2.address, 0, 2);
 
       const score = await loyaltyRewards.getScore(addr2.address, addr3.address);
       expect(score).to.equal(30);
-      expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("2000"));
+      expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("20"));
 
       const redeemTokens = await loyaltyRewards.calculateRedeemTokens(addr2.address, 30);
 
@@ -142,7 +142,7 @@ describe("Retail Management System", function () {
         .to.emit(loyaltyRewards, "RedeemScore")
         .withArgs(addr3.address, 30, redeemTokens);
 
-      expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("2000") + redeemTokens);
+      expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("20") + redeemTokens);
       expect(await loyaltyRewards.getScore(addr2.address, addr3.address)).to.equal(0);
     });
   });
@@ -150,26 +150,26 @@ describe("Retail Management System", function () {
   describe("Transaction Records", function () {
     it("Records a transaction when a product is bought", async function () {
       const transactionCountBefore = (await transactionManager.getRetailerTransactions(addr2.address)).length;
-      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("1000"));
+      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("10"));
       await inventoryManagement.connect(addr3).buyProduct(addr2.address, 0, 1);
 
       const transactionCountAfter = (await transactionManager.getRetailerTransactions(addr2.address)).length;
       expect(transactionCountAfter).to.be.equal(transactionCountBefore + 1);
 
       const transaction = await transactionManager.getTransaction(transactionCountBefore);
-      expect(transaction.totalPrice).to.equal(ethers.parseEther("1000"));
+      expect(transaction.totalPrice).to.equal(ethers.parseEther("10"));
     });
 
     it("Allows viewing transactions by a user", async function () {
       const transactionCountBefore = (await transactionManager.getUserTransactions(addr3.address)).length;
-      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("2000"));
+      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("20"));
       await inventoryManagement.connect(addr3).buyProduct(addr2.address, 0, 2);
 
       const transactionCountAfter = (await transactionManager.getUserTransactions(addr3.address)).length;
       expect(transactionCountAfter).to.be.equal(transactionCountBefore + 1);
 
       const transaction = await transactionManager.getTransaction(transactionCountBefore);
-      expect(transaction.totalPrice).to.equal(ethers.parseEther("2000"));
+      expect(transaction.totalPrice).to.equal(ethers.parseEther("20"));
     });
   });
 
@@ -177,10 +177,10 @@ describe("Retail Management System", function () {
     it("Should allow updating a product details by the retailer", async function () {
       await inventoryManagement
         .connect(addr2)
-        .updateProduct(0, "Updated Product One", ["Electronics"], ethers.parseEther("1100"), 100, 20);
+        .updateProduct(0, "Updated Product One", ["Electronics"], ethers.parseEther("110"), 100, 20);
       const updatedProduct = await inventoryManagement.getProduct(addr2.address, 0);
       expect(updatedProduct.name).to.equal("Updated Product One");
-      expect(updatedProduct.price).to.equal(ethers.parseEther("1100"));
+      expect(updatedProduct.price).to.equal(ethers.parseEther("110"));
       expect(updatedProduct.score).to.equal(20);
     });
 
@@ -197,7 +197,7 @@ describe("Retail Management System", function () {
       await expect(
         inventoryManagement
           .connect(addr3)
-          .addProduct(2, "ipfs://hash2", "Product Two", ["Clothing"], ethers.parseEther("500"), 30, 5),
+          .addProduct(2, "ipfs://hash2", "Product Two", ["Clothing"], ethers.parseEther("5"), 30, 5),
       ).to.be.revertedWith("Only retailers can call this function");
     });
   });
@@ -206,7 +206,7 @@ describe("Retail Management System", function () {
     it("Should revert if trying to buy more products than available in stock", async function () {
       await inventoryManagement
         .connect(addr2)
-        .addProduct(1, "ipfs://hash", "Product One", ["Electronics"], ethers.parseEther("1000"), 1, 10);
+        .addProduct(1, "ipfs://hash", "Product One", ["Electronics"], ethers.parseEther("10"), 1, 10);
       await expect(inventoryManagement.connect(addr3).buyProduct(addr2.address, 1, 50)).to.be.revertedWith(
         "Not enough stock",
       );
@@ -216,7 +216,7 @@ describe("Retail Management System", function () {
       await expect(
         inventoryManagement
           .connect(addr1)
-          .updateProduct(0, "Illegally Updated Product One", ["Electronics"], ethers.parseEther("2000"), 50, 15),
+          .updateProduct(0, "Illegally Updated Product One", ["Electronics"], ethers.parseEther("20"), 50, 15),
       ).to.be.revertedWith("Only retailers can call this function");
     });
 
@@ -227,12 +227,12 @@ describe("Retail Management System", function () {
     });
 
     it("Should revert if trying to buy a product with insufficient balance", async function () {
-      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("100000"));
+      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("500"));
       await inventoryManagement
         .connect(addr2)
-        .updateProduct(1, "Product One", ["Electronics"], ethers.parseEther("1000"), 100, 10);
+        .updateProduct(1, "Product One", ["Electronics"], ethers.parseEther("500"), 100, 10);
       await expect(inventoryManagement.connect(addr3).buyProduct(addr2.address, 1, 100)).to.be.revertedWith(
-        "ERC20: transfer amount exceeds balance",
+        "Insufficient balance",
       );
     });
   });
