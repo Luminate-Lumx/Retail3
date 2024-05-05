@@ -95,6 +95,8 @@ contract LoyaltyRewards {
 		require(wallet.balance() >= redeemTokens, "Insufficient funds in pool");
 
 		scores[retail][msg.sender] -= score;
+		scorePool[retail] -= score;
+
 		wallet.withdrawTokens(msg.sender, redeemTokens);
 	}
 
