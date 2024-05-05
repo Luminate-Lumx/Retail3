@@ -65,55 +65,46 @@ contract LoyaltyRewards {
 	/**
 	 * @dev Redeems loyalty score for tokens from the redeem pool
 	 * @param retailAddress Address of the retailer
-	 * @param userAddress Address of the user wishing to redeem their score
 	 * @param score Amount of score to redeem
 	 */
-	function redeemScore(
-		address retailAddress,
-		address userAddress,
-		uint32 score
-	) public onlyAuthorized {
+	function redeemScore(address retailAddress, uint32 score) public {
+		require(
+			scores[retailAddress][msg.sender] >= score,
+			"User does not have enough score"
+		);
+
 		uint64 redeemTokens = (redeemPool[retailAddress] * score) /
 			scorePool[retailAddress];
+
 		require(
 			redeemTokens <= redeemPool[retailAddress],
 			"Redeem pool does not have enough tokens"
 		);
-		require(
-			scores[retailAddress][userAddress] >= score,
-			"User does not have enough score"
-		);
 
-		scores[retailAddress][userAddress] -= score;
+		scores[retailAddress][msg.sender] -= score;
 		redeemPool[retailAddress] -= redeemTokens;
 		scorePool[retailAddress] -= score;
-		paymentToken.transfer(userAddress, redeemTokens);
+		paymentToken.transfer(msg.sender, redeemTokens);
 
-		emit RedeemScore(userAddress, score, redeemTokens);
+		emit RedeemScore(msg.sender, score, redeemTokens);
 	}
 
 	/**
 	 * @dev Transfers score from one user to another under the same retailer
 	 * @param retailer Address of the retailer
-	 * @param from Address of the user transferring the score
 	 * @param to Address of the recipient
 	 * @param score Amount of score to transfer
 	 */
-	function transferScore(
-		address retailer,
-		address from,
-		address to,
-		uint32 score
-	) public onlyAuthorized {
+	function transferScore(address retailer, address to, uint32 score) public {
 		require(
-			scores[retailer][from] >= score,
+			scores[retailer][msg.sender] >= score,
 			"Sender does not have enough score"
 		);
 
-		scores[retailer][from] -= score;
+		scores[retailer][msg.sender] -= score;
 		scores[retailer][to] += score;
 
-		emit TransferScore(from, to, score);
+		emit TransferScore(msg.sender, to, score);
 	}
 
 	/**

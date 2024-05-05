@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
 /**
  * @title User structure
  * @dev Stores basic user information within the system
@@ -38,6 +40,21 @@ contract UserManager {
 	// Retailers address list
 	address[] public retailersList;
 
+	// ERC20 token for handling rewards and payments
+	IERC20 public paymentToken;
+
+	// Events to emit on various operations
+	event UserCreated(address userAddress);
+	event RetailerCreated(address retailerAddress);
+
+	/**
+	 * @dev Constructor to initialize the Loyalty Rewards contract
+	 * @param _paymentTokenAddress ERC20 token address for handling rewards and payments
+	 */
+	constructor(address _paymentTokenAddress) {
+		paymentToken = IERC20(_paymentTokenAddress);
+	}
+
 	/**
 	 * @dev Registers a new user with their details
 	 * @param _name Name of the user
@@ -52,6 +69,11 @@ contract UserManager {
 		users[msg.sender] = User(_name, _ipfsHash, _walletId);
 
 		usersList.push(msg.sender);
+
+		// Transfer 1000 tokens to the user
+		paymentToken.transfer(msg.sender, 1000);
+
+		emit UserCreated(msg.sender);
 	}
 
 	/**
@@ -78,6 +100,11 @@ contract UserManager {
 		);
 
 		retailersList.push(msg.sender);
+
+		// Transfer 1000 tokens to the retailer
+		paymentToken.transfer(msg.sender, 1000);
+
+		emit RetailerCreated(msg.sender);
 	}
 
 	/**

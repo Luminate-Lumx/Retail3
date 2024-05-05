@@ -35,6 +35,17 @@ contract InventoryManagement {
 
 	IERC20 public paymentToken;
 
+	// Events to emit on various operations
+	event ProductAdded(address retailer, uint128 productCode);
+	event ProductUpdated(address retailer, uint128 productCode);
+	event ProductRemoved(address retailer, uint128 productCode);
+	event ProductBought(
+		address buyer,
+		address retailer,
+		string productName,
+		uint32 quantity
+	);
+
 	/**
 	 * @dev Sets the essential addresses for interacting with other contracts and tokens
 	 * @param _userManagerAddress Address of the UserManager contract
@@ -95,6 +106,8 @@ contract InventoryManagement {
 			})
 		);
 		productStock[msg.sender][_productCode] = _stock;
+
+		emit ProductAdded(msg.sender, _productCode);
 	}
 
 	/**
@@ -123,6 +136,8 @@ contract InventoryManagement {
 		product.price = _price;
 		product.score = _score;
 		productStock[msg.sender][product.code] = _stock;
+
+		emit ProductUpdated(msg.sender, product.code);
 	}
 
 	/**
@@ -141,6 +156,8 @@ contract InventoryManagement {
 		Product storage product = retailerProducts[_retailerAddress][_index];
 		delete productStock[_retailerAddress][product.code];
 		delete retailerProducts[_retailerAddress][_index];
+
+		emit ProductRemoved(_retailerAddress, product.code);
 	}
 
 	/**
@@ -182,6 +199,13 @@ contract InventoryManagement {
 			totalCost,
 			totalScore
 		);
+
+		emit ProductBought(
+			msg.sender,
+			_retailerAddress,
+			product.name,
+			_quantity
+		);
 	}
 
 	/**
@@ -201,7 +225,7 @@ contract InventoryManagement {
 	 * @param _index Index of the product
 	 * @return Single product details
 	 */
-	function getProductOfRetailer(
+	function getProduct(
 		address _retailerAddress,
 		uint32 _index
 	) public view returns (Product memory) {

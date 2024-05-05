@@ -92,7 +92,7 @@ contract TransactionManager {
 	) external onlyInventoryManager {
 		User memory buyer = userManager.getUser(_buyerAddress);
 		Retailer memory retailer = userManager.getRetailer(_retailerAddress);
-		Product memory product = inventoryManagement.getProductOfRetailer(
+		Product memory product = inventoryManagement.getProduct(
 			_retailerAddress,
 			_productIndex
 		);
