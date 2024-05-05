@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/register" element={<Register />} />
         <Route path="/retailerHome" element={<Home />} />
-        <Route path="/retailerProducts" element={<Products />} />
+        <Route path="/retailerProducts" element={<Products code={0} ipfsHash={""} name={""} tags={[]} price={0} score={0} />} />
         <Route path="/retailerScore" element={<Score />} />
         <Route path="/retailerOrders" element={<Orders />} />
       </Routes>
