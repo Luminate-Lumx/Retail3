@@ -5,30 +5,30 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  11155111: {
+  80002: {
     InventoryManagement: {
-      address: "0xd6FD04b9e822Ef11c8a5c590C5571C046ca5D22F",
+      address: "0xdC16eE353d8369a716c5350b3b68Af48c97d0771",
       abi: [
         {
           inputs: [
             {
               internalType: "address",
-              name: "_userManagerAddress",
+              name: "userManagerAddress",
               type: "address",
             },
             {
               internalType: "address",
-              name: "_paymentTokenAddress",
+              name: "paymentTokenAddress",
               type: "address",
             },
             {
               internalType: "address",
-              name: "_loyaltyRewardsAddress",
+              name: "loyaltyRewardsAddress",
               type: "address",
             },
             {
               internalType: "address",
-              name: "_transactionManagerAddress",
+              name: "transactionManagerAddress",
               type: "address",
             },
           ],
@@ -36,40 +36,128 @@ const deployedContracts = {
           type: "constructor",
         },
         {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint128",
+              name: "productCode",
+              type: "uint128",
+            },
+          ],
+          name: "ProductAdded",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "buyer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "productName",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint32",
+              name: "quantity",
+              type: "uint32",
+            },
+          ],
+          name: "ProductBought",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint128",
+              name: "productCode",
+              type: "uint128",
+            },
+          ],
+          name: "ProductRemoved",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint128",
+              name: "productCode",
+              type: "uint128",
+            },
+          ],
+          name: "ProductUpdated",
+          type: "event",
+        },
+        {
           inputs: [
             {
               internalType: "uint128",
-              name: "_productCode",
+              name: "productCode",
               type: "uint128",
             },
             {
               internalType: "string",
-              name: "_ipfsHash",
+              name: "ipfsHash",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_name",
+              name: "name",
               type: "string",
             },
             {
               internalType: "string[]",
-              name: "_tags",
+              name: "tags",
               type: "string[]",
             },
             {
+              internalType: "uint256",
+              name: "price",
+              type: "uint256",
+            },
+            {
               internalType: "uint32",
-              name: "_price",
+              name: "stock",
               type: "uint32",
             },
             {
               internalType: "uint32",
-              name: "_stock",
-              type: "uint32",
-            },
-            {
-              internalType: "uint32",
-              name: "_score",
+              name: "score",
               type: "uint32",
             },
           ],
@@ -82,17 +170,17 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_retailerAddress",
+              name: "retailerAddress",
               type: "address",
             },
             {
               internalType: "uint32",
-              name: "_index",
+              name: "index",
               type: "uint32",
             },
             {
               internalType: "uint16",
-              name: "_quantity",
+              name: "quantity",
               type: "uint16",
             },
           ],
@@ -105,16 +193,16 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_retailerAddress",
+              name: "retailerAddress",
               type: "address",
             },
             {
               internalType: "uint32",
-              name: "_index",
+              name: "index",
               type: "uint32",
             },
           ],
-          name: "getProductOfRetailer",
+          name: "getProduct",
           outputs: [
             {
               components: [
@@ -139,14 +227,19 @@ const deployedContracts = {
                   type: "string[]",
                 },
                 {
-                  internalType: "uint32",
+                  internalType: "uint256",
                   name: "price",
-                  type: "uint32",
+                  type: "uint256",
                 },
                 {
                   internalType: "uint32",
                   name: "score",
                   type: "uint32",
+                },
+                {
+                  internalType: "bool",
+                  name: "removed",
+                  type: "bool",
                 },
               ],
               internalType: "struct Product",
@@ -161,7 +254,31 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_retailerAddress",
+              name: "retailerAddress",
+              type: "address",
+            },
+            {
+              internalType: "uint128",
+              name: "productCode",
+              type: "uint128",
+            },
+          ],
+          name: "getProductStock",
+          outputs: [
+            {
+              internalType: "uint32",
+              name: "",
+              type: "uint32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailerAddress",
               type: "address",
             },
           ],
@@ -190,14 +307,19 @@ const deployedContracts = {
                   type: "string[]",
                 },
                 {
-                  internalType: "uint32",
+                  internalType: "uint256",
                   name: "price",
-                  type: "uint32",
+                  type: "uint256",
                 },
                 {
                   internalType: "uint32",
                   name: "score",
                   type: "uint32",
+                },
+                {
+                  internalType: "bool",
+                  name: "removed",
+                  type: "bool",
                 },
               ],
               internalType: "struct Product[]",
@@ -249,12 +371,12 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_retailerAddress",
+              name: "retailerAddress",
               type: "address",
             },
             {
               internalType: "uint32",
-              name: "_index",
+              name: "index",
               type: "uint32",
             },
           ],
@@ -294,14 +416,19 @@ const deployedContracts = {
               type: "string",
             },
             {
-              internalType: "uint32",
+              internalType: "uint256",
               name: "price",
-              type: "uint32",
+              type: "uint256",
             },
             {
               internalType: "uint32",
               name: "score",
               type: "uint32",
+            },
+            {
+              internalType: "bool",
+              name: "removed",
+              type: "bool",
             },
           ],
           stateMutability: "view",
@@ -311,27 +438,32 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "uint32",
-              name: "_index",
+              name: "index",
               type: "uint32",
             },
             {
               internalType: "string",
-              name: "_name",
+              name: "name",
               type: "string",
             },
             {
+              internalType: "string[]",
+              name: "tags",
+              type: "string[]",
+            },
+            {
+              internalType: "uint256",
+              name: "price",
+              type: "uint256",
+            },
+            {
               internalType: "uint32",
-              name: "_price",
+              name: "stock",
               type: "uint32",
             },
             {
               internalType: "uint32",
-              name: "_stock",
-              type: "uint32",
-            },
-            {
-              internalType: "uint32",
-              name: "_score",
+              name: "score",
               type: "uint32",
             },
           ],
@@ -344,15 +476,10 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     LoyaltyRewards: {
-      address: "0x4D2A838Cd3270795a2c4D9e5d3a92ED469030C38",
+      address: "0xc27cc7153E1788F3d3A91aF0518fcE01872C0810",
       abi: [
         {
           inputs: [
-            {
-              internalType: "address",
-              name: "_authorizedContract",
-              type: "address",
-            },
             {
               internalType: "address",
               name: "_paymentTokenAddress",
@@ -366,7 +493,7 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: false,
+              indexed: true,
               internalType: "address",
               name: "user",
               type: "address",
@@ -385,10 +512,16 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
+              indexed: true,
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
               indexed: false,
-              internalType: "uint32",
+              internalType: "uint256",
               name: "amount",
-              type: "uint32",
+              type: "uint256",
             },
           ],
           name: "ContributeToPool",
@@ -398,7 +531,7 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: false,
+              indexed: true,
               internalType: "address",
               name: "user",
               type: "address",
@@ -411,9 +544,9 @@ const deployedContracts = {
             },
             {
               indexed: false,
-              internalType: "uint64",
+              internalType: "uint256",
               name: "redeemTokens",
-              type: "uint64",
+              type: "uint256",
             },
           ],
           name: "RedeemScore",
@@ -448,7 +581,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "retailAddress",
+              name: "retailer",
               type: "address",
             },
             {
@@ -470,14 +603,142 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
               internalType: "uint32",
-              name: "amount",
+              name: "score",
               type: "uint32",
+            },
+          ],
+          name: "calculateRedeemTokens",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "vault",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
             },
           ],
           name: "contributeToPool",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+          ],
+          name: "createWalletIfNotExists",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+          ],
+          name: "getRedeemPool",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getScore",
+          outputs: [
+            {
+              internalType: "uint32",
+              name: "",
+              type: "uint32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+          ],
+          name: "getScorePool",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "retailer",
+              type: "address",
+            },
+          ],
+          name: "getWalletAddress",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
         {
@@ -497,31 +758,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          name: "redeemPool",
-          outputs: [
-            {
-              internalType: "uint64",
-              name: "",
-              type: "uint64",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "retailAddress",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "userAddress",
+              name: "retailer",
               type: "address",
             },
             {
@@ -533,6 +770,25 @@ const deployedContracts = {
           name: "redeemScore",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "retailerWallets",
+          outputs: [
+            {
+              internalType: "contract RetailerWallet",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
         {
@@ -582,12 +838,20 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "retailer",
+              name: "_authorizedContract",
               type: "address",
             },
+          ],
+          name: "setAuthorizedContract",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
             {
               internalType: "address",
-              name: "from",
+              name: "retailer",
               type: "address",
             },
             {
@@ -610,28 +874,12 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Tether: {
-      address: "0xf1dF9E99CbfD0bB74f223DE4ed1B63B5A01F32B0",
+      address: "0x2bc91c73AC7d2c1D22F1be0c035BD59148ed328F",
       abi: [
         {
           inputs: [],
           stateMutability: "nonpayable",
           type: "constructor",
-        },
-        {
-          inputs: [],
-          name: "InvalidShortString",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "string",
-              name: "str",
-              type: "string",
-            },
-          ],
-          name: "StringTooLong",
-          type: "error",
         },
         {
           anonymous: false,
@@ -660,8 +908,21 @@ const deployedContracts = {
         },
         {
           anonymous: false,
-          inputs: [],
-          name: "EIP712DomainChanged",
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "burner",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Burn",
           type: "event",
         },
         {
@@ -688,19 +949,6 @@ const deployedContracts = {
           ],
           name: "Transfer",
           type: "event",
-        },
-        {
-          inputs: [],
-          name: "DOMAIN_SEPARATOR",
-          outputs: [
-            {
-              internalType: "bytes32",
-              name: "",
-              type: "bytes32",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
         },
         {
           inputs: [
@@ -770,6 +1018,19 @@ const deployedContracts = {
           type: "function",
         },
         {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "burn",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
           inputs: [],
           name: "decimals",
           outputs: [
@@ -783,97 +1044,6 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "address",
-              name: "spender",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "subtractedValue",
-              type: "uint256",
-            },
-          ],
-          name: "decreaseAllowance",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "eip712Domain",
-          outputs: [
-            {
-              internalType: "bytes1",
-              name: "fields",
-              type: "bytes1",
-            },
-            {
-              internalType: "string",
-              name: "name",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "version",
-              type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "chainId",
-              type: "uint256",
-            },
-            {
-              internalType: "address",
-              name: "verifyingContract",
-              type: "address",
-            },
-            {
-              internalType: "bytes32",
-              name: "salt",
-              type: "bytes32",
-            },
-            {
-              internalType: "uint256[]",
-              name: "extensions",
-              type: "uint256[]",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "spender",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "addedValue",
-              type: "uint256",
-            },
-          ],
-          name: "increaseAllowance",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
           inputs: [],
           name: "name",
           outputs: [
@@ -884,68 +1054,6 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-          ],
-          name: "nonces",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "spender",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "value",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "deadline",
-              type: "uint256",
-            },
-            {
-              internalType: "uint8",
-              name: "v",
-              type: "uint8",
-            },
-            {
-              internalType: "bytes32",
-              name: "r",
-              type: "bytes32",
-            },
-            {
-              internalType: "bytes32",
-              name: "s",
-              type: "bytes32",
-            },
-          ],
-          name: "permit",
-          outputs: [],
-          stateMutability: "nonpayable",
           type: "function",
         },
         {
@@ -978,7 +1086,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "to",
+              name: "recipient",
               type: "address",
             },
             {
@@ -1002,12 +1110,12 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "from",
+              name: "sender",
               type: "address",
             },
             {
               internalType: "address",
-              name: "to",
+              name: "recipient",
               type: "address",
             },
             {
@@ -1028,46 +1136,16 @@ const deployedContracts = {
           type: "function",
         },
       ],
-      inheritedFunctions: {
-        allowance:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        approve:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        balanceOf:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        decimals:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        decreaseAllowance:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        increaseAllowance:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        name: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        symbol:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        totalSupply:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        transfer:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        transferFrom:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        DOMAIN_SEPARATOR:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        eip712Domain:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        nonces:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-        permit:
-          "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
-      },
+      inheritedFunctions: {},
     },
     TransactionManager: {
-      address: "0x2Fcc0ec06b87C6671cA19ce7Bf8AC562902AcE89",
+      address: "0xa6984A06a7B975b13dcC9c8F94e125eFD62c5052",
       abi: [
         {
           inputs: [
             {
               internalType: "address",
-              name: "_userManagerAddress",
+              name: "userManagerAddress",
               type: "address",
             },
           ],
@@ -1078,7 +1156,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_retailerAddress",
+              name: "retailerAddress",
               type: "address",
             },
           ],
@@ -1087,95 +1165,19 @@ const deployedContracts = {
             {
               components: [
                 {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "walletId",
-                      type: "string",
-                    },
-                  ],
-                  internalType: "struct User",
+                  internalType: "address",
                   name: "buyer",
-                  type: "tuple",
+                  type: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "companyName",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "cnpj",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "walletId",
-                      type: "string",
-                    },
-                  ],
-                  internalType: "struct Retailer",
+                  internalType: "address",
                   name: "retailer",
-                  type: "tuple",
+                  type: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "code",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string[]",
-                      name: "tags",
-                      type: "string[]",
-                    },
-                    {
-                      internalType: "uint32",
-                      name: "price",
-                      type: "uint32",
-                    },
-                    {
-                      internalType: "uint32",
-                      name: "score",
-                      type: "uint32",
-                    },
-                  ],
-                  internalType: "struct Product",
-                  name: "product",
-                  type: "tuple",
+                  internalType: "uint32",
+                  name: "productIndex",
+                  type: "uint32",
                 },
                 {
                   internalType: "uint16",
@@ -1183,9 +1185,9 @@ const deployedContracts = {
                   type: "uint16",
                 },
                 {
-                  internalType: "uint32",
+                  internalType: "uint256",
                   name: "totalPrice",
-                  type: "uint32",
+                  type: "uint256",
                 },
                 {
                   internalType: "uint32",
@@ -1210,7 +1212,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "uint32",
-              name: "_index",
+              name: "index",
               type: "uint32",
             },
           ],
@@ -1219,95 +1221,19 @@ const deployedContracts = {
             {
               components: [
                 {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "walletId",
-                      type: "string",
-                    },
-                  ],
-                  internalType: "struct User",
+                  internalType: "address",
                   name: "buyer",
-                  type: "tuple",
+                  type: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "companyName",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "cnpj",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "walletId",
-                      type: "string",
-                    },
-                  ],
-                  internalType: "struct Retailer",
+                  internalType: "address",
                   name: "retailer",
-                  type: "tuple",
+                  type: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "code",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string[]",
-                      name: "tags",
-                      type: "string[]",
-                    },
-                    {
-                      internalType: "uint32",
-                      name: "price",
-                      type: "uint32",
-                    },
-                    {
-                      internalType: "uint32",
-                      name: "score",
-                      type: "uint32",
-                    },
-                  ],
-                  internalType: "struct Product",
-                  name: "product",
-                  type: "tuple",
+                  internalType: "uint32",
+                  name: "productIndex",
+                  type: "uint32",
                 },
                 {
                   internalType: "uint16",
@@ -1315,9 +1241,9 @@ const deployedContracts = {
                   type: "uint16",
                 },
                 {
-                  internalType: "uint32",
+                  internalType: "uint256",
                   name: "totalPrice",
-                  type: "uint32",
+                  type: "uint256",
                 },
                 {
                   internalType: "uint32",
@@ -1342,7 +1268,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_userAddress",
+              name: "userAddress",
               type: "address",
             },
           ],
@@ -1351,95 +1277,19 @@ const deployedContracts = {
             {
               components: [
                 {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "walletId",
-                      type: "string",
-                    },
-                  ],
-                  internalType: "struct User",
+                  internalType: "address",
                   name: "buyer",
-                  type: "tuple",
+                  type: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "companyName",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "cnpj",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "walletId",
-                      type: "string",
-                    },
-                  ],
-                  internalType: "struct Retailer",
+                  internalType: "address",
                   name: "retailer",
-                  type: "tuple",
+                  type: "address",
                 },
                 {
-                  components: [
-                    {
-                      internalType: "uint128",
-                      name: "code",
-                      type: "uint128",
-                    },
-                    {
-                      internalType: "string",
-                      name: "ipfsHash",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string",
-                      name: "name",
-                      type: "string",
-                    },
-                    {
-                      internalType: "string[]",
-                      name: "tags",
-                      type: "string[]",
-                    },
-                    {
-                      internalType: "uint32",
-                      name: "price",
-                      type: "uint32",
-                    },
-                    {
-                      internalType: "uint32",
-                      name: "score",
-                      type: "uint32",
-                    },
-                  ],
-                  internalType: "struct Product",
-                  name: "product",
-                  type: "tuple",
+                  internalType: "uint32",
+                  name: "productIndex",
+                  type: "uint32",
                 },
                 {
                   internalType: "uint16",
@@ -1447,9 +1297,9 @@ const deployedContracts = {
                   type: "uint16",
                 },
                 {
-                  internalType: "uint32",
+                  internalType: "uint256",
                   name: "totalPrice",
-                  type: "uint32",
+                  type: "uint256",
                 },
                 {
                   internalType: "uint32",
@@ -1472,6 +1322,19 @@ const deployedContracts = {
         },
         {
           inputs: [],
+          name: "inventoryManagement",
+          outputs: [
+            {
+              internalType: "contract InventoryManagement",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
           name: "owner",
           outputs: [
             {
@@ -1487,32 +1350,32 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_buyerAddress",
+              name: "buyerAddress",
               type: "address",
             },
             {
               internalType: "address",
-              name: "_retailerAddress",
+              name: "retailerAddress",
               type: "address",
             },
             {
               internalType: "uint32",
-              name: "_productIndex",
+              name: "productIndex",
               type: "uint32",
             },
             {
               internalType: "uint16",
-              name: "_quantity",
+              name: "quantity",
               type: "uint16",
             },
             {
-              internalType: "uint32",
-              name: "_totalCost",
-              type: "uint32",
+              internalType: "uint256",
+              name: "totalCost",
+              type: "uint256",
             },
             {
               internalType: "uint32",
-              name: "_totalScore",
+              name: "totalScore",
               type: "uint32",
             },
           ],
@@ -1549,7 +1412,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_inventoryManagementAddress",
+              name: "inventoryManagementAddress",
               type: "address",
             },
           ],
@@ -1569,95 +1432,19 @@ const deployedContracts = {
           name: "transactions",
           outputs: [
             {
-              components: [
-                {
-                  internalType: "string",
-                  name: "name",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "ipfsHash",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "walletId",
-                  type: "string",
-                },
-              ],
-              internalType: "struct User",
+              internalType: "address",
               name: "buyer",
-              type: "tuple",
+              type: "address",
             },
             {
-              components: [
-                {
-                  internalType: "string",
-                  name: "name",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "ipfsHash",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "companyName",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "cnpj",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "walletId",
-                  type: "string",
-                },
-              ],
-              internalType: "struct Retailer",
+              internalType: "address",
               name: "retailer",
-              type: "tuple",
+              type: "address",
             },
             {
-              components: [
-                {
-                  internalType: "uint128",
-                  name: "code",
-                  type: "uint128",
-                },
-                {
-                  internalType: "string",
-                  name: "ipfsHash",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "name",
-                  type: "string",
-                },
-                {
-                  internalType: "string[]",
-                  name: "tags",
-                  type: "string[]",
-                },
-                {
-                  internalType: "uint32",
-                  name: "price",
-                  type: "uint32",
-                },
-                {
-                  internalType: "uint32",
-                  name: "score",
-                  type: "uint32",
-                },
-              ],
-              internalType: "struct Product",
-              name: "product",
-              type: "tuple",
+              internalType: "uint32",
+              name: "productIndex",
+              type: "uint32",
             },
             {
               internalType: "uint16",
@@ -1665,9 +1452,9 @@ const deployedContracts = {
               type: "uint16",
             },
             {
-              internalType: "uint32",
+              internalType: "uint256",
               name: "totalPrice",
-              type: "uint32",
+              type: "uint256",
             },
             {
               internalType: "uint32",
@@ -1678,6 +1465,19 @@ const deployedContracts = {
               internalType: "uint256",
               name: "timestamp",
               type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "userManager",
+          outputs: [
+            {
+              internalType: "contract UserManager",
+              name: "",
+              type: "address",
             },
           ],
           stateMutability: "view",
@@ -1711,33 +1511,88 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     UserManager: {
-      address: "0xA763Ea32FAC34C2ECb9be46BD6bb6eACf2A16029",
+      address: "0xC07b17696877180055bc2fD688265b65A3982092",
       abi: [
         {
           inputs: [
             {
+              internalType: "address",
+              name: "paymentTokenAddress",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "entityAddress",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "enum EntityType",
+              name: "entityType",
+              type: "uint8",
+            },
+          ],
+          name: "EntityCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "entityAddress",
+              type: "address",
+            },
+            {
+              indexed: true,
               internalType: "string",
-              name: "_name",
+              name: "property",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "newValue",
+              type: "string",
+            },
+          ],
+          name: "EntityUpdated",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "name",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_ipfsHash",
+              name: "email",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_companyName",
+              name: "ipfsHash",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_cnpj",
+              name: "walletId",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_walletId",
+              name: "additionalInfo",
               type: "string",
             },
           ],
@@ -1750,17 +1605,22 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "string",
-              name: "_name",
+              name: "name",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_ipfsHash",
+              name: "email",
               type: "string",
             },
             {
               internalType: "string",
-              name: "_walletId",
+              name: "ipfsHash",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "walletId",
               type: "string",
             },
           ],
@@ -1772,12 +1632,112 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          name: "emailToWallet",
+          outputs: [
+            {
               internalType: "address",
-              name: "_walletAddress",
+              name: "",
               type: "address",
             },
           ],
-          name: "getRetailer",
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "entities",
+          outputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "email",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "ipfsHash",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "wallet",
+              type: "address",
+            },
+            {
+              internalType: "enum EntityType",
+              name: "entityType",
+              type: "uint8",
+            },
+            {
+              internalType: "string",
+              name: "walletId",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "additionalInfo",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "entitiesList",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getEntitiesList",
+          outputs: [
+            {
+              internalType: "address[]",
+              name: "",
+              type: "address[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "walletAddress",
+              type: "address",
+            },
+          ],
+          name: "getEntity",
           outputs: [
             {
               components: [
@@ -1788,26 +1748,36 @@ const deployedContracts = {
                 },
                 {
                   internalType: "string",
+                  name: "email",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
                   name: "ipfsHash",
                   type: "string",
                 },
                 {
-                  internalType: "string",
-                  name: "companyName",
-                  type: "string",
+                  internalType: "address",
+                  name: "wallet",
+                  type: "address",
                 },
                 {
-                  internalType: "string",
-                  name: "cnpj",
-                  type: "string",
+                  internalType: "enum EntityType",
+                  name: "entityType",
+                  type: "uint8",
                 },
                 {
                   internalType: "string",
                   name: "walletId",
                   type: "string",
                 },
+                {
+                  internalType: "string",
+                  name: "additionalInfo",
+                  type: "string",
+                },
               ],
-              internalType: "struct Retailer",
+              internalType: "struct Entity",
               name: "",
               type: "tuple",
             },
@@ -1818,36 +1788,19 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "string",
+              name: "email",
+              type: "string",
+            },
+          ],
+          name: "getWalletByEmail",
+          outputs: [
+            {
               internalType: "address",
-              name: "_walletAddress",
+              name: "",
               type: "address",
             },
           ],
-          name: "getUser",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "string",
-                  name: "name",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "ipfsHash",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "walletId",
-                  type: "string",
-                },
-              ],
-              internalType: "struct User",
-              name: "",
-              type: "tuple",
-            },
-          ],
           stateMutability: "view",
           type: "function",
         },
@@ -1855,7 +1808,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_walletAddress",
+              name: "walletAddress",
               type: "address",
             },
           ],
@@ -1874,7 +1827,7 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "_walletAddress",
+              name: "walletAddress",
               type: "address",
             },
           ],
@@ -1890,39 +1843,13 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          name: "retailers",
+          inputs: [],
+          name: "paymentToken",
           outputs: [
             {
-              internalType: "string",
-              name: "name",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "ipfsHash",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "companyName",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "cnpj",
-              type: "string",
-            },
-            {
-              internalType: "string",
-              name: "walletId",
-              type: "string",
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
             },
           ],
           stateMutability: "view",
@@ -1931,16 +1858,13 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          name: "users",
-          outputs: [
-            {
               internalType: "string",
               name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "email",
               type: "string",
             },
             {
@@ -1949,12 +1873,42 @@ const deployedContracts = {
               type: "string",
             },
             {
+              internalType: "enum EntityType",
+              name: "entityType",
+              type: "uint8",
+            },
+            {
               internalType: "string",
               name: "walletId",
               type: "string",
             },
+            {
+              internalType: "string",
+              name: "additionalInfo",
+              type: "string",
+            },
           ],
-          stateMutability: "view",
+          name: "registerEntity",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "property",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "newValue",
+              type: "string",
+            },
+          ],
+          name: "updateEntity",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
       ],

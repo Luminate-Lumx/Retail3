@@ -21,7 +21,7 @@ const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.17",
+    version: "0.8.0",
     settings: {
       optimizer: {
         enabled: true,
@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "sepolia",
+  defaultNetwork: "amoy",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -41,6 +41,22 @@ const config: HardhatUserConfig = {
     sepolia: {
       url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
+    },
+    amoy: {
+      url: `https://polygon-amoy.g.alchemy.com/v2/${providerApiKey}`,
+      accounts: [deployerPrivateKey],
+      gas: 3000000,
+    },
+    chiliz: {
+      url: `https://spicy-rpc.chiliz.com/`,
+      accounts: [deployerPrivateKey],
+    },
+    hardhat: {
+      // If you want to do some forking, uncomment this
+      // forking: {
+      //   url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
+      //   blockNumber: 13150000,
+      // },
     },
   },
   // configuration for harhdat-verify plugin

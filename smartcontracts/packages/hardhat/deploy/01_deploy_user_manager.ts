@@ -1,6 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { Contract } from "ethers";
+import { Contract, ethers } from "ethers";
 
 const deployUserManager: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
@@ -8,16 +8,19 @@ const deployUserManager: DeployFunction = async function (hre: HardhatRuntimeEnv
 
   const Tether = await hre.ethers.getContract<Contract>("Tether", deployer);
 
+  console.log("Deploying UserManager...");
   await deploy("UserManager", {
     from: deployer,
     args: [await Tether.getAddress()],
     log: true,
-    autoMine: true,
   });
+  console.log("UserManager deployed!");
 
   const UserManager = await hre.ethers.getContract("UserManager", deployer);
 
-  Tether.transfer(await UserManager.getAddress(), 10000 * 10 ** 18);
+  console.log("Transferring 1,000,000 Tether to UserManager...");
+  await Tether.transfer(await UserManager.getAddress(), ethers.parseEther("1000000"));
+  console.log("Transferred 1,000,000 Tether to UserManager!");
 };
 
 export default deployUserManager;

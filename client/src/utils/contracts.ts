@@ -1,13 +1,25 @@
-import InventoryContract from '../abis/InventoryManagement.json'
-import LoyaltyContract from '../abis/LoyaltyContracts.json'
-import TheterContract from '../abis/TheterContract.json'
-import TransactionManagerContract from '../abis/TransactionManagerContract.json'
-import UserManagerContract from '../abis/UserManagerContract.json'
-import LumxApi from 'lumx-node'
+/*
+InventoryManagement.json
+LoyaltyRewards.json
+Tether.json
+TransactionManager.json
+*/
 
-const {  } = process.env
+class ContractABILoaderIPFS {
+	private ipfs_folder_url: string;
 
-function makeContract(abi, address) {
-    
+	constructor(ipfs_folder_url) {
+		this.ipfs_folder_url = ipfs_folder_url;
+	}
+
+	async load(contract_name: string) {
+		const response = await fetch(this.ipfs_folder_url + contract_name + '.json');
+		const data = await response.json();
+		return data;
+	}
 }
 
+export async function getContractABI(contract_name: string) {
+	const InventoryContract = new ContractABILoaderIPFS(import.meta.env.VITE_DEPLOY_IPFS_FOLDER_URL).load(contract_name);
+	return await InventoryContract;
+}

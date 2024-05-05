@@ -4,7 +4,7 @@ pragma solidity >=0.8.0 <0.9.0;
 import "./UserManager.sol";
 import "./LoyaltyRewards.sol";
 import "./TransactionManager.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./Tether.sol";
 
 /**
  * @title Product structure

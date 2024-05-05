@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+import "./Tether.sol";
 import "./RetailerWallet.sol";
-import "hardhat/console.sol";
+
 /**
  * @title Loyalty Rewards System
  * @notice Manages the allocation, redemption, and transfer of loyalty points within a retail ecosystem

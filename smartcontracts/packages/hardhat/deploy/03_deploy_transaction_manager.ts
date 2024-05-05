@@ -7,14 +7,13 @@ const deployTransactionManager: DeployFunction = async function (hre: HardhatRun
 
   const UserManager = await hre.ethers.getContract("UserManager", deployer);
 
-  const transactionManager = await deploy("TransactionManager", {
+  console.log("Deploying TransactionManager...");
+  await deploy("TransactionManager", {
     from: deployer,
     args: [await UserManager.getAddress()],
     log: true,
-    autoMine: true,
   });
-
-  return transactionManager;
+  console.log("TransactionManager deployed!");
 };
 
 export default deployTransactionManager;

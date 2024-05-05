@@ -5,12 +5,13 @@ const deployTether: DeployFunction = async function (hre: HardhatRuntimeEnvironm
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
+  console.log("Deploying Tether...");
   await deploy("Tether", {
     from: deployer,
     args: [],
     log: true,
-    autoMine: true,
   });
+  console.log("Tether deployed!");
 };
 
 export default deployTether;

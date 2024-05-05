@@ -11,6 +11,7 @@ const deployInventoryManagement: DeployFunction = async function (hre: HardhatRu
   const LoyaltyRewards = await hre.ethers.getContract<Contract>("LoyaltyRewards", deployer);
   const TransactionManager = await hre.ethers.getContract<Contract>("TransactionManager", deployer);
 
+  console.log("Deploying InventoryManagement...");
   await deploy("InventoryManagement", {
     from: deployer,
     args: [
@@ -20,12 +21,18 @@ const deployInventoryManagement: DeployFunction = async function (hre: HardhatRu
       await TransactionManager.getAddress(),
     ],
     log: true,
-    autoMine: true,
   });
-  const InventoryManagement = await hre.ethers.getContract("InventoryManagement", deployer);
-  await LoyaltyRewards.setAuthorizedContract(await InventoryManagement.getAddress());
+  console.log("InventoryManagement deployed!");
 
+  const InventoryManagement = await hre.ethers.getContract("InventoryManagement", deployer);
+
+  console.log("Setting InventoryManagement as authorized contract in LoyaltyRewards...");
+  await LoyaltyRewards.setAuthorizedContract(await InventoryManagement.getAddress());
+  console.log("InventoryManagement set as authorized contract in LoyaltyRewards!");
+
+  console.log("Setting InventoryManagement as authorized contract in TransactionManager...");
   await TransactionManager.setInventoryManagement(await InventoryManagement.getAddress());
+  console.log("InventoryManagement set as authorized contract in TransactionManager!");
 };
 
 export default deployInventoryManagement;
