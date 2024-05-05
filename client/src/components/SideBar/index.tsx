@@ -3,8 +3,6 @@ import { Container, SideBarList, SideBarItem } from './style';
 import HomeIcon from '@mui/icons-material/Home';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import SavingsIcon from '@mui/icons-material/Savings';
-import InboxIcon from '@mui/icons-material/Inbox';
-import PersonIcon from '@mui/icons-material/Person';
 
 const SideBar: React.FC = () => {
     const [selectedItem, setSelectedItem] = useState<string>(() => {
@@ -36,16 +34,6 @@ const SideBar: React.FC = () => {
                 <hr style={{backgroundColor: selectedItem != 'Score' ? '#f5f5f5' : '#407BFF', border: selectedItem != 'Score' ? '1px solid #f5f5f5' : '1px solid #407BFF'}}></hr>
                 <SavingsIcon sx={{ color: selectedItem === 'Score' ? '#407BFF' : '#5C5F62' }} />
                 <p style={{ color: selectedItem === 'Score' ? '#407BFF' : '#5C5F62' }}>Score</p>
-            </SideBarItem>
-            <SideBarItem href='/retailerOrders' onClick={() => handleItemClick('Orders')}>
-                <hr style={{backgroundColor: selectedItem != 'Orders' ? '#f5f5f5' : '#407BFF', border: selectedItem != 'Orders' ? '1px solid #f5f5f5' : '1px solid #407BFF'}}></hr>
-                <InboxIcon sx={{ color: selectedItem === 'Orders' ? '#407BFF' : '#5C5F62' }} />
-                <p style={{ color: selectedItem === 'Orders' ? '#407BFF' : '#5C5F62' }}>Orders</p>
-            </SideBarItem>
-            <SideBarItem href='/retailerCustomers' onClick={() => handleItemClick('Customers')}>
-                <hr style={{backgroundColor: selectedItem != 'Customers' ? '#f5f5f5' : '#407BFF', border: selectedItem != 'Customers' ? '1px solid #f5f5f5' : '1px solid #407BFF'}}></hr>
-                <PersonIcon sx={{ color: selectedItem === 'Customers' ? '#407BFF' : '#5C5F62' }} />
-                <p style={{ color: selectedItem === 'Customers' ? '#407BFF' : '#5C5F62' }}>Customers</p>
             </SideBarItem>
         </SideBarList>
         </Container>
