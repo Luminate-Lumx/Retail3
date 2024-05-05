@@ -2,6 +2,8 @@
 pragma solidity >=0.8.0 <0.9.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+import "./RetailerWallet.sol";
+
 /**
  * @title Loyalty Rewards
  * @dev Manages loyalty points for retailers and customers in a retail ecosystem
@@ -11,8 +13,9 @@ contract LoyaltyRewards {
 	mapping(address => mapping(address => uint32)) public scores;
 	// Total scores pool per retailer
 	mapping(address => uint64) public scorePool;
-	// Redeemable tokens pool per retailer
-	mapping(address => uint64) public redeemPool;
+	// Total redeem pool per retailer
+	mapping(address => RetailerWallet) public retailerWallets;
+
 	// Address of the authorized contract that can call restricted functions
 	address private authorizedContract;
 
@@ -48,45 +51,51 @@ contract LoyaltyRewards {
 
 	/**
 	 * @dev Adds loyalty score for a user under a specific retailer
-	 * @param retailAddress Address of the retailer
+	 * @param retail Address of the retailer
 	 * @param userAddress Address of the user
 	 * @param score Amount of score to add
 	 */
 	function addScore(
-		address retailAddress,
+		address retail,
 		address userAddress,
 		uint32 score
 	) public onlyAuthorized {
-		scores[retailAddress][userAddress] += score;
-		scorePool[retailAddress] += score;
+		scores[retail][userAddress] += score;
+		scorePool[retail] += score;
 		emit AddScore(userAddress, score);
 	}
 
 	/**
+	 * @dev Creates a new wallet for a retailer if it does not exist
+	 * @param retailer Address of the retailer
+	 * @return RetailerWallet The retailer's wallet
+	 */
+	function createOrGetWallet(
+		address retailer
+	) internal returns (RetailerWallet) {
+		if (address(retailerWallets[retailer]) == address(0)) {
+			retailerWallets[retailer] = new RetailerWallet(
+				retailer,
+				address(paymentToken)
+			);
+		}
+		return retailerWallets[retailer];
+	}
+
+	/**
 	 * @dev Redeems loyalty score for tokens from the redeem pool
-	 * @param retailAddress Address of the retailer
+	 * @param retail Address of the retailer
 	 * @param score Amount of score to redeem
 	 */
-	function redeemScore(address retailAddress, uint32 score) public {
-		require(
-			scores[retailAddress][msg.sender] >= score,
-			"User does not have enough score"
-		);
+	function redeemScore(address retail, uint32 score) public {
+		require(scores[retail][msg.sender] >= score, "Insufficient score");
+		uint256 redeemTokens = calculateRedeemTokens(retail, score);
 
-		uint64 redeemTokens = (redeemPool[retailAddress] * score) /
-			scorePool[retailAddress];
+		RetailerWallet wallet = retailerWallets[retail];
+		require(wallet.balance() >= redeemTokens, "Insufficient funds in pool");
 
-		require(
-			redeemTokens <= redeemPool[retailAddress],
-			"Redeem pool does not have enough tokens"
-		);
-
-		scores[retailAddress][msg.sender] -= score;
-		redeemPool[retailAddress] -= redeemTokens;
-		scorePool[retailAddress] -= score;
-		paymentToken.transfer(msg.sender, redeemTokens);
-
-		emit RedeemScore(msg.sender, score, redeemTokens);
+		scores[retail][msg.sender] -= score;
+		wallet.withdrawTokens(msg.sender, redeemTokens);
 	}
 
 	/**
@@ -108,12 +117,31 @@ contract LoyaltyRewards {
 	}
 
 	/**
-	 * @dev Contributes to the redeem pool with an amount of tokens
-	 * @param amount Tokens to add to the redeem pool
+	 * @dev Calculates the amount of tokens to redeem based on the score
+	 * @param retailer Address of the retailer
+	 * @param score Amount of score to redeem
+	 * @return redeemTokens Amount of tokens to redeem
 	 */
-	function contributeToPool(uint32 amount) public onlyAuthorized {
-		redeemPool[msg.sender] += amount;
-		emit ContributeToPool(amount);
+	function calculateRedeemTokens(
+		address retailer,
+		uint32 score
+	) public view returns (uint256) {
+		uint256 tokensPerScoreUnit = retailerWallets[retailer].balance() /
+			scorePool[retailer];
+		return uint256(score) * tokensPerScoreUnit;
+	}
+
+	/**
+	 * @dev Contributes tokens to the pool for a retailer
+	 * @param retailerAddress Address of the retailer
+	 * @param amount Amount of tokens to contribute
+	 */
+	function contributeToPool(
+		address retailerAddress,
+		uint256 amount
+	) public onlyAuthorized {
+		RetailerWallet wallet = createOrGetWallet(retailerAddress);
+		wallet.receiveTokens(amount);
 	}
 
 	/**
@@ -143,7 +171,7 @@ contract LoyaltyRewards {
 	 * @param retailer Address of the retailer
 	 * @return redeemPool The total redeem pool of the retailer
 	 */
-	function getRedeemPool(address retailer) public view returns (uint64) {
-		return redeemPool[retailer];
+	function getRedeemPool(address retailer) public view returns (uint256) {
+		return retailerWallets[retailer].balance();
 	}
 }

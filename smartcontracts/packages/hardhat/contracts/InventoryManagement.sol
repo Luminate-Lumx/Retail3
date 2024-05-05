@@ -48,21 +48,21 @@ contract InventoryManagement {
 
 	/**
 	 * @dev Sets the essential addresses for interacting with other contracts and tokens
-	 * @param _userManagerAddress Address of the UserManager contract
-	 * @param _paymentTokenAddress Address of the payment token contract (ERC20)
-	 * @param _loyaltyRewardsAddress Address of the LoyaltyRewards contract
-	 * @param _transactionManagerAddress Address of the TransactionManager contract
+	 * @param userManagerAddress Address of the UserManager contract
+	 * @param paymentTokenAddress Address of the payment token contract (ERC20)
+	 * @param loyaltyRewardsAddress Address of the LoyaltyRewards contract
+	 * @param transactionManagerAddress Address of the TransactionManager contract
 	 */
 	constructor(
-		address _userManagerAddress,
-		address _paymentTokenAddress,
-		address _loyaltyRewardsAddress,
-		address _transactionManagerAddress
+		address userManagerAddress,
+		address paymentTokenAddress,
+		address loyaltyRewardsAddress,
+		address transactionManagerAddress
 	) {
-		paymentToken = IERC20(_paymentTokenAddress);
-		userManager = UserManager(_userManagerAddress);
-		transactionManager = TransactionManager(_transactionManagerAddress);
-		loyaltyRewards = LoyaltyRewards(_loyaltyRewardsAddress);
+		paymentToken = IERC20(paymentTokenAddress);
+		userManager = UserManager(userManagerAddress);
+		transactionManager = TransactionManager(transactionManagerAddress);
+		loyaltyRewards = LoyaltyRewards(loyaltyRewardsAddress);
 	}
 
 	/**
@@ -78,157 +78,157 @@ contract InventoryManagement {
 
 	/**
 	 * @dev Adds a new product to the retailer's inventory
-	 * @param _productCode Unique code for the product
-	 * @param _ipfsHash IPFS hash containing product information
-	 * @param _name Product name
-	 * @param _tags Array of tags for categorization
-	 * @param _price Price of the product in smallest token units
-	 * @param _stock Initial stock quantity
-	 * @param _score Loyalty score awarded for purchasing this product
+	 * @param productCode Unique code for the product
+	 * @param ipfsHash IPFS hash containing product information
+	 * @param name Product name
+	 * @param tags Array of tags for categorization
+	 * @param price Price of the product in smallest token units
+	 * @param stock Initial stock quantity
+	 * @param score Loyalty score awarded for purchasing this product
 	 */
 	function addProduct(
-		uint128 _productCode,
-		string memory _ipfsHash,
-		string memory _name,
-		string[] memory _tags,
-		uint32 _price,
-		uint32 _stock,
-		uint32 _score
+		uint128 productCode,
+		string memory ipfsHash,
+		string memory name,
+		string[] memory tags,
+		uint32 price,
+		uint32 stock,
+		uint32 score
 	) public onlyRetailer {
 		retailerProducts[msg.sender].push(
 			Product({
-				code: _productCode,
-				ipfsHash: _ipfsHash,
-				name: _name,
-				tags: _tags,
-				price: _price,
-				score: _score
+				code: productCode,
+				ipfsHash: ipfsHash,
+				name: name,
+				tags: tags,
+				price: price,
+				score: score
 			})
 		);
-		productStock[msg.sender][_productCode] = _stock;
+		productStock[msg.sender][productCode] = stock;
 
-		emit ProductAdded(msg.sender, _productCode);
+		emit ProductAdded(msg.sender, productCode);
 	}
 
 	/**
 	 * @dev Updates existing product details
-	 * @param _index Index of the product in the retailer's product array
-	 * @param _name New name for the product
-	 * @param _price New price for the product
-	 * @param _stock Updated stock quantity
-	 * @param _score Updated loyalty score for the product
+	 * @param index Index of the product in the retailer's product array
+	 * @param name New name for the product
+	 * @param price New price for the product
+	 * @param stock Updated stock quantity
+	 * @param score Updated loyalty score for the product
 	 */
 	function updateProduct(
-		uint32 _index,
-		string memory _name,
-		uint32 _price,
-		uint32 _stock,
-		uint32 _score
+		uint32 index,
+		string memory name,
+		uint32 price,
+		uint32 stock,
+		uint32 score
 	) public onlyRetailer {
 		require(
-			_index < retailerProducts[msg.sender].length,
+			index < retailerProducts[msg.sender].length,
 			"Product index out of range"
 		);
-		Product storage product = retailerProducts[msg.sender][_index];
+		Product storage product = retailerProducts[msg.sender][index];
 		require(product.code != 0, "Product not found");
 
-		product.name = _name;
-		product.price = _price;
-		product.score = _score;
-		productStock[msg.sender][product.code] = _stock;
+		product.name = name;
+		product.price = price;
+		product.score = score;
+		productStock[msg.sender][product.code] = stock;
 
 		emit ProductUpdated(msg.sender, product.code);
 	}
 
 	/**
 	 * @dev Removes a product from the retailer's inventory
-	 * @param _retailerAddress Address of the retailer
-	 * @param _index Index of the product to remove
+	 * @param retailerAddress Address of the retailer
+	 * @param index Index of the product to remove
 	 */
 	function removeProduct(
-		address _retailerAddress,
-		uint32 _index
+		address retailerAddress,
+		uint32 index
 	) public onlyRetailer {
 		require(
-			_index < retailerProducts[_retailerAddress].length,
+			index < retailerProducts[retailerAddress].length,
 			"Product index out of range"
 		);
-		Product storage product = retailerProducts[_retailerAddress][_index];
-		delete productStock[_retailerAddress][product.code];
-		delete retailerProducts[_retailerAddress][_index];
+		Product storage product = retailerProducts[retailerAddress][index];
+		delete productStock[retailerAddress][product.code];
+		delete retailerProducts[retailerAddress][index];
 
-		emit ProductRemoved(_retailerAddress, product.code);
+		emit ProductRemoved(retailerAddress, product.code);
 	}
 
 	/**
 	 * @dev Facilitates the purchase of a product from a retailer's inventory
-	 * @param _retailerAddress Address of the retailer
-	 * @param _index Index of the product to buy
-	 * @param _quantity Quantity of the product to buy
+	 * @param retailerAddress Address of the retailer
+	 * @param index Index of the product to buy
+	 * @param quantity Quantity of the product to buy
 	 */
 	function buyProduct(
-		address _retailerAddress,
-		uint32 _index,
-		uint16 _quantity
+		address retailerAddress,
+		uint32 index,
+		uint16 quantity
 	) public {
 		require(
-			_index < retailerProducts[_retailerAddress].length,
+			index < retailerProducts[retailerAddress].length,
 			"Product index out of range"
 		);
-		Product storage product = retailerProducts[_retailerAddress][_index];
-		uint32 stock = productStock[_retailerAddress][product.code];
-		require(stock >= _quantity, "Not enough stock");
+		Product storage product = retailerProducts[retailerAddress][index];
+		uint32 stock = productStock[retailerAddress][product.code];
+		require(stock >= quantity, "Not enough stock");
 
-		uint32 totalCost = product.price * _quantity;
-		uint32 totalScore = product.score * _quantity;
+		uint32 totalCost = product.price * quantity;
+		uint32 totalScore = product.score * quantity;
+		uint32 pollContribution = totalCost / 100;
+
 		require(
-			paymentToken.transferFrom(msg.sender, address(this), totalCost),
+			paymentToken.transferFrom(
+				msg.sender,
+				retailerAddress,
+				totalCost - pollContribution
+			),
 			"Payment failed"
 		);
 
-		productStock[_retailerAddress][product.code] -= _quantity;
-		loyaltyRewards.addScore(_retailerAddress, msg.sender, totalScore);
+		productStock[retailerAddress][product.code] -= quantity;
+		loyaltyRewards.addScore(retailerAddress, msg.sender, totalScore);
 
-		uint32 pollContribution = totalCost / 100;
-		loyaltyRewards.contributeToPool(pollContribution);
+		loyaltyRewards.contributeToPool(retailerAddress, pollContribution);
 		transactionManager.recordTransaction(
 			msg.sender,
-			_retailerAddress,
-			_index,
-			_quantity,
+			retailerAddress,
+			index,
+			quantity,
 			totalCost,
 			totalScore
 		);
 
-		emit ProductBought(
-			msg.sender,
-			_retailerAddress,
-			product.name,
-			_quantity
-		);
+		emit ProductBought(msg.sender, retailerAddress, product.name, quantity);
 	}
 
 	/**
 	 * @dev Retrieves all products of a specific retailer
-	 * @param _retailerAddress Address of the retailer
+	 * @param retailerAddress Address of the retailer
 	 * @return List of products
 	 */
 	function getProducts(
-		address _retailerAddress
+		address retailerAddress
 	) public view returns (Product[] memory) {
-		return retailerProducts[_retailerAddress];
+		return retailerProducts[retailerAddress];
 	}
 
 	/**
 	 * @dev Retrieves a specific product of a retailer
-	 * @param _retailerAddress Address of the retailer
-	 * @param _index Index of the product
+	 * @param retailerAddress Address of the retailer
+	 * @param index Index of the product
 	 * @return Single product details
 	 */
 	function getProduct(
-		address _retailerAddress,
-		uint32 _index
+		address retailerAddress,
+		uint32 index
 	) public view returns (Product memory) {
-		return retailerProducts[_retailerAddress][_index];
+		return retailerProducts[retailerAddress][index];
 	}
 }

@@ -37,11 +37,11 @@ contract TransactionManager {
 
 	/**
 	 * @dev Constructor to set initial owner and UserManager address
-	 * @param _userManagerAddress Address of the UserManager contract
+	 * @param userManagerAddress Address of the UserManager contract
 	 */
-	constructor(address _userManagerAddress) {
+	constructor(address userManagerAddress) {
 		owner = msg.sender;
-		userManager = UserManager(_userManagerAddress);
+		userManager = UserManager(userManagerAddress);
 	}
 
 	/**
@@ -65,73 +65,73 @@ contract TransactionManager {
 
 	/**
 	 * @dev Sets the InventoryManagement contract address
-	 * @param _inventoryManagementAddress Address of the InventoryManagement contract
+	 * @param inventoryManagementAddress Address of the InventoryManagement contract
 	 */
 	function setInventoryManagement(
-		address _inventoryManagementAddress
+		address inventoryManagementAddress
 	) external onlyOwner {
-		inventoryManagement = InventoryManagement(_inventoryManagementAddress);
+		inventoryManagement = InventoryManagement(inventoryManagementAddress);
 	}
 
 	/**
 	 * @dev Records a transaction into the ledger
-	 * @param _buyerAddress Address of the buyer
-	 * @param _retailerAddress Address of the retailer
-	 * @param _productIndex Index of the product in the retailer's inventory
-	 * @param _quantity Quantity of the product bought
-	 * @param _totalCost Total cost of the transaction
-	 * @param _totalScore Total loyalty score earned from the transaction
+	 * @param buyerAddress Address of the buyer
+	 * @param retailerAddress Address of the retailer
+	 * @param productIndex Index of the product in the retailer's inventory
+	 * @param quantity Quantity of the product bought
+	 * @param totalCost Total cost of the transaction
+	 * @param totalScore Total loyalty score earned from the transaction
 	 */
 	function recordTransaction(
-		address _buyerAddress,
-		address _retailerAddress,
-		uint32 _productIndex,
-		uint16 _quantity,
-		uint32 _totalCost,
-		uint32 _totalScore
+		address buyerAddress,
+		address retailerAddress,
+		uint32 productIndex,
+		uint16 quantity,
+		uint32 totalCost,
+		uint32 totalScore
 	) external onlyInventoryManager {
-		User memory buyer = userManager.getUser(_buyerAddress);
-		Retailer memory retailer = userManager.getRetailer(_retailerAddress);
+		User memory buyer = userManager.getUser(buyerAddress);
+		Retailer memory retailer = userManager.getRetailer(retailerAddress);
 		Product memory product = inventoryManagement.getProduct(
-			_retailerAddress,
-			_productIndex
+			retailerAddress,
+			productIndex
 		);
 
 		Transaction memory transaction = Transaction(
 			buyer,
 			retailer,
 			product,
-			_quantity,
-			_totalCost,
-			_totalScore,
+			quantity,
+			totalCost,
+			totalScore,
 			block.timestamp
 		);
 
 		transactions.push(transaction);
-		userTransactions[_buyerAddress].push(transactions.length - 1);
-		retailerTransactions[_retailerAddress].push(transactions.length - 1);
+		userTransactions[buyerAddress].push(transactions.length - 1);
+		retailerTransactions[retailerAddress].push(transactions.length - 1);
 	}
 
 	/**
 	 * @dev Retrieves a specific transaction by index
-	 * @param _index Index of the transaction in the array
+	 * @param index Index of the transaction in the array
 	 * @return Transaction The transaction at the specified index
 	 */
 	function getTransaction(
-		uint32 _index
+		uint32 index
 	) external view returns (Transaction memory) {
-		return transactions[_index];
+		return transactions[index];
 	}
 
 	/**
 	 * @dev Retrieves all transactions for a specific user
-	 * @param _userAddress Address of the user
+	 * @param userAddress Address of the user
 	 * @return Transaction[] Array of all transactions by the user
 	 */
 	function getUserTransactions(
-		address _userAddress
+		address userAddress
 	) external view returns (Transaction[] memory) {
-		uint[] memory userTransactionIndexes = userTransactions[_userAddress];
+		uint[] memory userTransactionIndexes = userTransactions[userAddress];
 		Transaction[] memory userTransactionsArray = new Transaction[](
 			userTransactionIndexes.length
 		);
@@ -145,14 +145,14 @@ contract TransactionManager {
 
 	/**
 	 * @dev Retrieves all transactions for a specific retailer
-	 * @param _retailerAddress Address of the retailer
+	 * @param retailerAddress Address of the retailer
 	 * @return Transaction[] Array of all transactions involving the retailer
 	 */
 	function getRetailerTransactions(
-		address _retailerAddress
+		address retailerAddress
 	) external view returns (Transaction[] memory) {
 		uint[] memory retailerTransactionIndexes = retailerTransactions[
-			_retailerAddress
+			retailerAddress
 		];
 		Transaction[] memory retailerTransactionsArray = new Transaction[](
 			retailerTransactionIndexes.length

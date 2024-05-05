@@ -51,24 +51,25 @@ contract UserManager {
 
 	/**
 	 * @dev Constructor to initialize the Loyalty Rewards contract
-	 * @param _paymentTokenAddress ERC20 token address for handling rewards and payments
+	 * @param paymentTokenAddress ERC20 token address for handling rewards and payments
 	 */
-	constructor(address _paymentTokenAddress) {
-		paymentToken = IERC20(_paymentTokenAddress);
+	constructor(address paymentTokenAddress) {
+		paymentToken = IERC20(paymentTokenAddress);
 	}
 
 	/**
 	 * @dev Registers a new user with their details
-	 * @param _name Name of the user
-	 * @param _ipfsHash IPFS hash containing the user's additional data
-	 * @param _walletId Unique identifier for the user's wallet
+	 * @param name Name of the user
+	 * @param ipfsHash IPFS hash containing the user's additional data
+	 * @param walletId Unique identifier for the user's wallet
 	 */
 	function createUser(
-		string memory _name,
-		string memory _ipfsHash,
-		string memory _walletId
+		string memory name,
+		string memory email,
+		string memory ipfsHash,
+		string memory walletId
 	) public {
-		users[msg.sender] = User(_name, _ipfsHash, _walletId);
+		users[msg.sender] = User(name, email, ipfsHash, walletId);
 
 		usersList.push(msg.sender);
 
@@ -80,25 +81,27 @@ contract UserManager {
 
 	/**
 	 * @dev Registers a new retailer with their detailed information
-	 * @param _name Name of the retailer
-	 * @param _ipfsHash IPFS hash containing the retailer's additional data
-	 * @param _companyName Official name of the company
-	 * @param _cnpj CNPJ number (Brazilian tax identification number)
-	 * @param _walletId Unique identifier for the retailer's wallet
+	 * @param name Name of the retailer
+	 * @param ipfsHash IPFS hash containing the retailer's additional data
+	 * @param companyName Official name of the company
+	 * @param cnpj CNPJ number (Brazilian tax identification number)
+	 * @param walletId Unique identifier for the retailer's wallet
 	 */
 	function createRetailer(
-		string memory _name,
-		string memory _ipfsHash,
-		string memory _companyName,
-		string memory _cnpj,
-		string memory _walletId
+		string memory name,
+		string memory email,
+		string memory ipfsHash,
+		string memory companyName,
+		string memory cnpj,
+		string memory walletId
 	) public {
 		retailers[msg.sender] = Retailer(
-			_name,
-			_ipfsHash,
-			_companyName,
-			_cnpj,
-			_walletId
+			name,
+			email,
+			ipfsHash,
+			companyName,
+			cnpj,
+			walletId
 		);
 
 		retailersList.push(msg.sender);
@@ -111,40 +114,40 @@ contract UserManager {
 
 	/**
 	 * @dev Retrieves user information by wallet address
-	 * @param _walletAddress Address of the user's wallet
+	 * @param walletAddress Address of the user's wallet
 	 * @return User User's stored data
 	 */
-	function getUser(address _walletAddress) public view returns (User memory) {
-		return users[_walletAddress];
+	function getUser(address walletAddress) public view returns (User memory) {
+		return users[walletAddress];
 	}
 
 	/**
 	 * @dev Retrieves retailer information by wallet address
-	 * @param _walletAddress Address of the retailer's wallet
+	 * @param walletAddress Address of the retailer's wallet
 	 * @return Retailer Retailer's stored data
 	 */
 	function getRetailer(
-		address _walletAddress
+		address walletAddress
 	) public view returns (Retailer memory) {
-		return retailers[_walletAddress];
+		return retailers[walletAddress];
 	}
 
 	/**
 	 * @dev Checks if a given address belongs to a registered retailer
-	 * @param _walletAddress Address to check
+	 * @param walletAddress Address to check
 	 * @return bool True if the address belongs to a registered retailer
 	 */
-	function isRetailer(address _walletAddress) public view returns (bool) {
-		return bytes(retailers[_walletAddress].walletId).length != 0;
+	function isRetailer(address walletAddress) public view returns (bool) {
+		return bytes(retailers[walletAddress].walletId).length != 0;
 	}
 
 	/**
 	 * @dev Checks if a given address belongs to a registered user
-	 * @param _walletAddress Address to check
+	 * @param walletAddress Address to check
 	 * @return bool True if the address belongs to a registered user
 	 */
-	function isUser(address _walletAddress) public view returns (bool) {
-		return bytes(users[_walletAddress].walletId).length != 0;
+	function isUser(address walletAddress) public view returns (bool) {
+		return bytes(users[walletAddress].walletId).length != 0;
 	}
 
 	/**
