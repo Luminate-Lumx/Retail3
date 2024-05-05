@@ -122,4 +122,88 @@ describe("Retail Management System", function () {
       expect(transaction.totalPrice).to.equal(ethers.parseEther("2000"));
     });
   });
+
+  describe("Product Lifecycle", function () {
+    it("Should allow updating a product details by the retailer", async function () {
+      // Assuming the product at index 0 is already added by addr2
+      await inventoryManagement
+        .connect(addr2)
+        .updateProduct(0, "Updated Product One", ["Electronics"], ethers.parseEther("1100"), 100, 20);
+      const updatedProduct = await inventoryManagement.getProduct(addr2.address, 0);
+      expect(updatedProduct.name).to.equal("Updated Product One");
+      expect(updatedProduct.price).to.equal(ethers.parseEther("1100"));
+      expect(updatedProduct.score).to.equal(20);
+    });
+
+    it("Should allow a retailer to remove a product from inventory", async function () {
+      const initialProductCount = (await inventoryManagement.getProducts(addr2.address)).length;
+      await inventoryManagement.connect(addr2).removeProduct(addr2.address, 0);
+      const finalProductCount = (await inventoryManagement.getProducts(addr2.address)).filter(
+        p => p.code !== BigInt(0) && p.removed === false,
+      ).length;
+      expect(finalProductCount).to.be.equal(initialProductCount - 1);
+    });
+
+    it("Should revert if a non-retailer tries to add a product", async function () {
+      await expect(
+        inventoryManagement
+          .connect(addr3)
+          .addProduct(2, "ipfs://hash2", "Product Two", ["Clothing"], ethers.parseEther("500"), 30, 5),
+      ).to.be.revertedWith("Only retailers can call this function");
+    });
+  });
+
+  describe("Handling Buying Edge Cases", function () {
+    it("Should revert if trying to buy more products than available in stock", async function () {
+      await inventoryManagement
+        .connect(addr2)
+        .addProduct(1, "ipfs://hash", "Product One", ["Electronics"], ethers.parseEther("1000"), 1, 10);
+      await expect(inventoryManagement.connect(addr3).buyProduct(addr2.address, 1, 50)).to.be.revertedWith(
+        "Not enough stock",
+      );
+    });
+
+    it("Should revert if unauthorized address tries to update product details", async function () {
+      await expect(
+        inventoryManagement
+          .connect(addr1)
+          .updateProduct(0, "Illegally Updated Product One", ["Electronics"], ethers.parseEther("2000"), 50, 15),
+      ).to.be.revertedWith("Only retailers can call this function");
+    });
+
+    it("Should revert if unauthorized address tries to remove a product", async function () {
+      await expect(inventoryManagement.connect(addr1).removeProduct(addr2.address, 1)).to.be.revertedWith(
+        "Only retailers can call this function",
+      );
+    });
+
+    it("Should revert if trying to buy a product with insufficient balance", async function () {
+      await token.connect(addr3).approve(inventoryManagement.target, ethers.parseEther("100000"));
+      await inventoryManagement
+        .connect(addr2)
+        .updateProduct(1, "Product One", ["Electronics"], ethers.parseEther("1000"), 100, 10);
+      await expect(inventoryManagement.connect(addr3).buyProduct(addr2.address, 1, 100)).to.be.revertedWith(
+        "ERC20: transfer amount exceeds balance",
+      );
+    });
+  });
+  describe("Security and Permissions", function () {
+    it("Should revert if unauthorized user tries to set authorized contract in LoyaltyRewards", async function () {
+      await expect(loyaltyRewards.connect(addr2).setAuthorizedContract(addr2.address)).to.be.revertedWith(
+        "Unauthorized: caller is not the authorized contract",
+      );
+    });
+
+    it("Should ensure only the owner can update Inventory Management contract in Transaction Manager", async function () {
+      await expect(transactionManager.connect(addr2).setInventoryManagement(addr1.address)).to.be.revertedWith(
+        "Only owner can call this function",
+      );
+    });
+
+    it("Should prevent unauthorized users from removing products", async function () {
+      await expect(inventoryManagement.connect(addr3).removeProduct(addr2.address, 0)).to.be.revertedWith(
+        "Only retailers can call this function",
+      );
+    });
+  });
 });

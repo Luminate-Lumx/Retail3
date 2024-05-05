@@ -17,6 +17,7 @@ struct Product {
 	string[] tags; // Product tags for search and categorization
 	uint256 price;
 	uint32 score; // Loyalty score associated with the product
+	bool removed;
 }
 
 /**
@@ -102,7 +103,8 @@ contract InventoryManagement {
 				name: name,
 				tags: tags,
 				price: price,
-				score: score
+				score: score,
+				removed: false
 			})
 		);
 		productStock[msg.sender][productCode] = stock;
@@ -121,7 +123,8 @@ contract InventoryManagement {
 	function updateProduct(
 		uint32 index,
 		string memory name,
-		uint32 price,
+		string[] memory tags,
+		uint256 price,
 		uint32 stock,
 		uint32 score
 	) public onlyRetailer {
@@ -133,6 +136,7 @@ contract InventoryManagement {
 		require(product.code != 0, "Product not found");
 
 		product.name = name;
+		product.tags = tags;
 		product.price = price;
 		product.score = score;
 		productStock[msg.sender][product.code] = stock;
@@ -154,8 +158,9 @@ contract InventoryManagement {
 			"Product index out of range"
 		);
 		Product storage product = retailerProducts[retailerAddress][index];
-		delete productStock[retailerAddress][product.code];
-		delete retailerProducts[retailerAddress][index];
+		require(product.code != 0, "Product not found");
+
+		product.removed = true;
 
 		emit ProductRemoved(retailerAddress, product.code);
 	}
@@ -175,7 +180,12 @@ contract InventoryManagement {
 			index < retailerProducts[retailerAddress].length,
 			"Product index out of range"
 		);
+
 		Product storage product = retailerProducts[retailerAddress][index];
+
+		require(product.code != 0, "Product not found");
+		require(!product.removed, "Product removed");
+
 		uint32 stock = productStock[retailerAddress][product.code];
 		require(stock >= quantity, "Not enough stock");
 
