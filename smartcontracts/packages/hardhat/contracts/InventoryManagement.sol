@@ -195,7 +195,12 @@ contract InventoryManagement {
 		productStock[retailerAddress][product.code] -= quantity;
 		loyaltyRewards.addScore(retailerAddress, msg.sender, totalScore);
 
-		loyaltyRewards.contributeToPool(retailerAddress, pollContribution);
+		loyaltyRewards.contributeToPool(
+			retailerAddress,
+			msg.sender,
+			pollContribution
+		);
+
 		transactionManager.recordTransaction(
 			msg.sender,
 			retailerAddress,

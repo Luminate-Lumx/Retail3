@@ -75,7 +75,7 @@ contract LoyaltyRewards {
 	) internal returns (RetailerWallet) {
 		if (address(retailerWallets[retailer]) == address(0)) {
 			retailerWallets[retailer] = new RetailerWallet(
-				retailer,
+				address(this),
 				address(paymentToken)
 			);
 		}
@@ -83,7 +83,7 @@ contract LoyaltyRewards {
 	}
 
 	/**
-	 * @dev Redeems loyalty score for tokens from the redeem pool
+	 * @dev Redeems loyalty score for tokens from the redeem pool (From retailer wallet to user)
 	 * @param retail Address of the retailer
 	 * @param score Amount of score to redeem
 	 */
@@ -133,15 +133,17 @@ contract LoyaltyRewards {
 
 	/**
 	 * @dev Contributes tokens to the pool for a retailer
-	 * @param retailerAddress Address of the retailer
+	 * @param retailer Address of the retailer
+	 * @param user Address of the user
 	 * @param amount Amount of tokens to contribute
 	 */
 	function contributeToPool(
-		address retailerAddress,
+		address retailer,
+		address user,
 		uint256 amount
 	) public onlyAuthorized {
-		RetailerWallet wallet = createOrGetWallet(retailerAddress);
-		wallet.receiveTokens(amount);
+		RetailerWallet wallet = createOrGetWallet(retailer);
+		wallet.receiveTokens(user, amount);
 	}
 
 	/**
