@@ -1,9 +1,9 @@
 import LumxAPI from 'lumx-node';
 
-export function createLumxAPI(bearer: string, web3_provider: string, web3_wss_provider: string) {
+export function createLumxAPI() {
 	return new LumxAPI({
-		bearer: bearer,
-		web3_provider: web3_provider,
-		web3_wss_provider: web3_wss_provider,
+		bearer: import.meta.env.VITE_LUMX_BEARER,
+		web3_provider: import.meta.env.VITE_WEB3_PROVIDER,
+		web3_wss_provider: import.meta.env.VITE_WEB3_WSS_PROVIDER,
 	});
 }
