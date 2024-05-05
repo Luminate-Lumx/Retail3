@@ -18,9 +18,9 @@ You can find more information about the project in the [documentation](https://l
 
 ## Links
 
--   [Documentation](www.google.com)
+-   [Documentation](https://luminate-lumx.github.io/Retail3/)
 -   [Demo deployment](www.google.com)
--   [Pitch video](www.google.com)
+-   [Pitch video]([www.google.com](https://youtu.be/u8ZqOdzZW4A))
 -   [Demo video](www.google.com)
 
 ## Authors
