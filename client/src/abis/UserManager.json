@@ -1,0 +1,703 @@
+{
+  "address": "0xC07b17696877180055bc2fD688265b65A3982092",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "paymentTokenAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "entityAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum EntityType",
+          "name": "entityType",
+          "type": "uint8"
+        }
+      ],
+      "name": "EntityCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "entityAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "property",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "newValue",
+          "type": "string"
+        }
+      ],
+      "name": "EntityUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "ipfsHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "walletId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "additionalInfo",
+          "type": "string"
+        }
+      ],
+      "name": "createRetailer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "ipfsHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "walletId",
+          "type": "string"
+        }
+      ],
+      "name": "createUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "emailToWallet",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "entities",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "ipfsHash",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "enum EntityType",
+          "name": "entityType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "walletId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "additionalInfo",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "entitiesList",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getEntitiesList",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getEntity",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "ipfsHash",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "wallet",
+              "type": "address"
+            },
+            {
+              "internalType": "enum EntityType",
+              "name": "entityType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "walletId",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "additionalInfo",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Entity",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        }
+      ],
+      "name": "getWalletByEmail",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        }
+      ],
+      "name": "isRetailer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        }
+      ],
+      "name": "isUser",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paymentToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "ipfsHash",
+          "type": "string"
+        },
+        {
+          "internalType": "enum EntityType",
+          "name": "entityType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "walletId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "additionalInfo",
+          "type": "string"
+        }
+      ],
+      "name": "registerEntity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "property",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "newValue",
+          "type": "string"
+        }
+      ],
+      "name": "updateEntity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x62b33fe0b9e3617cb590131d0a00cc3f1c6c9686fd05a81567d61b5716027a38",
+  "receipt": {
+    "to": null,
+    "from": "0x72ac37F2B8685300a6B3781669a487eBb94a5CCd",
+    "contractAddress": "0xC07b17696877180055bc2fD688265b65A3982092",
+    "transactionIndex": 0,
+    "gasUsed": "1441566",
+    "logsBloom": "0x40000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000800000000000000000000100000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000010000000000000000000040000000000000000000000000200000000000000000000000000000000000000000000000000000000000004000000000000000000001000000000000000002000000000000100000000000000000000000000000000000000000000000000000400000000000000000100000",
+    "blockHash": "0xccf46c90917375f3b1ce5e13174eb176138b253b573b8f2c63af491648afe1b4",
+    "transactionHash": "0x62b33fe0b9e3617cb590131d0a00cc3f1c6c9686fd05a81567d61b5716027a38",
+    "logs": [
+      {
+        "transactionIndex": 0,
+        "blockNumber": 6681754,
+        "transactionHash": "0x62b33fe0b9e3617cb590131d0a00cc3f1c6c9686fd05a81567d61b5716027a38",
+        "address": "0x0000000000000000000000000000000000001010",
+        "topics": [
+          "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63",
+          "0x0000000000000000000000000000000000000000000000000000000000001010",
+          "0x00000000000000000000000072ac37f2b8685300a6b3781669a487ebb94a5ccd",
+          "0x000000000000000000000000915a2284d28bd93de7d6f31173b981204bb666e6"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000070ac2049d49da000000000000000000000000000000000000000000000000111c96fc73b0dffa000000000000000000000000000000000000000000000118c92365ea95e5a9f400000000000000000000000000000000000000000000000011158c3a6f139620000000000000000000000000000000000000000000000118c92a70ac9a82f3ce",
+        "logIndex": 0,
+        "blockHash": "0xccf46c90917375f3b1ce5e13174eb176138b253b573b8f2c63af491648afe1b4"
+      }
+    ],
+    "blockNumber": 6681754,
+    "cumulativeGasUsed": "1441566",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x2bc91c73AC7d2c1D22F1be0c035BD59148ed328F"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "5869acd66d1fcfb8be90f59616081ff7",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"paymentTokenAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"entityAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enum EntityType\",\"name\":\"entityType\",\"type\":\"uint8\"}],\"name\":\"EntityCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"entityAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"property\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"newValue\",\"type\":\"string\"}],\"name\":\"EntityUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ipfsHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"walletId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"additionalInfo\",\"type\":\"string\"}],\"name\":\"createRetailer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ipfsHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"walletId\",\"type\":\"string\"}],\"name\":\"createUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"emailToWallet\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"entities\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ipfsHash\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"enum EntityType\",\"name\":\"entityType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"walletId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"additionalInfo\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"entitiesList\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getEntitiesList\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"}],\"name\":\"getEntity\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ipfsHash\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"enum EntityType\",\"name\":\"entityType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"walletId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"additionalInfo\",\"type\":\"string\"}],\"internalType\":\"struct Entity\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"}],\"name\":\"getWalletByEmail\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"}],\"name\":\"isRetailer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"}],\"name\":\"isUser\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paymentToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ipfsHash\",\"type\":\"string\"},{\"internalType\":\"enum EntityType\",\"name\":\"entityType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"walletId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"additionalInfo\",\"type\":\"string\"}],\"name\":\"registerEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"property\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"newValue\",\"type\":\"string\"}],\"name\":\"updateEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract handles the creation, updating, and querying of user and retailer entities, leveraging mappings for efficient data retrieval.\",\"kind\":\"dev\",\"methods\":{\"createRetailer(string,string,string,string,string)\":{\"params\":{\"additionalInfo\":\"Additional information for the retailer\",\"email\":\"Email address of the retailer\",\"ipfsHash\":\"IPFS hash for retailer data\",\"name\":\"Name of the retailer\",\"walletId\":\"Wallet identifier for the retailer\"}},\"createUser(string,string,string,string)\":{\"params\":{\"email\":\"Email address of the user\",\"ipfsHash\":\"IPFS hash for user data\",\"name\":\"Name of the user\",\"walletId\":\"Wallet identifier for the user\"}},\"getEntitiesList()\":{\"returns\":{\"_0\":\"address[] A list of all entity addresses.\"}},\"getEntity(address)\":{\"params\":{\"walletAddress\":\"The wallet address of the entity.\"},\"returns\":{\"_0\":\"Entity The complete entity structure with all details.\"}},\"getWalletByEmail(string)\":{\"params\":{\"email\":\"The email to search for.\"},\"returns\":{\"_0\":\"address The wallet address associated with the email.\"}},\"isRetailer(address)\":{\"params\":{\"walletAddress\":\"The wallet address to check.\"},\"returns\":{\"_0\":\"bool True if the address belongs to a retailer.\"}},\"isUser(address)\":{\"params\":{\"walletAddress\":\"The wallet address to check.\"},\"returns\":{\"_0\":\"bool True if the address belongs to a user.\"}},\"registerEntity(string,string,string,uint8,string,string)\":{\"details\":\"Creates a new entity or updates an existing one, assigning it an initial balance of tokens.\",\"params\":{\"additionalInfo\":\"Additional information relevant to the entity\",\"email\":\"Email address of the entity\",\"entityType\":\"Type of the entity (User or Retailer)\",\"ipfsHash\":\"IPFS hash for extended data storage\",\"name\":\"Name of the entity\",\"walletId\":\"Unique identifier for the entity's wallet\"}},\"updateEntity(string,string)\":{\"details\":\"Allows entities to update their information post-registration.\",\"params\":{\"newValue\":\"The new value for the specified property\",\"property\":\"The property to update (\\\"name\\\", \\\"email\\\", \\\"ipfsHash\\\", \\\"additionalInfo\\\")\"}}},\"title\":\"UserManager\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"createRetailer(string,string,string,string,string)\":{\"notice\":\"Simplified registration process for retailers.\"},\"createUser(string,string,string,string)\":{\"notice\":\"Simplified registration process for users.\"},\"getEntitiesList()\":{\"notice\":\"Retrieves a list of all registered entity addresses.\"},\"getEntity(address)\":{\"notice\":\"Retrieves detailed information about an entity.\"},\"getWalletByEmail(string)\":{\"notice\":\"Retrieves the wallet address associated with a given email.\"},\"isRetailer(address)\":{\"notice\":\"Checks if an address belongs to a retailer.\"},\"isUser(address)\":{\"notice\":\"Checks if an address belongs to a user.\"},\"registerEntity(string,string,string,uint8,string,string)\":{\"notice\":\"Registers an entity with the provided details.\"},\"updateEntity(string,string)\":{\"notice\":\"Updates an entity's specific property.\"}},\"notice\":\"Manages registration and updates of user and retailer entities.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/UserManager.sol\":\"UserManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Tether.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\n/**\\n * @title IERC20\\n * @notice Interface for the ERC20 standard as defined in the EIP.\\n * @dev Defines the standard functions for ERC20 tokens, including balance, allowance, transfer functionalities, and associated events.\\n */\\ninterface IERC20 {\\n\\tfunction totalSupply() external view returns (uint256);\\n\\tfunction balanceOf(address account) external view returns (uint256);\\n\\tfunction transfer(\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external returns (bool);\\n\\tfunction allowance(\\n\\t\\taddress owner,\\n\\t\\taddress spender\\n\\t) external view returns (uint256);\\n\\tfunction approve(address spender, uint256 amount) external returns (bool);\\n\\tfunction transferFrom(\\n\\t\\taddress sender,\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external returns (bool);\\n\\n\\tevent Transfer(address indexed from, address indexed to, uint256 value);\\n\\tevent Approval(\\n\\t\\taddress indexed owner,\\n\\t\\taddress indexed spender,\\n\\t\\tuint256 value\\n\\t);\\n\\tevent Burn(address indexed burner, uint256 value);\\n}\\n\\n/**\\n * @title Tether\\n * @notice Simulates the Tether USD (USDT) token with ERC20 functionalities.\\n * @dev This contract implements the IERC20 interface and adds additional functionalities like token burning.\\n * It is initialized with a fixed supply of tokens credited to the owner's address.\\n */\\ncontract Tether is IERC20 {\\n\\tstring public name = \\\"Tether\\\";\\n\\tstring public symbol = \\\"USDT\\\";\\n\\tuint8 public decimals = 18;\\n\\tuint256 private _totalSupply = 1_000_000_000 * 10 ** uint256(decimals);\\n\\taddress private _owner;\\n\\tmapping(address => uint256) private _balances;\\n\\tmapping(address => mapping(address => uint256)) private _allowances;\\n\\n\\t/**\\n\\t * @notice Constructs the Tether contract and assigns initial total supply to the owner.\\n\\t * @dev Sets the token name, symbol, decimals, and mints the total supply to the deployer.\\n\\t */\\n\\tconstructor() {\\n\\t\\t_owner = msg.sender;\\n\\t\\t_balances[_owner] = _totalSupply;\\n\\t\\temit Transfer(address(0), _owner, _totalSupply);\\n\\t}\\n\\n\\tmodifier onlyOwner() {\\n\\t\\trequire(msg.sender == _owner, \\\"Only the owner can call this function\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\tfunction totalSupply() external view override returns (uint256) {\\n\\t\\treturn _totalSupply;\\n\\t}\\n\\n\\tfunction balanceOf(\\n\\t\\taddress account\\n\\t) external view override returns (uint256) {\\n\\t\\treturn _balances[account];\\n\\t}\\n\\n\\tfunction transfer(\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\trequire(recipient != address(0), \\\"Invalid recipient\\\");\\n\\t\\trequire(_balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\n\\t\\t_balances[msg.sender] -= amount;\\n\\t\\t_balances[recipient] += amount;\\n\\t\\temit Transfer(msg.sender, recipient, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\tfunction allowance(\\n\\t\\taddress owner,\\n\\t\\taddress spender\\n\\t) external view override returns (uint256) {\\n\\t\\treturn _allowances[owner][spender];\\n\\t}\\n\\n\\tfunction approve(\\n\\t\\taddress spender,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\t_allowances[msg.sender][spender] = amount;\\n\\t\\temit Approval(msg.sender, spender, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\tfunction transferFrom(\\n\\t\\taddress sender,\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\trequire(sender != address(0), \\\"Invalid sender\\\");\\n\\t\\trequire(recipient != address(0), \\\"Invalid recipient\\\");\\n\\t\\trequire(_balances[sender] >= amount, \\\"Insufficient balance\\\");\\n\\t\\trequire(\\n\\t\\t\\t_allowances[sender][msg.sender] >= amount,\\n\\t\\t\\t\\\"Allowance exceeded\\\"\\n\\t\\t);\\n\\n\\t\\t_balances[sender] -= amount;\\n\\t\\t_balances[recipient] += amount;\\n\\t\\t_allowances[sender][msg.sender] -= amount;\\n\\t\\temit Transfer(sender, recipient, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Burns a specific amount of tokens from the caller's account, reducing the total supply.\\n\\t * @dev Removes tokens from the circulating supply by reducing the caller's balance and the total supply count.\\n\\t * Emits a Burn event alongside a Transfer event to the zero address.\\n\\t * @param amount The amount of tokens to be burned.\\n\\t */\\n\\tfunction burn(uint256 amount) external {\\n\\t\\trequire(_balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\t\\t_balances[msg.sender] -= amount;\\n\\t\\t_totalSupply -= amount;\\n\\t\\temit Transfer(msg.sender, address(0), amount);\\n\\t\\temit Burn(msg.sender, amount);\\n\\t}\\n}\\n\",\"keccak256\":\"0x7666ca1a82074dac836dcd19b12af7351b321dd4d583366f2672d10007d17444\",\"license\":\"MIT\"},\"contracts/UserManager.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./Tether.sol\\\";\\n\\n/**\\n * @title EntityType\\n * @notice Enumerates types of entities managed in the UserManager contract.\\n */\\nenum EntityType {\\n\\tUser,\\n\\tRetailer\\n}\\n\\n/**\\n * @title Entity\\n * @notice Represents an entity (either a user or a retailer) in the system.\\n * @dev Stores details like name, email, and IPFS hash for extended data.\\n */\\nstruct Entity {\\n\\tstring name;\\n\\tstring email;\\n\\tstring ipfsHash;\\n\\taddress wallet;\\n\\tEntityType entityType;\\n\\tstring walletId;\\n\\tstring additionalInfo;\\n}\\n\\n/**\\n * @title UserManager\\n * @notice Manages registration and updates of user and retailer entities.\\n * @dev This contract handles the creation, updating, and querying of user and retailer entities,\\n * leveraging mappings for efficient data retrieval.\\n */\\ncontract UserManager {\\n\\tmapping(address => Entity) public entities; // Mapping from wallet address to entity details\\n\\tmapping(string => address) public emailToWallet; // Mapping from email to wallet address for quick lookup\\n\\n\\taddress[] public entitiesList; // Dynamic array of entity addresses\\n\\n\\tIERC20 public paymentToken; // ERC20 token used for transactions within the system\\n\\n\\tevent EntityCreated(address indexed entityAddress, EntityType entityType);\\n\\tevent EntityUpdated(\\n\\t\\taddress indexed entityAddress,\\n\\t\\tstring indexed property,\\n\\t\\tstring newValue\\n\\t);\\n\\n\\tconstructor(address paymentTokenAddress) {\\n\\t\\tpaymentToken = IERC20(paymentTokenAddress);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Ensures that the entity is not already registered.\\n\\t */\\n\\tmodifier isUniqueEntity() {\\n\\t\\trequire(\\n\\t\\t\\tentities[msg.sender].wallet == address(0),\\n\\t\\t\\t\\\"Entity already registered\\\"\\n\\t\\t);\\n\\t\\t_;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Ensures the email is not already in use by another entity.\\n\\t */\\n\\tmodifier isUniqueEmail(string memory email) {\\n\\t\\trequire(emailToWallet[email] == address(0), \\\"Email already exists\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Registers an entity with the provided details.\\n\\t * @dev Creates a new entity or updates an existing one, assigning it an initial balance of tokens.\\n\\t * @param name Name of the entity\\n\\t * @param email Email address of the entity\\n\\t * @param ipfsHash IPFS hash for extended data storage\\n\\t * @param entityType Type of the entity (User or Retailer)\\n\\t * @param walletId Unique identifier for the entity's wallet\\n\\t * @param additionalInfo Additional information relevant to the entity\\n\\t */\\n\\tfunction registerEntity(\\n\\t\\tstring memory name,\\n\\t\\tstring memory email,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tEntityType entityType,\\n\\t\\tstring memory walletId,\\n\\t\\tstring memory additionalInfo\\n\\t) public isUniqueEntity isUniqueEmail(email) {\\n\\t\\tentities[msg.sender] = Entity(\\n\\t\\t\\tname,\\n\\t\\t\\temail,\\n\\t\\t\\tipfsHash,\\n\\t\\t\\tmsg.sender,\\n\\t\\t\\tentityType,\\n\\t\\t\\twalletId,\\n\\t\\t\\tadditionalInfo\\n\\t\\t);\\n\\t\\tentitiesList.push(msg.sender);\\n\\t\\temailToWallet[email] = msg.sender;\\n\\n\\t\\tpaymentToken.transfer(msg.sender, 100 * 10 ** 18); // Initially allocating tokens\\n\\n\\t\\temit EntityCreated(msg.sender, entityType);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Simplified registration process for users.\\n\\t * @param name Name of the user\\n\\t * @param email Email address of the user\\n\\t * @param ipfsHash IPFS hash for user data\\n\\t * @param walletId Wallet identifier for the user\\n\\t */\\n\\tfunction createUser(\\n\\t\\tstring memory name,\\n\\t\\tstring memory email,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tstring memory walletId\\n\\t) public {\\n\\t\\tregisterEntity(name, email, ipfsHash, EntityType.User, walletId, \\\"\\\");\\n\\t}\\n\\n\\t/**\\n\\t * @notice Simplified registration process for retailers.\\n\\t * @param name Name of the retailer\\n\\t * @param email Email address of the retailer\\n\\t * @param ipfsHash IPFS hash for retailer data\\n\\t * @param walletId Wallet identifier for the retailer\\n\\t * @param additionalInfo Additional information for the retailer\\n\\t */\\n\\tfunction createRetailer(\\n\\t\\tstring memory name,\\n\\t\\tstring memory email,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tstring memory walletId,\\n\\t\\tstring memory additionalInfo\\n\\t) public {\\n\\t\\tregisterEntity(\\n\\t\\t\\tname,\\n\\t\\t\\temail,\\n\\t\\t\\tipfsHash,\\n\\t\\t\\tEntityType.Retailer,\\n\\t\\t\\twalletId,\\n\\t\\t\\tadditionalInfo\\n\\t\\t);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Updates an entity's specific property.\\n\\t * @dev Allows entities to update their information post-registration.\\n\\t * @param property The property to update (\\\"name\\\", \\\"email\\\", \\\"ipfsHash\\\", \\\"additionalInfo\\\")\\n\\t * @param newValue The new value for the specified property\\n\\t */\\n\\tfunction updateEntity(\\n\\t\\tstring memory property,\\n\\t\\tstring memory newValue\\n\\t) public {\\n\\t\\trequire(\\n\\t\\t\\tentities[msg.sender].wallet != address(0),\\n\\t\\t\\t\\\"Entity not registered\\\"\\n\\t\\t);\\n\\n\\t\\tif (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"name\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].name = newValue;\\n\\t\\t} else if (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"email\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].email = newValue;\\n\\t\\t} else if (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"ipfsHash\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].ipfsHash = newValue;\\n\\t\\t} else if (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"additionalInfo\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].additionalInfo = newValue;\\n\\t\\t} else {\\n\\t\\t\\trevert(\\\"Invalid property\\\");\\n\\t\\t}\\n\\n\\t\\temit EntityUpdated(msg.sender, property, newValue);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves detailed information about an entity.\\n\\t * @param walletAddress The wallet address of the entity.\\n\\t * @return Entity The complete entity structure with all details.\\n\\t */\\n\\tfunction getEntity(\\n\\t\\taddress walletAddress\\n\\t) public view returns (Entity memory) {\\n\\t\\treturn entities[walletAddress];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Checks if an address belongs to a retailer.\\n\\t * @param walletAddress The wallet address to check.\\n\\t * @return bool True if the address belongs to a retailer.\\n\\t */\\n\\tfunction isRetailer(address walletAddress) public view returns (bool) {\\n\\t\\treturn entities[walletAddress].entityType == EntityType.Retailer;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Checks if an address belongs to a user.\\n\\t * @param walletAddress The wallet address to check.\\n\\t * @return bool True if the address belongs to a user.\\n\\t */\\n\\tfunction isUser(address walletAddress) public view returns (bool) {\\n\\t\\treturn entities[walletAddress].entityType == EntityType.User;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves a list of all registered entity addresses.\\n\\t * @return address[] A list of all entity addresses.\\n\\t */\\n\\tfunction getEntitiesList() public view returns (address[] memory) {\\n\\t\\treturn entitiesList;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the wallet address associated with a given email.\\n\\t * @param email The email to search for.\\n\\t * @return address The wallet address associated with the email.\\n\\t */\\n\\tfunction getWalletByEmail(\\n\\t\\tstring memory email\\n\\t) public view returns (address) {\\n\\t\\treturn emailToWallet[email];\\n\\t}\\n}\\n\",\"keccak256\":\"0x6ead7c6b4d044c79bc48a189c886432712ca1923946eceb70c90ea08dc1a4c65\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161193a38038061193a83398101604081905261002f91610054565b600380546001600160a01b0319166001600160a01b0392909216919091179055610082565b600060208284031215610065578081fd5b81516001600160a01b038116811461007b578182fd5b9392505050565b6118a9806100916000396000f3fe608060405234801561001057600080fd5b50600436106100cf5760003560e01c80635da09b881161008c57806375894e8c1161006657806375894e8c146101ac5780639031ee3f146101cc578063acef348b146101e1578063b272f36c146101f4576100cf565b80635da09b88146101735780636c2eec28146101865780636f7fcddb14610199576100cf565b806307bb4ee3146100d45780631d8ee48a146100fd5780633013ce291461012357806339cd535c1461012b5780634209fff11461014057806345c45a8a14610160575b600080fd5b6100e76100e2366004611183565b610207565b6040516100f4919061153f565b60405180910390f35b61011061010b366004611135565b61022d565b6040516100f497969594939291906115eb565b6100e7610521565b61013e6101393660046111be565b610530565b005b61015361014e366004611135565b6107bc565b6040516100f491906115b9565b6100e761016e36600461146e565b61080e565b610153610181366004611135565b610838565b6100e7610194366004611183565b610841565b61013e6101a73660046112fa565b610873565b6101bf6101ba366004611135565b610897565b6040516100f49190611734565b6101d4610c07565b6040516100f4919061156c565b61013e6101ef36600461121f565b610c69565b61013e6102023660046113a2565b610f91565b80516020818301810180516001825292820191909301209152546001600160a01b031681565b60006020819052908152604090208054819061024890611822565b80601f016020809104026020016040519081016040528092919081815260200182805461027490611822565b80156102c15780601f10610296576101008083540402835291602001916102c1565b820191906000526020600020905b8154815290600101906020018083116102a457829003601f168201915b5050505050908060010180546102d690611822565b80601f016020809104026020016040519081016040528092919081815260200182805461030290611822565b801561034f5780601f106103245761010080835404028352916020019161034f565b820191906000526020600020905b81548152906001019060200180831161033257829003601f168201915b50505050509080600201805461036490611822565b80601f016020809104026020016040519081016040528092919081815260200182805461039090611822565b80156103dd5780601f106103b2576101008083540402835291602001916103dd565b820191906000526020600020905b8154815290600101906020018083116103c057829003601f168201915b50505050600383015460048401805493946001600160a01b03831694600160a01b90930460ff1693509161041090611822565b80601f016020809104026020016040519081016040528092919081815260200182805461043c90611822565b80156104895780601f1061045e57610100808354040283529160200191610489565b820191906000526020600020905b81548152906001019060200180831161046c57829003601f168201915b50505050509080600501805461049e90611822565b80601f01602080910402602001604051908101604052809291908181526020018280546104ca90611822565b80156105175780601f106104ec57610100808354040283529160200191610517565b820191906000526020600020905b8154815290600101906020018083116104fa57829003601f168201915b5050505050905087565b6003546001600160a01b031681565b336000908152602081905260409020600301546001600160a01b03166105715760405162461bcd60e51b8152600401610568906116db565b60405180910390fd5b604051602001610580906114f0565b60405160208183030381529060405280519060200120826040516020016105a791906114d4565b6040516020818303038152906040528051906020012014156105e7573360009081526020818152604090912082516105e192840190610fa7565b50610761565b6040516020016105f690611500565b604051602081830303815290604052805190602001208260405160200161061d91906114d4565b60405160208183030381529060405280519060200120141561065d573360009081526020818152604090912082516105e192600190920191840190610fa7565b60405160200161066c9061152b565b604051602081830303815290604052805190602001208260405160200161069391906114d4565b6040516020818303038152906040528051906020012014156106d3573360009081526020818152604090912082516105e192600290920191840190610fa7565b6040516020016106e290611511565b604051602081830303815290604052805190602001208260405160200161070991906114d4565b604051602081830303815290604052805190602001201415610749573360009081526020818152604090912082516105e192600590920191840190610fa7565b60405162461bcd60e51b81526004016105689061170a565b8160405161076f91906114d4565b6040518091039020336001600160a01b03167f2d8e82f20b5533fe80cf4eed93948f93dbb9fde84e21fce9bd2269c1fdb5a5a4836040516107b091906115d8565b60405180910390a35050565b6000805b6001600160a01b038316600090815260208190526040902060030154600160a01b900460ff16600181111561080557634e487b7160e01b600052602160045260246000fd5b1490505b919050565b6002818154811061081e57600080fd5b6000918252602090912001546001600160a01b0316905081565b600060016107c0565b600060018260405161085391906114d4565b908152604051908190036020019020546001600160a01b03169050919050565b61089184848460008560405180602001604052806000815250610c69565b50505050565b61089f61102b565b6001600160a01b03821660009081526020819052604090819020815160e081019092528054829082906108d190611822565b80601f01602080910402602001604051908101604052809291908181526020018280546108fd90611822565b801561094a5780601f1061091f5761010080835404028352916020019161094a565b820191906000526020600020905b81548152906001019060200180831161092d57829003601f168201915b5050505050815260200160018201805461096390611822565b80601f016020809104026020016040519081016040528092919081815260200182805461098f90611822565b80156109dc5780601f106109b1576101008083540402835291602001916109dc565b820191906000526020600020905b8154815290600101906020018083116109bf57829003601f168201915b505050505081526020016002820180546109f590611822565b80601f0160208091040260200160405190810160405280929190818152602001828054610a2190611822565b8015610a6e5780601f10610a4357610100808354040283529160200191610a6e565b820191906000526020600020905b815481529060010190602001808311610a5157829003601f168201915b505050918352505060038201546001600160a01b0381166020830152604090910190600160a01b900460ff166001811115610ab957634e487b7160e01b600052602160045260246000fd5b6001811115610ad857634e487b7160e01b600052602160045260246000fd5b8152602001600482018054610aec90611822565b80601f0160208091040260200160405190810160405280929190818152602001828054610b1890611822565b8015610b655780601f10610b3a57610100808354040283529160200191610b65565b820191906000526020600020905b815481529060010190602001808311610b4857829003601f168201915b50505050508152602001600582018054610b7e90611822565b80601f0160208091040260200160405190810160405280929190818152602001828054610baa90611822565b8015610bf75780601f10610bcc57610100808354040283529160200191610bf7565b820191906000526020600020905b815481529060010190602001808311610bda57829003601f168201915b5050505050815250509050919050565b60606002805480602002602001604051908101604052809291908181526020018280548015610c5f57602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610c41575b5050505050905090565b336000908152602081905260409020600301546001600160a01b031615610ca25760405162461bcd60e51b815260040161056890611676565b8460006001600160a01b0316600182604051610cbe91906114d4565b908152604051908190036020019020546001600160a01b031614610cf45760405162461bcd60e51b8152600401610568906116ad565b6040518060e00160405280888152602001878152602001868152602001336001600160a01b03168152602001856001811115610d4057634e487b7160e01b600052602160045260246000fd5b81526020808201869052604091820185905233600090815280825291909120825180519192610d7492849290910190610fa7565b506020828101518051610d8d9260018501920190610fa7565b5060408201518051610da9916002840191602090910190610fa7565b5060608201516003820180546001600160a01b0319166001600160a01b03909216919091178082556080840151919060ff60a01b1916600160a01b836001811115610e0457634e487b7160e01b600052602160045260246000fd5b021790555060a08201518051610e24916004840191602090910190610fa7565b5060c08201518051610e40916005840191602090910190610fa7565b505060028054600181810183556000929092527f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace0180546001600160a01b03191633908117909155604051909250610e999089906114d4565b90815260405190819003602001812080546001600160a01b039384166001600160a01b031990911617905560035463a9059cbb60e01b82529091169063a9059cbb90610ef490339068056bc75e2d6310000090600401611553565b602060405180830381600087803b158015610f0e57600080fd5b505af1158015610f22573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610f469190611163565b50336001600160a01b03167f0cfc02366ffc86152a10a0a4c7cf3ff54c3a2165fd868b94135a80ddac750ce385604051610f8091906115c4565b60405180910390a250505050505050565b610fa085858560018686610c69565b5050505050565b828054610fb390611822565b90600052602060002090601f016020900481019282610fd5576000855561101b565b82601f10610fee57805160ff191683800117855561101b565b8280016001018555821561101b579182015b8281111561101b578251825591602001919060010190611000565b50611027929150611090565b5090565b6040518060e0016040528060608152602001606081526020016060815260200160006001600160a01b031681526020016000600181111561107c57634e487b7160e01b600052602160045260246000fd5b815260200160608152602001606081525090565b5b808211156110275760008155600101611091565b80356002811061080957600080fd5b600082601f8301126110c4578081fd5b813567ffffffffffffffff808211156110df576110df61185d565b604051601f8301601f1916810160200182811182821017156111035761110361185d565b60405282815284830160200186101561111a578384fd5b82602086016020830137918201602001929092529392505050565b600060208284031215611146578081fd5b81356001600160a01b038116811461115c578182fd5b9392505050565b600060208284031215611174578081fd5b8151801515811461115c578182fd5b600060208284031215611194578081fd5b813567ffffffffffffffff8111156111aa578182fd5b6111b6848285016110b4565b949350505050565b600080604083850312156111d0578081fd5b823567ffffffffffffffff808211156111e7578283fd5b6111f3868387016110b4565b93506020850135915080821115611208578283fd5b50611215858286016110b4565b9150509250929050565b60008060008060008060c08789031215611237578182fd5b863567ffffffffffffffff8082111561124e578384fd5b61125a8a838b016110b4565b9750602089013591508082111561126f578384fd5b61127b8a838b016110b4565b96506040890135915080821115611290578384fd5b61129c8a838b016110b4565b95506112aa60608a016110a5565b945060808901359150808211156112bf578384fd5b6112cb8a838b016110b4565b935060a08901359150808211156112e0578283fd5b506112ed89828a016110b4565b9150509295509295509295565b6000806000806080858703121561130f578384fd5b843567ffffffffffffffff80821115611326578586fd5b611332888389016110b4565b95506020870135915080821115611347578485fd5b611353888389016110b4565b94506040870135915080821115611368578384fd5b611374888389016110b4565b93506060870135915080821115611389578283fd5b50611396878288016110b4565b91505092959194509250565b600080600080600060a086880312156113b9578081fd5b853567ffffffffffffffff808211156113d0578283fd5b6113dc89838a016110b4565b965060208801359150808211156113f1578283fd5b6113fd89838a016110b4565b95506040880135915080821115611412578283fd5b61141e89838a016110b4565b94506060880135915080821115611433578283fd5b61143f89838a016110b4565b93506080880135915080821115611454578283fd5b50611461888289016110b4565b9150509295509295909350565b60006020828403121561147f578081fd5b5035919050565b600281106114a457634e487b7160e01b600052602160045260246000fd5b9052565b600081518084526114c08160208601602086016117f6565b601f01601f19169290920160200192915050565b600082516114e68184602087016117f6565b9190910192915050565b636e616d6560e01b815260040190565b64195b585a5b60da1b815260050190565b6d6164646974696f6e616c496e666f60901b8152600e0190565b670d2e0cce690c2e6d60c31b815260080190565b6001600160a01b0391909116815260200190565b6001600160a01b03929092168252602082015260400190565b6020808252825182820181905260009190848201906040850190845b818110156115ad5783516001600160a01b031683529284019291840191600101611588565b50909695505050505050565b901515815260200190565b602081016115d28284611486565b92915050565b60006020825261115c60208301846114a8565b600060e082526115fe60e083018a6114a8565b8281036020840152611610818a6114a8565b9050828103604084015261162481896114a8565b6001600160a01b038816606085015290506116426080840187611486565b82810360a084015261165481866114a8565b905082810360c084015261166881856114a8565b9a9950505050505050505050565b60208082526019908201527f456e7469747920616c7265616479207265676973746572656400000000000000604082015260600190565b602080825260149082015273456d61696c20616c72656164792065786973747360601b604082015260600190565b602080825260159082015274115b9d1a5d1e481b9bdd081c9959da5cdd195c9959605a1b604082015260600190565b60208082526010908201526f496e76616c69642070726f706572747960801b604082015260600190565b600060208252825160e060208401526117516101008401826114a8565b90506020840151601f198085840301604086015261176f83836114a8565b9250604086015191508085840301606086015261178c83836114a8565b925060018060a01b036060870151166080860152608086015191506117b460a0860183611486565b60a08601519150808584030160c08601526117cf83836114a8565b925060c08601519150808584030160e0860152506117ed82826114a8565b95945050505050565b60005b838110156118115781810151838201526020016117f9565b838111156108915750506000910152565b60028104600182168061183657607f821691505b6020821081141561185757634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fdfea264697066735822122064183d3ab771456b8dc6a681181e56eaf9cd4d74919265650eb1d6723675c7ce64736f6c63430008000033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100cf5760003560e01c80635da09b881161008c57806375894e8c1161006657806375894e8c146101ac5780639031ee3f146101cc578063acef348b146101e1578063b272f36c146101f4576100cf565b80635da09b88146101735780636c2eec28146101865780636f7fcddb14610199576100cf565b806307bb4ee3146100d45780631d8ee48a146100fd5780633013ce291461012357806339cd535c1461012b5780634209fff11461014057806345c45a8a14610160575b600080fd5b6100e76100e2366004611183565b610207565b6040516100f4919061153f565b60405180910390f35b61011061010b366004611135565b61022d565b6040516100f497969594939291906115eb565b6100e7610521565b61013e6101393660046111be565b610530565b005b61015361014e366004611135565b6107bc565b6040516100f491906115b9565b6100e761016e36600461146e565b61080e565b610153610181366004611135565b610838565b6100e7610194366004611183565b610841565b61013e6101a73660046112fa565b610873565b6101bf6101ba366004611135565b610897565b6040516100f49190611734565b6101d4610c07565b6040516100f4919061156c565b61013e6101ef36600461121f565b610c69565b61013e6102023660046113a2565b610f91565b80516020818301810180516001825292820191909301209152546001600160a01b031681565b60006020819052908152604090208054819061024890611822565b80601f016020809104026020016040519081016040528092919081815260200182805461027490611822565b80156102c15780601f10610296576101008083540402835291602001916102c1565b820191906000526020600020905b8154815290600101906020018083116102a457829003601f168201915b5050505050908060010180546102d690611822565b80601f016020809104026020016040519081016040528092919081815260200182805461030290611822565b801561034f5780601f106103245761010080835404028352916020019161034f565b820191906000526020600020905b81548152906001019060200180831161033257829003601f168201915b50505050509080600201805461036490611822565b80601f016020809104026020016040519081016040528092919081815260200182805461039090611822565b80156103dd5780601f106103b2576101008083540402835291602001916103dd565b820191906000526020600020905b8154815290600101906020018083116103c057829003601f168201915b50505050600383015460048401805493946001600160a01b03831694600160a01b90930460ff1693509161041090611822565b80601f016020809104026020016040519081016040528092919081815260200182805461043c90611822565b80156104895780601f1061045e57610100808354040283529160200191610489565b820191906000526020600020905b81548152906001019060200180831161046c57829003601f168201915b50505050509080600501805461049e90611822565b80601f01602080910402602001604051908101604052809291908181526020018280546104ca90611822565b80156105175780601f106104ec57610100808354040283529160200191610517565b820191906000526020600020905b8154815290600101906020018083116104fa57829003601f168201915b5050505050905087565b6003546001600160a01b031681565b336000908152602081905260409020600301546001600160a01b03166105715760405162461bcd60e51b8152600401610568906116db565b60405180910390fd5b604051602001610580906114f0565b60405160208183030381529060405280519060200120826040516020016105a791906114d4565b6040516020818303038152906040528051906020012014156105e7573360009081526020818152604090912082516105e192840190610fa7565b50610761565b6040516020016105f690611500565b604051602081830303815290604052805190602001208260405160200161061d91906114d4565b60405160208183030381529060405280519060200120141561065d573360009081526020818152604090912082516105e192600190920191840190610fa7565b60405160200161066c9061152b565b604051602081830303815290604052805190602001208260405160200161069391906114d4565b6040516020818303038152906040528051906020012014156106d3573360009081526020818152604090912082516105e192600290920191840190610fa7565b6040516020016106e290611511565b604051602081830303815290604052805190602001208260405160200161070991906114d4565b604051602081830303815290604052805190602001201415610749573360009081526020818152604090912082516105e192600590920191840190610fa7565b60405162461bcd60e51b81526004016105689061170a565b8160405161076f91906114d4565b6040518091039020336001600160a01b03167f2d8e82f20b5533fe80cf4eed93948f93dbb9fde84e21fce9bd2269c1fdb5a5a4836040516107b091906115d8565b60405180910390a35050565b6000805b6001600160a01b038316600090815260208190526040902060030154600160a01b900460ff16600181111561080557634e487b7160e01b600052602160045260246000fd5b1490505b919050565b6002818154811061081e57600080fd5b6000918252602090912001546001600160a01b0316905081565b600060016107c0565b600060018260405161085391906114d4565b908152604051908190036020019020546001600160a01b03169050919050565b61089184848460008560405180602001604052806000815250610c69565b50505050565b61089f61102b565b6001600160a01b03821660009081526020819052604090819020815160e081019092528054829082906108d190611822565b80601f01602080910402602001604051908101604052809291908181526020018280546108fd90611822565b801561094a5780601f1061091f5761010080835404028352916020019161094a565b820191906000526020600020905b81548152906001019060200180831161092d57829003601f168201915b5050505050815260200160018201805461096390611822565b80601f016020809104026020016040519081016040528092919081815260200182805461098f90611822565b80156109dc5780601f106109b1576101008083540402835291602001916109dc565b820191906000526020600020905b8154815290600101906020018083116109bf57829003601f168201915b505050505081526020016002820180546109f590611822565b80601f0160208091040260200160405190810160405280929190818152602001828054610a2190611822565b8015610a6e5780601f10610a4357610100808354040283529160200191610a6e565b820191906000526020600020905b815481529060010190602001808311610a5157829003601f168201915b505050918352505060038201546001600160a01b0381166020830152604090910190600160a01b900460ff166001811115610ab957634e487b7160e01b600052602160045260246000fd5b6001811115610ad857634e487b7160e01b600052602160045260246000fd5b8152602001600482018054610aec90611822565b80601f0160208091040260200160405190810160405280929190818152602001828054610b1890611822565b8015610b655780601f10610b3a57610100808354040283529160200191610b65565b820191906000526020600020905b815481529060010190602001808311610b4857829003601f168201915b50505050508152602001600582018054610b7e90611822565b80601f0160208091040260200160405190810160405280929190818152602001828054610baa90611822565b8015610bf75780601f10610bcc57610100808354040283529160200191610bf7565b820191906000526020600020905b815481529060010190602001808311610bda57829003601f168201915b5050505050815250509050919050565b60606002805480602002602001604051908101604052809291908181526020018280548015610c5f57602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610c41575b5050505050905090565b336000908152602081905260409020600301546001600160a01b031615610ca25760405162461bcd60e51b815260040161056890611676565b8460006001600160a01b0316600182604051610cbe91906114d4565b908152604051908190036020019020546001600160a01b031614610cf45760405162461bcd60e51b8152600401610568906116ad565b6040518060e00160405280888152602001878152602001868152602001336001600160a01b03168152602001856001811115610d4057634e487b7160e01b600052602160045260246000fd5b81526020808201869052604091820185905233600090815280825291909120825180519192610d7492849290910190610fa7565b506020828101518051610d8d9260018501920190610fa7565b5060408201518051610da9916002840191602090910190610fa7565b5060608201516003820180546001600160a01b0319166001600160a01b03909216919091178082556080840151919060ff60a01b1916600160a01b836001811115610e0457634e487b7160e01b600052602160045260246000fd5b021790555060a08201518051610e24916004840191602090910190610fa7565b5060c08201518051610e40916005840191602090910190610fa7565b505060028054600181810183556000929092527f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace0180546001600160a01b03191633908117909155604051909250610e999089906114d4565b90815260405190819003602001812080546001600160a01b039384166001600160a01b031990911617905560035463a9059cbb60e01b82529091169063a9059cbb90610ef490339068056bc75e2d6310000090600401611553565b602060405180830381600087803b158015610f0e57600080fd5b505af1158015610f22573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610f469190611163565b50336001600160a01b03167f0cfc02366ffc86152a10a0a4c7cf3ff54c3a2165fd868b94135a80ddac750ce385604051610f8091906115c4565b60405180910390a250505050505050565b610fa085858560018686610c69565b5050505050565b828054610fb390611822565b90600052602060002090601f016020900481019282610fd5576000855561101b565b82601f10610fee57805160ff191683800117855561101b565b8280016001018555821561101b579182015b8281111561101b578251825591602001919060010190611000565b50611027929150611090565b5090565b6040518060e0016040528060608152602001606081526020016060815260200160006001600160a01b031681526020016000600181111561107c57634e487b7160e01b600052602160045260246000fd5b815260200160608152602001606081525090565b5b808211156110275760008155600101611091565b80356002811061080957600080fd5b600082601f8301126110c4578081fd5b813567ffffffffffffffff808211156110df576110df61185d565b604051601f8301601f1916810160200182811182821017156111035761110361185d565b60405282815284830160200186101561111a578384fd5b82602086016020830137918201602001929092529392505050565b600060208284031215611146578081fd5b81356001600160a01b038116811461115c578182fd5b9392505050565b600060208284031215611174578081fd5b8151801515811461115c578182fd5b600060208284031215611194578081fd5b813567ffffffffffffffff8111156111aa578182fd5b6111b6848285016110b4565b949350505050565b600080604083850312156111d0578081fd5b823567ffffffffffffffff808211156111e7578283fd5b6111f3868387016110b4565b93506020850135915080821115611208578283fd5b50611215858286016110b4565b9150509250929050565b60008060008060008060c08789031215611237578182fd5b863567ffffffffffffffff8082111561124e578384fd5b61125a8a838b016110b4565b9750602089013591508082111561126f578384fd5b61127b8a838b016110b4565b96506040890135915080821115611290578384fd5b61129c8a838b016110b4565b95506112aa60608a016110a5565b945060808901359150808211156112bf578384fd5b6112cb8a838b016110b4565b935060a08901359150808211156112e0578283fd5b506112ed89828a016110b4565b9150509295509295509295565b6000806000806080858703121561130f578384fd5b843567ffffffffffffffff80821115611326578586fd5b611332888389016110b4565b95506020870135915080821115611347578485fd5b611353888389016110b4565b94506040870135915080821115611368578384fd5b611374888389016110b4565b93506060870135915080821115611389578283fd5b50611396878288016110b4565b91505092959194509250565b600080600080600060a086880312156113b9578081fd5b853567ffffffffffffffff808211156113d0578283fd5b6113dc89838a016110b4565b965060208801359150808211156113f1578283fd5b6113fd89838a016110b4565b95506040880135915080821115611412578283fd5b61141e89838a016110b4565b94506060880135915080821115611433578283fd5b61143f89838a016110b4565b93506080880135915080821115611454578283fd5b50611461888289016110b4565b9150509295509295909350565b60006020828403121561147f578081fd5b5035919050565b600281106114a457634e487b7160e01b600052602160045260246000fd5b9052565b600081518084526114c08160208601602086016117f6565b601f01601f19169290920160200192915050565b600082516114e68184602087016117f6565b9190910192915050565b636e616d6560e01b815260040190565b64195b585a5b60da1b815260050190565b6d6164646974696f6e616c496e666f60901b8152600e0190565b670d2e0cce690c2e6d60c31b815260080190565b6001600160a01b0391909116815260200190565b6001600160a01b03929092168252602082015260400190565b6020808252825182820181905260009190848201906040850190845b818110156115ad5783516001600160a01b031683529284019291840191600101611588565b50909695505050505050565b901515815260200190565b602081016115d28284611486565b92915050565b60006020825261115c60208301846114a8565b600060e082526115fe60e083018a6114a8565b8281036020840152611610818a6114a8565b9050828103604084015261162481896114a8565b6001600160a01b038816606085015290506116426080840187611486565b82810360a084015261165481866114a8565b905082810360c084015261166881856114a8565b9a9950505050505050505050565b60208082526019908201527f456e7469747920616c7265616479207265676973746572656400000000000000604082015260600190565b602080825260149082015273456d61696c20616c72656164792065786973747360601b604082015260600190565b602080825260159082015274115b9d1a5d1e481b9bdd081c9959da5cdd195c9959605a1b604082015260600190565b60208082526010908201526f496e76616c69642070726f706572747960801b604082015260600190565b600060208252825160e060208401526117516101008401826114a8565b90506020840151601f198085840301604086015261176f83836114a8565b9250604086015191508085840301606086015261178c83836114a8565b925060018060a01b036060870151166080860152608086015191506117b460a0860183611486565b60a08601519150808584030160c08601526117cf83836114a8565b925060c08601519150808584030160e0860152506117ed82826114a8565b95945050505050565b60005b838110156118115781810151838201526020016117f9565b838111156108915750506000910152565b60028104600182168061183657607f821691505b6020821081141561185757634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052604160045260246000fdfea264697066735822122064183d3ab771456b8dc6a681181e56eaf9cd4d74919265650eb1d6723675c7ce64736f6c63430008000033",
+  "devdoc": {
+    "details": "This contract handles the creation, updating, and querying of user and retailer entities, leveraging mappings for efficient data retrieval.",
+    "kind": "dev",
+    "methods": {
+      "createRetailer(string,string,string,string,string)": {
+        "params": {
+          "additionalInfo": "Additional information for the retailer",
+          "email": "Email address of the retailer",
+          "ipfsHash": "IPFS hash for retailer data",
+          "name": "Name of the retailer",
+          "walletId": "Wallet identifier for the retailer"
+        }
+      },
+      "createUser(string,string,string,string)": {
+        "params": {
+          "email": "Email address of the user",
+          "ipfsHash": "IPFS hash for user data",
+          "name": "Name of the user",
+          "walletId": "Wallet identifier for the user"
+        }
+      },
+      "getEntitiesList()": {
+        "returns": {
+          "_0": "address[] A list of all entity addresses."
+        }
+      },
+      "getEntity(address)": {
+        "params": {
+          "walletAddress": "The wallet address of the entity."
+        },
+        "returns": {
+          "_0": "Entity The complete entity structure with all details."
+        }
+      },
+      "getWalletByEmail(string)": {
+        "params": {
+          "email": "The email to search for."
+        },
+        "returns": {
+          "_0": "address The wallet address associated with the email."
+        }
+      },
+      "isRetailer(address)": {
+        "params": {
+          "walletAddress": "The wallet address to check."
+        },
+        "returns": {
+          "_0": "bool True if the address belongs to a retailer."
+        }
+      },
+      "isUser(address)": {
+        "params": {
+          "walletAddress": "The wallet address to check."
+        },
+        "returns": {
+          "_0": "bool True if the address belongs to a user."
+        }
+      },
+      "registerEntity(string,string,string,uint8,string,string)": {
+        "details": "Creates a new entity or updates an existing one, assigning it an initial balance of tokens.",
+        "params": {
+          "additionalInfo": "Additional information relevant to the entity",
+          "email": "Email address of the entity",
+          "entityType": "Type of the entity (User or Retailer)",
+          "ipfsHash": "IPFS hash for extended data storage",
+          "name": "Name of the entity",
+          "walletId": "Unique identifier for the entity's wallet"
+        }
+      },
+      "updateEntity(string,string)": {
+        "details": "Allows entities to update their information post-registration.",
+        "params": {
+          "newValue": "The new value for the specified property",
+          "property": "The property to update (\"name\", \"email\", \"ipfsHash\", \"additionalInfo\")"
+        }
+      }
+    },
+    "title": "UserManager",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "createRetailer(string,string,string,string,string)": {
+        "notice": "Simplified registration process for retailers."
+      },
+      "createUser(string,string,string,string)": {
+        "notice": "Simplified registration process for users."
+      },
+      "getEntitiesList()": {
+        "notice": "Retrieves a list of all registered entity addresses."
+      },
+      "getEntity(address)": {
+        "notice": "Retrieves detailed information about an entity."
+      },
+      "getWalletByEmail(string)": {
+        "notice": "Retrieves the wallet address associated with a given email."
+      },
+      "isRetailer(address)": {
+        "notice": "Checks if an address belongs to a retailer."
+      },
+      "isUser(address)": {
+        "notice": "Checks if an address belongs to a user."
+      },
+      "registerEntity(string,string,string,uint8,string,string)": {
+        "notice": "Registers an entity with the provided details."
+      },
+      "updateEntity(string,string)": {
+        "notice": "Updates an entity's specific property."
+      }
+    },
+    "notice": "Manages registration and updates of user and retailer entities.",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1829,
+        "contract": "contracts/UserManager.sol:UserManager",
+        "label": "entities",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_struct(Entity)1823_storage)"
+      },
+      {
+        "astId": 1833,
+        "contract": "contracts/UserManager.sol:UserManager",
+        "label": "emailToWallet",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_string_memory_ptr,t_address)"
+      },
+      {
+        "astId": 1836,
+        "contract": "contracts/UserManager.sol:UserManager",
+        "label": "entitiesList",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_array(t_address)dyn_storage"
+      },
+      {
+        "astId": 1839,
+        "contract": "contracts/UserManager.sol:UserManager",
+        "label": "paymentToken",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_contract(IERC20)1191"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IERC20)1191": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_enum(EntityType)1807": {
+        "encoding": "inplace",
+        "label": "enum EntityType",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_struct(Entity)1823_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct Entity)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Entity)1823_storage"
+      },
+      "t_mapping(t_string_memory_ptr,t_address)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_string_memory_ptr": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Entity)1823_storage": {
+        "encoding": "inplace",
+        "label": "struct Entity",
+        "members": [
+          {
+            "astId": 1809,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "name",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1811,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "email",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1813,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "ipfsHash",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1815,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "wallet",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_address"
+          },
+          {
+            "astId": 1818,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "entityType",
+            "offset": 20,
+            "slot": "3",
+            "type": "t_enum(EntityType)1807"
+          },
+          {
+            "astId": 1820,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "walletId",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1822,
+            "contract": "contracts/UserManager.sol:UserManager",
+            "label": "additionalInfo",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_string_storage"
+          }
+        ],
+        "numberOfBytes": "192"
+      }
+    }
+  }
+}

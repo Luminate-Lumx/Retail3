@@ -1,0 +1,657 @@
+{
+  "address": "0xa6984A06a7B975b13dcC9c8F94e125eFD62c5052",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userManagerAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailerAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getRetailerTransactions",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "retailer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "productIndex",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint16",
+              "name": "quantity",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalPrice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32",
+              "name": "totalScore",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Transaction[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "index",
+          "type": "uint32"
+        }
+      ],
+      "name": "getTransaction",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "retailer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "productIndex",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint16",
+              "name": "quantity",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalPrice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32",
+              "name": "totalScore",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Transaction",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getUserTransactions",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "retailer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint32",
+              "name": "productIndex",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint16",
+              "name": "quantity",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalPrice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32",
+              "name": "totalScore",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Transaction[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "inventoryManagement",
+      "outputs": [
+        {
+          "internalType": "contract InventoryManagement",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "buyerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "retailerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "productIndex",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint16",
+          "name": "quantity",
+          "type": "uint16"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalCost",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint32",
+          "name": "totalScore",
+          "type": "uint32"
+        }
+      ],
+      "name": "recordTransaction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "retailerTransactions",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "inventoryManagementAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setInventoryManagement",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "transactions",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "productIndex",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint16",
+          "name": "quantity",
+          "type": "uint16"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint32",
+          "name": "totalScore",
+          "type": "uint32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "userManager",
+      "outputs": [
+        {
+          "internalType": "contract UserManager",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userTransactions",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xd9bddbcfb98f30454c7ac7ad5241c6cc4ad5cdd8c59f560dcc88d067304781b4",
+  "receipt": {
+    "to": null,
+    "from": "0x72ac37F2B8685300a6B3781669a487eBb94a5CCd",
+    "contractAddress": "0xa6984A06a7B975b13dcC9c8F94e125eFD62c5052",
+    "transactionIndex": 4,
+    "gasUsed": "823933",
+    "logsBloom": "0x40000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000800000000000000000000100000000000000000000000000000000000000000000000000000000000080000000000000000000000000004000010000000000000000000040000000000000000000000000200000000000000000000000000000000000000000000000000000000000004000000000000000000001000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000100000",
+    "blockHash": "0x2f8396ea9f393ec83b6b6e854276c8e442b4e19dadef17f9eb2f63012512033d",
+    "transactionHash": "0xd9bddbcfb98f30454c7ac7ad5241c6cc4ad5cdd8c59f560dcc88d067304781b4",
+    "logs": [
+      {
+        "transactionIndex": 4,
+        "blockNumber": 6681761,
+        "transactionHash": "0xd9bddbcfb98f30454c7ac7ad5241c6cc4ad5cdd8c59f560dcc88d067304781b4",
+        "address": "0x0000000000000000000000000000000000001010",
+        "topics": [
+          "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63",
+          "0x0000000000000000000000000000000000000000000000000000000000001010",
+          "0x00000000000000000000000072ac37f2b8685300a6b3781669a487ebb94a5ccd",
+          "0x00000000000000000000000004ba3ef4c023c1006019a0f9baf6e70455e41fcf"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000003384c89297f000000000000000000000000000000000000000000000000001110495967bbdcb700000000000000000000000000000000000000000000008177db802805a7f1f1000000000000000000000000000000000000000000000000110d110cde925db700000000000000000000000000000000000000000000008177deb8748ed170f1",
+        "logIndex": 23,
+        "blockHash": "0x2f8396ea9f393ec83b6b6e854276c8e442b4e19dadef17f9eb2f63012512033d"
+      }
+    ],
+    "blockNumber": 6681761,
+    "cumulativeGasUsed": "1482322",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xC07b17696877180055bc2fD688265b65A3982092"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "5869acd66d1fcfb8be90f59616081ff7",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userManagerAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailerAddress\",\"type\":\"address\"}],\"name\":\"getRetailerTransactions\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"productIndex\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"quantity\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"totalPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"totalScore\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct Transaction[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"index\",\"type\":\"uint32\"}],\"name\":\"getTransaction\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"productIndex\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"quantity\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"totalPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"totalScore\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct Transaction\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"getUserTransactions\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"productIndex\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"quantity\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"totalPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"totalScore\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct Transaction[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"inventoryManagement\",\"outputs\":[{\"internalType\":\"contract InventoryManagement\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"buyerAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"retailerAddress\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"productIndex\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"quantity\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"totalCost\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"totalScore\",\"type\":\"uint32\"}],\"name\":\"recordTransaction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"retailerTransactions\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"inventoryManagementAddress\",\"type\":\"address\"}],\"name\":\"setInventoryManagement\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"transactions\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"productIndex\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"quantity\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"totalPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint32\",\"name\":\"totalScore\",\"type\":\"uint32\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"userManager\",\"outputs\":[{\"internalType\":\"contract UserManager\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"userTransactions\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract allows for recording of retail transactions, linking products, buyers, and retailers with financial and loyalty data.\",\"kind\":\"dev\",\"methods\":{\"constructor\":{\"details\":\"Sets the owner to the message sender and initializes the UserManager contract.\",\"params\":{\"userManagerAddress\":\"Address of the UserManager contract.\"}},\"getRetailerTransactions(address)\":{\"params\":{\"retailerAddress\":\"Address of the retailer.\"},\"returns\":{\"_0\":\"An array of transactions involving the retailer.\"}},\"getTransaction(uint32)\":{\"params\":{\"index\":\"Index of the transaction in the array.\"},\"returns\":{\"_0\":\"Transaction data structure containing all transaction details.\"}},\"getUserTransactions(address)\":{\"params\":{\"userAddress\":\"Address of the user.\"},\"returns\":{\"_0\":\"An array of transactions made by the user.\"}},\"recordTransaction(address,address,uint32,uint16,uint256,uint32)\":{\"details\":\"Stores transaction details and updates mappings for user and retailer transaction lists. Can only be called by InventoryManagement.\",\"params\":{\"buyerAddress\":\"Address of the buyer.\",\"productIndex\":\"Index of the product being purchased.\",\"quantity\":\"Quantity of the product being purchased.\",\"retailerAddress\":\"Address of the retailer.\",\"totalCost\":\"Total cost of the transaction.\",\"totalScore\":\"Total loyalty score associated with the transaction.\"}},\"setInventoryManagement(address)\":{\"details\":\"Can only be called by the contract owner.\",\"params\":{\"inventoryManagementAddress\":\"Address of the InventoryManagement contract to be linked.\"}}},\"title\":\"Transaction Manager\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"constructor\":{\"notice\":\"Initializes the contract with the address of the UserManager contract.\"},\"getRetailerTransactions(address)\":{\"notice\":\"Retrieves all transactions associated with a specific retailer.\"},\"getTransaction(uint32)\":{\"notice\":\"Retrieves a transaction by its index.\"},\"getUserTransactions(address)\":{\"notice\":\"Retrieves all transactions associated with a specific user.\"},\"recordTransaction(address,address,uint32,uint16,uint256,uint32)\":{\"notice\":\"Records a transaction in the system.\"},\"setInventoryManagement(address)\":{\"notice\":\"Sets the InventoryManagement contract address.\"}},\"notice\":\"Manages recording and retrieving transactions in a retail environment\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/TransactionManager.sol\":\"TransactionManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/InventoryManagement.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./UserManager.sol\\\";\\nimport \\\"./LoyaltyRewards.sol\\\";\\nimport \\\"./TransactionManager.sol\\\";\\nimport \\\"./Tether.sol\\\";\\n\\n/**\\n * @title Product structure\\n * @notice Stores details about products available in the retailer's inventory\\n * @dev This struct is used for managing product information including pricing, stock, and loyalty scores.\\n */\\nstruct Product {\\n\\tuint128 code; // Unique product code\\n\\tstring ipfsHash; // IPFS hash for storing product images or metadata\\n\\tstring name; // Name of the product\\n\\tstring[] tags; // Tags for search and categorization\\n\\tuint256 price; // Price of the product in smallest token units\\n\\tuint32 score; // Loyalty score awarded for purchasing this product\\n\\tbool removed; // Flag indicating whether the product is removed from the inventory\\n}\\n\\n/**\\n * @title Inventory Management for Retailer's Products\\n * @notice Manages adding, updating, and buying products in a decentralized store environment\\n * @dev This contract handles operations related to product management in a decentralized retail setup,\\n * including adding new products, updating existing ones, and processing purchases.\\n */\\ncontract InventoryManagement {\\n\\tmapping(address => Product[]) public retailerProducts; // Mapping from retailer address to their list of products\\n\\tmapping(address => mapping(uint128 => uint32)) public productStock; // Mapping from retailer address and product code to stock count\\n\\n\\tUserManager userManager; // UserManager contract instance\\n\\tLoyaltyRewards loyaltyRewards; // LoyaltyRewards contract instance\\n\\tTransactionManager transactionManager; // TransactionManager contract instance\\n\\tIERC20 public paymentToken; // ERC20 token used for payment\\n\\n\\t// Events\\n\\tevent ProductAdded(address indexed retailer, uint128 productCode);\\n\\tevent ProductUpdated(address indexed retailer, uint128 productCode);\\n\\tevent ProductRemoved(address indexed retailer, uint128 productCode);\\n\\tevent ProductBought(\\n\\t\\taddress buyer,\\n\\t\\taddress retailer,\\n\\t\\tstring productName,\\n\\t\\tuint32 quantity\\n\\t);\\n\\n\\tconstructor(\\n\\t\\taddress userManagerAddress,\\n\\t\\taddress paymentTokenAddress,\\n\\t\\taddress loyaltyRewardsAddress,\\n\\t\\taddress transactionManagerAddress\\n\\t) {\\n\\t\\tpaymentToken = IERC20(paymentTokenAddress);\\n\\t\\tuserManager = UserManager(userManagerAddress);\\n\\t\\tloyaltyRewards = LoyaltyRewards(loyaltyRewardsAddress);\\n\\t\\ttransactionManager = TransactionManager(transactionManagerAddress);\\n\\t}\\n\\n\\t// Modifiers\\n\\t/**\\n\\t * @notice Ensures that only verified retailers can perform certain actions\\n\\t * @dev Modifier to restrict certain functions to be callable only by verified retailers.\\n\\t */\\n\\tmodifier onlyRetailer() {\\n\\t\\trequire(\\n\\t\\t\\tuserManager.isRetailer(msg.sender),\\n\\t\\t\\t\\\"Only retailers can call this function\\\"\\n\\t\\t);\\n\\t\\t_;\\n\\t}\\n\\n\\t// Functions\\n\\t/**\\n\\t * @notice Adds a new product to the retailer's inventory\\n\\t * @dev Adds a product to the retailer's inventory and initializes its stock. Emits the ProductAdded event.\\n\\t * @param productCode Unique code for the product\\n\\t * @param ipfsHash IPFS hash containing product information\\n\\t * @param name Product name\\n\\t * @param tags Array of tags for categorization\\n\\t * @param price Price of the product in smallest token units\\n\\t * @param stock Initial stock quantity\\n\\t * @param score Loyalty score awarded for purchasing this product\\n\\t */\\n\\tfunction addProduct(\\n\\t\\tuint128 productCode,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tstring memory name,\\n\\t\\tstring[] memory tags,\\n\\t\\tuint256 price,\\n\\t\\tuint32 stock,\\n\\t\\tuint32 score\\n\\t) public onlyRetailer {\\n\\t\\tretailerProducts[msg.sender].push(\\n\\t\\t\\tProduct({\\n\\t\\t\\t\\tcode: productCode,\\n\\t\\t\\t\\tipfsHash: ipfsHash,\\n\\t\\t\\t\\tname: name,\\n\\t\\t\\t\\ttags: tags,\\n\\t\\t\\t\\tprice: price,\\n\\t\\t\\t\\tscore: score,\\n\\t\\t\\t\\tremoved: false\\n\\t\\t\\t})\\n\\t\\t);\\n\\t\\tproductStock[msg.sender][productCode] = stock;\\n\\t\\temit ProductAdded(msg.sender, productCode);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Updates existing product details\\n\\t * @dev Updates a product in the retailer's inventory and adjusts its stock. Emits the ProductUpdated event.\\n\\t * @param index Index of the product in the retailer's product array\\n\\t * @param name New name for the product\\n\\t * @param tags New tags for the product\\n\\t * @param price New price for the product\\n\\t * @param stock Updated stock quantity\\n\\t * @param score Updated loyalty score for the product\\n\\t */\\n\\tfunction updateProduct(\\n\\t\\tuint32 index,\\n\\t\\tstring memory name,\\n\\t\\tstring[] memory tags,\\n\\t\\tuint256 price,\\n\\t\\tuint32 stock,\\n\\t\\tuint32 score\\n\\t) public onlyRetailer {\\n\\t\\trequire(\\n\\t\\t\\tindex < retailerProducts[msg.sender].length,\\n\\t\\t\\t\\\"Product index out of range\\\"\\n\\t\\t);\\n\\t\\tProduct storage product = retailerProducts[msg.sender][index];\\n\\t\\trequire(!product.removed, \\\"Product has been removed\\\");\\n\\n\\t\\tproduct.name = name;\\n\\t\\tproduct.tags = tags;\\n\\t\\tproduct.price = price;\\n\\t\\tproduct.score = score;\\n\\t\\tproductStock[msg.sender][product.code] = stock;\\n\\n\\t\\temit ProductUpdated(msg.sender, product.code);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Removes a product from the retailer's inventory\\n\\t * @dev Marks a product as removed in the retailer's inventory. Emits the ProductRemoved event.\\n\\t * @param retailerAddress Address of the retailer\\n\\t * @param index Index of the product to remove\\n\\t */\\n\\tfunction removeProduct(\\n\\t\\taddress retailerAddress,\\n\\t\\tuint32 index\\n\\t) public onlyRetailer {\\n\\t\\trequire(retailerAddress == msg.sender, \\\"Unauthorized access\\\");\\n\\t\\trequire(\\n\\t\\t\\tindex < retailerProducts[retailerAddress].length,\\n\\t\\t\\t\\\"Product index out of range\\\"\\n\\t\\t);\\n\\t\\tProduct storage product = retailerProducts[retailerAddress][index];\\n\\t\\trequire(!product.removed, \\\"Product already removed\\\");\\n\\n\\t\\tproduct.removed = true;\\n\\t\\temit ProductRemoved(retailerAddress, product.code);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Facilitates the purchase of a product from a retailer's inventory\\n\\t * @dev Processes the purchase of a product, handles payment transfer, updates stock, and registers the transaction.\\n\\t * Emits the ProductBought event and interacts with LoyaltyRewards and TransactionManager.\\n\\t * @param retailerAddress Address of the retailer\\n\\t * @param index Index of the product to buy\\n\\t * @param quantity Quantity of the product to buy\\n\\t */\\n\\tfunction buyProduct(\\n\\t\\taddress retailerAddress,\\n\\t\\tuint32 index,\\n\\t\\tuint16 quantity\\n\\t) public {\\n\\t\\trequire(\\n\\t\\t\\tindex < retailerProducts[retailerAddress].length,\\n\\t\\t\\t\\\"Product index out of range\\\"\\n\\t\\t);\\n\\n\\t\\tProduct storage product = retailerProducts[retailerAddress][index];\\n\\n\\t\\trequire(product.code != 0, \\\"Product not found\\\");\\n\\t\\trequire(!product.removed, \\\"Product removed\\\");\\n\\n\\t\\tuint32 stock = productStock[retailerAddress][product.code];\\n\\t\\trequire(stock >= quantity, \\\"Not enough stock\\\");\\n\\n\\t\\tuint256 totalCost = product.price * quantity;\\n\\t\\tuint32 totalScore = product.score * quantity;\\n\\t\\tuint256 pollContribution = totalCost / 100;\\n\\n\\t\\trequire(\\n\\t\\t\\tpaymentToken.balanceOf(msg.sender) >= totalCost,\\n\\t\\t\\t\\\"Insufficient balance\\\"\\n\\t\\t);\\n\\n\\t\\trequire(\\n\\t\\t\\tpaymentToken.transferFrom(msg.sender, address(this), totalCost),\\n\\t\\t\\t\\\"Payment failed\\\"\\n\\t\\t);\\n\\n\\t\\trequire(\\n\\t\\t\\tpaymentToken.transfer(\\n\\t\\t\\t\\tretailerAddress,\\n\\t\\t\\t\\ttotalCost - pollContribution\\n\\t\\t\\t),\\n\\t\\t\\t\\\"Payment failed\\\"\\n\\t\\t);\\n\\n\\t\\tproductStock[retailerAddress][product.code] -= quantity;\\n\\t\\tloyaltyRewards.addScore(retailerAddress, msg.sender, totalScore);\\n\\n\\t\\tloyaltyRewards.createWalletIfNotExists(retailerAddress);\\n\\t\\tpaymentToken.approve(\\n\\t\\t\\tloyaltyRewards.getWalletAddress(retailerAddress),\\n\\t\\t\\tpollContribution\\n\\t\\t);\\n\\n\\t\\tloyaltyRewards.contributeToPool(\\n\\t\\t\\tretailerAddress,\\n\\t\\t\\taddress(this),\\n\\t\\t\\tpollContribution\\n\\t\\t);\\n\\n\\t\\ttransactionManager.recordTransaction(\\n\\t\\t\\tmsg.sender,\\n\\t\\t\\tretailerAddress,\\n\\t\\t\\tindex,\\n\\t\\t\\tquantity,\\n\\t\\t\\ttotalCost,\\n\\t\\t\\ttotalScore\\n\\t\\t);\\n\\n\\t\\temit ProductBought(msg.sender, retailerAddress, product.name, quantity);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves all products of a specific retailer\\n\\t * @param retailerAddress Address of the retailer\\n\\t * @return Array of products\\n\\t */\\n\\tfunction getProducts(\\n\\t\\taddress retailerAddress\\n\\t) public view returns (Product[] memory) {\\n\\t\\treturn retailerProducts[retailerAddress];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves a specific product of a retailer\\n\\t * @param retailerAddress Address of the retailer\\n\\t * @param index Index of the product\\n\\t * @return Single product details\\n\\t */\\n\\tfunction getProduct(\\n\\t\\taddress retailerAddress,\\n\\t\\tuint32 index\\n\\t) public view returns (Product memory) {\\n\\t\\trequire(\\n\\t\\t\\tindex < retailerProducts[retailerAddress].length,\\n\\t\\t\\t\\\"Product index out of range\\\"\\n\\t\\t);\\n\\t\\treturn retailerProducts[retailerAddress][index];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the stock of a specific product\\n\\t * @param retailerAddress Address of the retailer\\n\\t * @param productCode Code of the product\\n\\t * @return Stock quantity\\n\\t */\\n\\tfunction getProductStock(\\n\\t\\taddress retailerAddress,\\n\\t\\tuint128 productCode\\n\\t) public view returns (uint32) {\\n\\t\\treturn productStock[retailerAddress][productCode];\\n\\t}\\n}\\n\",\"keccak256\":\"0x7562742b37f72b378fd777e1c9f9dd3ca87f5720e9aeee5122b44b724f4b9f04\",\"license\":\"MIT\"},\"contracts/LoyaltyRewards.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./Tether.sol\\\";\\nimport \\\"./RetailerWallet.sol\\\";\\n\\n/**\\n * @title Loyalty Rewards System\\n * @notice Manages the allocation, redemption, and transfer of loyalty points within a retail ecosystem\\n * @dev This contract handles loyalty points accrual, redemption, and inter-user transfers, along with retailer-specific wallets management.\\n */\\ncontract LoyaltyRewards {\\n\\t// State variables\\n\\tmapping(address => mapping(address => uint32)) public scores; // Nested mapping of retailers to users to loyalty points\\n\\tmapping(address => uint64) public scorePool; // Total available loyalty points per retailer\\n\\tmapping(address => RetailerWallet) public retailerWallets; // Mapping of retailer addresses to their associated wallet contracts\\n\\n\\taddress private authorizedContract; // Address of the contract authorized to call restricted functions\\n\\tIERC20 public paymentToken; // ERC20 token used for transactions within the system\\n\\n\\t// Events\\n\\tevent RedeemScore(address indexed user, uint32 score, uint256 redeemTokens);\\n\\tevent ContributeToPool(address indexed retailer, uint256 amount);\\n\\tevent AddScore(address indexed user, uint32 score);\\n\\tevent TransferScore(address from, address to, uint32 score);\\n\\n\\t// Modifiers\\n\\t/**\\n\\t * @notice Ensures only the authorized contract can execute certain functions\\n\\t * @dev Restricts function calls to the address stored in `authorizedContract`.\\n\\t */\\n\\tmodifier onlyAuthorized() {\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == authorizedContract,\\n\\t\\t\\t\\\"Unauthorized: caller is not the authorized contract\\\"\\n\\t\\t);\\n\\t\\t_;\\n\\t}\\n\\n\\t// Constructor\\n\\t/**\\n\\t * @notice Initializes the LoyaltyRewards contract with a specific payment token.\\n\\t * @param _paymentTokenAddress Address of the ERC20 token used for payments and rewards.\\n\\t */\\n\\tconstructor(address _paymentTokenAddress) {\\n\\t\\tpaymentToken = IERC20(_paymentTokenAddress);\\n\\t\\tauthorizedContract = msg.sender; // Typically, this contract would be deployed by a factory or main contract managing the ecosystem.\\n\\t}\\n\\n\\t// Functions\\n\\t/**\\n\\t * @notice Sets a new authorized contract address.\\n\\t * @dev Updates the authorized contract address. Can only be called by the current authorized contract.\\n\\t * @param _authorizedContract New authorized contract address.\\n\\t */\\n\\tfunction setAuthorizedContract(\\n\\t\\taddress _authorizedContract\\n\\t) public onlyAuthorized {\\n\\t\\tauthorizedContract = _authorizedContract;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Adds loyalty score to a user under a specific retailer.\\n\\t * @dev Credits loyalty points to both the user's and retailer's total scores. Emits an AddScore event.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param userAddress Address of the user receiving the points.\\n\\t * @param score Amount of loyalty score to add.\\n\\t */\\n\\tfunction addScore(\\n\\t\\taddress retailer,\\n\\t\\taddress userAddress,\\n\\t\\tuint32 score\\n\\t) public onlyAuthorized {\\n\\t\\tscores[retailer][userAddress] += score;\\n\\t\\tscorePool[retailer] += score;\\n\\t\\temit AddScore(userAddress, score);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Creates a wallet for the retailer if it does not already exist.\\n\\t * @dev Ensures a single wallet is associated with each retailer for managing redemption funds.\\n\\t * @param retailer Address of the retailer.\\n\\t */\\n\\tfunction createWalletIfNotExists(address retailer) public onlyAuthorized {\\n\\t\\tif (address(retailerWallets[retailer]) == address(0)) {\\n\\t\\t\\tretailerWallets[retailer] = new RetailerWallet(\\n\\t\\t\\t\\taddress(this),\\n\\t\\t\\t\\taddress(paymentToken)\\n\\t\\t\\t);\\n\\t\\t}\\n\\t}\\n\\n\\t/**\\n\\t * @notice Redeems loyalty score for tokens.\\n\\t * @dev Deducts loyalty points from the user's balance and transfers equivalent tokens from the retailer's wallet. Emits a RedeemScore event.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param score Amount of loyalty score to redeem.\\n\\t */\\n\\tfunction redeemScore(address retailer, uint32 score) public {\\n\\t\\trequire(scores[retailer][msg.sender] >= score, \\\"Insufficient score\\\");\\n\\t\\tuint256 redeemTokens = calculateRedeemTokens(retailer, score);\\n\\t\\trequire(redeemTokens > 0, \\\"Redeem amount invalid\\\");\\n\\n\\t\\tRetailerWallet wallet = retailerWallets[retailer];\\n\\t\\trequire(wallet.balance() >= redeemTokens, \\\"Insufficient funds in pool\\\");\\n\\n\\t\\tscores[retailer][msg.sender] -= score;\\n\\t\\tscorePool[retailer] -= score;\\n\\t\\twallet.withdrawTokens(msg.sender, redeemTokens);\\n\\n\\t\\temit RedeemScore(msg.sender, score, redeemTokens);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Transfers loyalty score from one user to another under the same retailer.\\n\\t * @dev Allows users to transfer loyalty points to each other, ensuring sufficient balance before proceeding. Emits a TransferScore event.\\n\\t * @param retailer Address of the retailer where both users are registered.\\n\\t * @param to Address of the recipient receiving the score.\\n\\t * @param score Amount of loyalty score to transfer.\\n\\t */\\n\\tfunction transferScore(address retailer, address to, uint32 score) public {\\n\\t\\trequire(scores[retailer][msg.sender] >= score, \\\"Insufficient score\\\");\\n\\t\\tscores[retailer][msg.sender] -= score;\\n\\t\\tscores[retailer][to] += score;\\n\\t\\temit TransferScore(msg.sender, to, score);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Calculates the amount of tokens that can be redeemed for a given score.\\n\\t * @dev Determines how many tokens a score is worth based on the current pool balance and total score.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param score Amount of loyalty score to calculate tokens for.\\n\\t * @return redeemTokens The number of tokens that the score is worth.\\n\\t */\\n\\tfunction calculateRedeemTokens(\\n\\t\\taddress retailer,\\n\\t\\tuint32 score\\n\\t) public view returns (uint256) {\\n\\t\\tuint256 balance = retailerWallets[retailer].balance();\\n\\t\\tif (scorePool[retailer] == 0) return 0; // Prevents division by zero errors\\n\\t\\treturn (balance * score) / scorePool[retailer];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Contributes tokens to a retailer's loyalty pool.\\n\\t * @dev Adds funds to the retailer's wallet for future redemptions. Requires authorization. Emits ContributeToPool event.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param vault Address from which tokens are transferred.\\n\\t * @param amount Amount of tokens to contribute.\\n\\t */\\n\\tfunction contributeToPool(\\n\\t\\taddress retailer,\\n\\t\\taddress vault,\\n\\t\\tuint256 amount\\n\\t) public onlyAuthorized {\\n\\t\\tRetailerWallet wallet = retailerWallets[retailer];\\n\\t\\trequire(\\n\\t\\t\\twallet != RetailerWallet(address(0)),\\n\\t\\t\\t\\\"Retailer wallet does not exist\\\"\\n\\t\\t);\\n\\t\\twallet.receiveTokens(vault, address(wallet), amount);\\n\\t\\temit ContributeToPool(retailer, amount);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the loyalty score of a user under a specific retailer.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param user Address of the user.\\n\\t * @return The loyalty score of the user.\\n\\t */\\n\\tfunction getScore(\\n\\t\\taddress retailer,\\n\\t\\taddress user\\n\\t) public view returns (uint32) {\\n\\t\\treturn scores[retailer][user];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the total loyalty score pool of a retailer.\\n\\t * @param retailer Address of the retailer.\\n\\t * @return The total score pool of the retailer.\\n\\t */\\n\\tfunction getScorePool(address retailer) public view returns (uint64) {\\n\\t\\treturn scorePool[retailer];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the total redeemable tokens available in a retailer's wallet.\\n\\t * @param retailer Address of the retailer.\\n\\t * @return The balance of redeemable tokens available.\\n\\t */\\n\\tfunction getRedeemPool(address retailer) public view returns (uint256) {\\n\\t\\treturn retailerWallets[retailer].balance();\\n\\t}\\n\\n\\t/**\\n\\t * @notice Gets the wallet address associated with a retailer.\\n\\t * @param retailer Address of the retailer.\\n\\t * @return The address of the retailer's wallet.\\n\\t */\\n\\tfunction getWalletAddress(address retailer) public view returns (address) {\\n\\t\\trequire(\\n\\t\\t\\taddress(retailerWallets[retailer]) != address(0),\\n\\t\\t\\t\\\"No wallet for retailer\\\"\\n\\t\\t);\\n\\t\\treturn address(retailerWallets[retailer]);\\n\\t}\\n}\\n\",\"keccak256\":\"0xf53f9a6f45885f968cf6b1af708a35aef268c8f102f438ccef3370f017cc69c2\",\"license\":\"MIT\"},\"contracts/RetailerWallet.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./Tether.sol\\\";\\n\\n/**\\n * @title RetailerWallet\\n * @dev Manages the wallet functionalities for a retailer, allowing them to\\n * withdraw and receive ERC20 tokens.\\n */\\ncontract RetailerWallet {\\n\\t// Public state variable to store the owner of the wallet. The owner is\\n\\t// the only entity that can perform certain actions like withdrawing tokens.\\n\\taddress public owner;\\n\\n\\t// Interface variable for interacting with ERC20 tokens.\\n\\tIERC20 public paymentToken;\\n\\n\\t/**\\n\\t * @dev Constructor that sets the owner and token address upon deployment.\\n\\t * @param _owner The address of the owner of this wallet.\\n\\t * @param _token The address of the ERC20 token that this wallet will manage.\\n\\t */\\n\\tconstructor(address _owner, address _token) {\\n\\t\\towner = _owner; // Set the owner of the wallet\\n\\t\\tpaymentToken = IERC20(_token); // Set the ERC20 token to be used by this wallet\\n\\t}\\n\\n\\t/**\\n\\t * @dev Allows the owner to withdraw tokens to a specified address.\\n\\t * @param to The address to which the tokens will be sent.\\n\\t * @param amount The amount of tokens to send.\\n\\t */\\n\\tfunction withdrawTokens(address to, uint256 amount) public {\\n\\t\\trequire(msg.sender == owner, \\\"Only owner can withdraw tokens\\\");\\n\\n\\t\\trequire(paymentToken.transfer(to, amount), \\\"Transfer failed\\\");\\n\\t}\\n\\n\\t/**\\n\\t * @dev Receives tokens from a specified address. This can be used to fund\\n\\t * the wallet.\\n\\t * @param from The address from which tokens will be pulled.\\n\\t * @param to The address to which the tokens will be sent (should be this wallet).\\n\\t * @param amount The amount of tokens to be transferred.\\n\\t */\\n\\tfunction receiveTokens(address from, address to, uint256 amount) public {\\n\\t\\trequire(paymentToken.transferFrom(from, to, amount), \\\"Transfer failed\\\");\\n\\t}\\n\\n\\t/**\\n\\t * @dev Returns the balance of ERC20 tokens held by this wallet.\\n\\t * @return The balance of tokens.\\n\\t */\\n\\tfunction balance() public view returns (uint256) {\\n\\t\\treturn paymentToken.balanceOf(address(this));\\n\\t}\\n}\\n\",\"keccak256\":\"0xd564fa4d981ef867b170a713cdd288950eee2a1e9fe45a98ffaaee9ae34d408d\",\"license\":\"MIT\"},\"contracts/Tether.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\n/**\\n * @title IERC20\\n * @notice Interface for the ERC20 standard as defined in the EIP.\\n * @dev Defines the standard functions for ERC20 tokens, including balance, allowance, transfer functionalities, and associated events.\\n */\\ninterface IERC20 {\\n\\tfunction totalSupply() external view returns (uint256);\\n\\tfunction balanceOf(address account) external view returns (uint256);\\n\\tfunction transfer(\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external returns (bool);\\n\\tfunction allowance(\\n\\t\\taddress owner,\\n\\t\\taddress spender\\n\\t) external view returns (uint256);\\n\\tfunction approve(address spender, uint256 amount) external returns (bool);\\n\\tfunction transferFrom(\\n\\t\\taddress sender,\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external returns (bool);\\n\\n\\tevent Transfer(address indexed from, address indexed to, uint256 value);\\n\\tevent Approval(\\n\\t\\taddress indexed owner,\\n\\t\\taddress indexed spender,\\n\\t\\tuint256 value\\n\\t);\\n\\tevent Burn(address indexed burner, uint256 value);\\n}\\n\\n/**\\n * @title Tether\\n * @notice Simulates the Tether USD (USDT) token with ERC20 functionalities.\\n * @dev This contract implements the IERC20 interface and adds additional functionalities like token burning.\\n * It is initialized with a fixed supply of tokens credited to the owner's address.\\n */\\ncontract Tether is IERC20 {\\n\\tstring public name = \\\"Tether\\\";\\n\\tstring public symbol = \\\"USDT\\\";\\n\\tuint8 public decimals = 18;\\n\\tuint256 private _totalSupply = 1_000_000_000 * 10 ** uint256(decimals);\\n\\taddress private _owner;\\n\\tmapping(address => uint256) private _balances;\\n\\tmapping(address => mapping(address => uint256)) private _allowances;\\n\\n\\t/**\\n\\t * @notice Constructs the Tether contract and assigns initial total supply to the owner.\\n\\t * @dev Sets the token name, symbol, decimals, and mints the total supply to the deployer.\\n\\t */\\n\\tconstructor() {\\n\\t\\t_owner = msg.sender;\\n\\t\\t_balances[_owner] = _totalSupply;\\n\\t\\temit Transfer(address(0), _owner, _totalSupply);\\n\\t}\\n\\n\\tmodifier onlyOwner() {\\n\\t\\trequire(msg.sender == _owner, \\\"Only the owner can call this function\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\tfunction totalSupply() external view override returns (uint256) {\\n\\t\\treturn _totalSupply;\\n\\t}\\n\\n\\tfunction balanceOf(\\n\\t\\taddress account\\n\\t) external view override returns (uint256) {\\n\\t\\treturn _balances[account];\\n\\t}\\n\\n\\tfunction transfer(\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\trequire(recipient != address(0), \\\"Invalid recipient\\\");\\n\\t\\trequire(_balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\n\\t\\t_balances[msg.sender] -= amount;\\n\\t\\t_balances[recipient] += amount;\\n\\t\\temit Transfer(msg.sender, recipient, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\tfunction allowance(\\n\\t\\taddress owner,\\n\\t\\taddress spender\\n\\t) external view override returns (uint256) {\\n\\t\\treturn _allowances[owner][spender];\\n\\t}\\n\\n\\tfunction approve(\\n\\t\\taddress spender,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\t_allowances[msg.sender][spender] = amount;\\n\\t\\temit Approval(msg.sender, spender, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\tfunction transferFrom(\\n\\t\\taddress sender,\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\trequire(sender != address(0), \\\"Invalid sender\\\");\\n\\t\\trequire(recipient != address(0), \\\"Invalid recipient\\\");\\n\\t\\trequire(_balances[sender] >= amount, \\\"Insufficient balance\\\");\\n\\t\\trequire(\\n\\t\\t\\t_allowances[sender][msg.sender] >= amount,\\n\\t\\t\\t\\\"Allowance exceeded\\\"\\n\\t\\t);\\n\\n\\t\\t_balances[sender] -= amount;\\n\\t\\t_balances[recipient] += amount;\\n\\t\\t_allowances[sender][msg.sender] -= amount;\\n\\t\\temit Transfer(sender, recipient, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Burns a specific amount of tokens from the caller's account, reducing the total supply.\\n\\t * @dev Removes tokens from the circulating supply by reducing the caller's balance and the total supply count.\\n\\t * Emits a Burn event alongside a Transfer event to the zero address.\\n\\t * @param amount The amount of tokens to be burned.\\n\\t */\\n\\tfunction burn(uint256 amount) external {\\n\\t\\trequire(_balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\t\\t_balances[msg.sender] -= amount;\\n\\t\\t_totalSupply -= amount;\\n\\t\\temit Transfer(msg.sender, address(0), amount);\\n\\t\\temit Burn(msg.sender, amount);\\n\\t}\\n}\\n\",\"keccak256\":\"0x7666ca1a82074dac836dcd19b12af7351b321dd4d583366f2672d10007d17444\",\"license\":\"MIT\"},\"contracts/TransactionManager.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./InventoryManagement.sol\\\";\\nimport \\\"./UserManager.sol\\\";\\n\\n/**\\n * @title Transaction structure\\n * @notice Holds data for a single retail transaction.\\n * @dev This struct encapsulates all the details needed for recording transactions, including associated scores and costs.\\n */\\nstruct Transaction {\\n\\taddress buyer; // Address of the buyer\\n\\taddress retailer; // Address of the retailer\\n\\tuint32 productIndex; // Index of the purchased product in the inventory\\n\\tuint16 quantity; // Quantity of the product purchased\\n\\tuint256 totalPrice; // Total price paid\\n\\tuint32 totalScore; // Loyalty score earned from the transaction\\n\\tuint256 timestamp; // Timestamp when the transaction was recorded\\n}\\n\\n/**\\n * @title Transaction Manager\\n * @notice Manages recording and retrieving transactions in a retail environment\\n * @dev This contract allows for recording of retail transactions, linking products, buyers, and retailers with financial and loyalty data.\\n */\\ncontract TransactionManager {\\n\\tTransaction[] public transactions; // Dynamic array of all transactions\\n\\tmapping(address => uint[]) public userTransactions; // Mapping from user addresses to list of transaction indices\\n\\tmapping(address => uint[]) public retailerTransactions; // Mapping from retailer addresses to list of transaction indices\\n\\n\\tInventoryManagement public inventoryManagement; // Instance of InventoryManagement contract\\n\\tUserManager public userManager; // Instance of UserManager contract\\n\\n\\taddress public owner; // Owner of the contract\\n\\n\\t/**\\n\\t * @notice Initializes the contract with the address of the UserManager contract.\\n\\t * @dev Sets the owner to the message sender and initializes the UserManager contract.\\n\\t * @param userManagerAddress Address of the UserManager contract.\\n\\t */\\n\\tconstructor(address userManagerAddress) {\\n\\t\\towner = msg.sender;\\n\\t\\tuserManager = UserManager(userManagerAddress);\\n\\t}\\n\\n\\t// Modifiers\\n\\t/**\\n\\t * @notice Ensures the caller is the InventoryManagement contract.\\n\\t * @dev Modifier to restrict function access to only the InventoryManagement contract.\\n\\t */\\n\\tmodifier onlyInventoryManager() {\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == address(inventoryManagement),\\n\\t\\t\\t\\\"Only InventoryManager can call this function\\\"\\n\\t\\t);\\n\\t\\t_;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Ensures the caller is the owner of the contract.\\n\\t * @dev Modifier to restrict function access to only the owner of the contract.\\n\\t */\\n\\tmodifier onlyOwner() {\\n\\t\\trequire(msg.sender == owner, \\\"Only owner can call this function\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\t// Functions\\n\\t/**\\n\\t * @notice Sets the InventoryManagement contract address.\\n\\t * @dev Can only be called by the contract owner.\\n\\t * @param inventoryManagementAddress Address of the InventoryManagement contract to be linked.\\n\\t */\\n\\tfunction setInventoryManagement(\\n\\t\\taddress inventoryManagementAddress\\n\\t) external onlyOwner {\\n\\t\\tinventoryManagement = InventoryManagement(inventoryManagementAddress);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Records a transaction in the system.\\n\\t * @dev Stores transaction details and updates mappings for user and retailer transaction lists. Can only be called by InventoryManagement.\\n\\t * @param buyerAddress Address of the buyer.\\n\\t * @param retailerAddress Address of the retailer.\\n\\t * @param productIndex Index of the product being purchased.\\n\\t * @param quantity Quantity of the product being purchased.\\n\\t * @param totalCost Total cost of the transaction.\\n\\t * @param totalScore Total loyalty score associated with the transaction.\\n\\t */\\n\\tfunction recordTransaction(\\n\\t\\taddress buyerAddress,\\n\\t\\taddress retailerAddress,\\n\\t\\tuint32 productIndex,\\n\\t\\tuint16 quantity,\\n\\t\\tuint256 totalCost,\\n\\t\\tuint32 totalScore\\n\\t) external onlyInventoryManager {\\n\\t\\ttransactions.push(\\n\\t\\t\\tTransaction(\\n\\t\\t\\t\\tbuyerAddress,\\n\\t\\t\\t\\tretailerAddress,\\n\\t\\t\\t\\tproductIndex,\\n\\t\\t\\t\\tquantity,\\n\\t\\t\\t\\ttotalCost,\\n\\t\\t\\t\\ttotalScore,\\n\\t\\t\\t\\tblock.timestamp\\n\\t\\t\\t)\\n\\t\\t);\\n\\n\\t\\tuint index = transactions.length - 1;\\n\\t\\tuserTransactions[buyerAddress].push(index);\\n\\t\\tretailerTransactions[retailerAddress].push(index);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves a transaction by its index.\\n\\t * @param index Index of the transaction in the array.\\n\\t * @return Transaction data structure containing all transaction details.\\n\\t */\\n\\tfunction getTransaction(\\n\\t\\tuint32 index\\n\\t) external view returns (Transaction memory) {\\n\\t\\treturn transactions[index];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves all transactions associated with a specific user.\\n\\t * @param userAddress Address of the user.\\n\\t * @return An array of transactions made by the user.\\n\\t */\\n\\tfunction getUserTransactions(\\n\\t\\taddress userAddress\\n\\t) external view returns (Transaction[] memory) {\\n\\t\\tuint[] memory indexes = userTransactions[userAddress];\\n\\t\\tTransaction[] memory result = new Transaction[](indexes.length);\\n\\t\\tfor (uint i = 0; i < indexes.length; i++) {\\n\\t\\t\\tresult[i] = transactions[indexes[i]];\\n\\t\\t}\\n\\t\\treturn result;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves all transactions associated with a specific retailer.\\n\\t * @param retailerAddress Address of the retailer.\\n\\t * @return An array of transactions involving the retailer.\\n\\t */\\n\\tfunction getRetailerTransactions(\\n\\t\\taddress retailerAddress\\n\\t) external view returns (Transaction[] memory) {\\n\\t\\tuint[] memory indexes = retailerTransactions[retailerAddress];\\n\\t\\tTransaction[] memory result = new Transaction[](indexes.length);\\n\\t\\tfor (uint i = 0; i < indexes.length; i++) {\\n\\t\\t\\tresult[i] = transactions[indexes[i]];\\n\\t\\t}\\n\\t\\treturn result;\\n\\t}\\n}\\n\",\"keccak256\":\"0x8092a026752280fe0a0c9180d5599b4ff6a800514f504e2108aab669fade3ee1\",\"license\":\"MIT\"},\"contracts/UserManager.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./Tether.sol\\\";\\n\\n/**\\n * @title EntityType\\n * @notice Enumerates types of entities managed in the UserManager contract.\\n */\\nenum EntityType {\\n\\tUser,\\n\\tRetailer\\n}\\n\\n/**\\n * @title Entity\\n * @notice Represents an entity (either a user or a retailer) in the system.\\n * @dev Stores details like name, email, and IPFS hash for extended data.\\n */\\nstruct Entity {\\n\\tstring name;\\n\\tstring email;\\n\\tstring ipfsHash;\\n\\taddress wallet;\\n\\tEntityType entityType;\\n\\tstring walletId;\\n\\tstring additionalInfo;\\n}\\n\\n/**\\n * @title UserManager\\n * @notice Manages registration and updates of user and retailer entities.\\n * @dev This contract handles the creation, updating, and querying of user and retailer entities,\\n * leveraging mappings for efficient data retrieval.\\n */\\ncontract UserManager {\\n\\tmapping(address => Entity) public entities; // Mapping from wallet address to entity details\\n\\tmapping(string => address) public emailToWallet; // Mapping from email to wallet address for quick lookup\\n\\n\\taddress[] public entitiesList; // Dynamic array of entity addresses\\n\\n\\tIERC20 public paymentToken; // ERC20 token used for transactions within the system\\n\\n\\tevent EntityCreated(address indexed entityAddress, EntityType entityType);\\n\\tevent EntityUpdated(\\n\\t\\taddress indexed entityAddress,\\n\\t\\tstring indexed property,\\n\\t\\tstring newValue\\n\\t);\\n\\n\\tconstructor(address paymentTokenAddress) {\\n\\t\\tpaymentToken = IERC20(paymentTokenAddress);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Ensures that the entity is not already registered.\\n\\t */\\n\\tmodifier isUniqueEntity() {\\n\\t\\trequire(\\n\\t\\t\\tentities[msg.sender].wallet == address(0),\\n\\t\\t\\t\\\"Entity already registered\\\"\\n\\t\\t);\\n\\t\\t_;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Ensures the email is not already in use by another entity.\\n\\t */\\n\\tmodifier isUniqueEmail(string memory email) {\\n\\t\\trequire(emailToWallet[email] == address(0), \\\"Email already exists\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Registers an entity with the provided details.\\n\\t * @dev Creates a new entity or updates an existing one, assigning it an initial balance of tokens.\\n\\t * @param name Name of the entity\\n\\t * @param email Email address of the entity\\n\\t * @param ipfsHash IPFS hash for extended data storage\\n\\t * @param entityType Type of the entity (User or Retailer)\\n\\t * @param walletId Unique identifier for the entity's wallet\\n\\t * @param additionalInfo Additional information relevant to the entity\\n\\t */\\n\\tfunction registerEntity(\\n\\t\\tstring memory name,\\n\\t\\tstring memory email,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tEntityType entityType,\\n\\t\\tstring memory walletId,\\n\\t\\tstring memory additionalInfo\\n\\t) public isUniqueEntity isUniqueEmail(email) {\\n\\t\\tentities[msg.sender] = Entity(\\n\\t\\t\\tname,\\n\\t\\t\\temail,\\n\\t\\t\\tipfsHash,\\n\\t\\t\\tmsg.sender,\\n\\t\\t\\tentityType,\\n\\t\\t\\twalletId,\\n\\t\\t\\tadditionalInfo\\n\\t\\t);\\n\\t\\tentitiesList.push(msg.sender);\\n\\t\\temailToWallet[email] = msg.sender;\\n\\n\\t\\tpaymentToken.transfer(msg.sender, 100 * 10 ** 18); // Initially allocating tokens\\n\\n\\t\\temit EntityCreated(msg.sender, entityType);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Simplified registration process for users.\\n\\t * @param name Name of the user\\n\\t * @param email Email address of the user\\n\\t * @param ipfsHash IPFS hash for user data\\n\\t * @param walletId Wallet identifier for the user\\n\\t */\\n\\tfunction createUser(\\n\\t\\tstring memory name,\\n\\t\\tstring memory email,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tstring memory walletId\\n\\t) public {\\n\\t\\tregisterEntity(name, email, ipfsHash, EntityType.User, walletId, \\\"\\\");\\n\\t}\\n\\n\\t/**\\n\\t * @notice Simplified registration process for retailers.\\n\\t * @param name Name of the retailer\\n\\t * @param email Email address of the retailer\\n\\t * @param ipfsHash IPFS hash for retailer data\\n\\t * @param walletId Wallet identifier for the retailer\\n\\t * @param additionalInfo Additional information for the retailer\\n\\t */\\n\\tfunction createRetailer(\\n\\t\\tstring memory name,\\n\\t\\tstring memory email,\\n\\t\\tstring memory ipfsHash,\\n\\t\\tstring memory walletId,\\n\\t\\tstring memory additionalInfo\\n\\t) public {\\n\\t\\tregisterEntity(\\n\\t\\t\\tname,\\n\\t\\t\\temail,\\n\\t\\t\\tipfsHash,\\n\\t\\t\\tEntityType.Retailer,\\n\\t\\t\\twalletId,\\n\\t\\t\\tadditionalInfo\\n\\t\\t);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Updates an entity's specific property.\\n\\t * @dev Allows entities to update their information post-registration.\\n\\t * @param property The property to update (\\\"name\\\", \\\"email\\\", \\\"ipfsHash\\\", \\\"additionalInfo\\\")\\n\\t * @param newValue The new value for the specified property\\n\\t */\\n\\tfunction updateEntity(\\n\\t\\tstring memory property,\\n\\t\\tstring memory newValue\\n\\t) public {\\n\\t\\trequire(\\n\\t\\t\\tentities[msg.sender].wallet != address(0),\\n\\t\\t\\t\\\"Entity not registered\\\"\\n\\t\\t);\\n\\n\\t\\tif (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"name\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].name = newValue;\\n\\t\\t} else if (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"email\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].email = newValue;\\n\\t\\t} else if (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"ipfsHash\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].ipfsHash = newValue;\\n\\t\\t} else if (\\n\\t\\t\\tkeccak256(abi.encodePacked(property)) ==\\n\\t\\t\\tkeccak256(abi.encodePacked(\\\"additionalInfo\\\"))\\n\\t\\t) {\\n\\t\\t\\tentities[msg.sender].additionalInfo = newValue;\\n\\t\\t} else {\\n\\t\\t\\trevert(\\\"Invalid property\\\");\\n\\t\\t}\\n\\n\\t\\temit EntityUpdated(msg.sender, property, newValue);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves detailed information about an entity.\\n\\t * @param walletAddress The wallet address of the entity.\\n\\t * @return Entity The complete entity structure with all details.\\n\\t */\\n\\tfunction getEntity(\\n\\t\\taddress walletAddress\\n\\t) public view returns (Entity memory) {\\n\\t\\treturn entities[walletAddress];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Checks if an address belongs to a retailer.\\n\\t * @param walletAddress The wallet address to check.\\n\\t * @return bool True if the address belongs to a retailer.\\n\\t */\\n\\tfunction isRetailer(address walletAddress) public view returns (bool) {\\n\\t\\treturn entities[walletAddress].entityType == EntityType.Retailer;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Checks if an address belongs to a user.\\n\\t * @param walletAddress The wallet address to check.\\n\\t * @return bool True if the address belongs to a user.\\n\\t */\\n\\tfunction isUser(address walletAddress) public view returns (bool) {\\n\\t\\treturn entities[walletAddress].entityType == EntityType.User;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves a list of all registered entity addresses.\\n\\t * @return address[] A list of all entity addresses.\\n\\t */\\n\\tfunction getEntitiesList() public view returns (address[] memory) {\\n\\t\\treturn entitiesList;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the wallet address associated with a given email.\\n\\t * @param email The email to search for.\\n\\t * @return address The wallet address associated with the email.\\n\\t */\\n\\tfunction getWalletByEmail(\\n\\t\\tstring memory email\\n\\t) public view returns (address) {\\n\\t\\treturn emailToWallet[email];\\n\\t}\\n}\\n\",\"keccak256\":\"0x6ead7c6b4d044c79bc48a189c886432712ca1923946eceb70c90ea08dc1a4c65\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051610db6380380610db683398101604081905261002f91610062565b60058054336001600160a01b031991821617909155600480549091166001600160a01b0392909216919091179055610090565b600060208284031215610073578081fd5b81516001600160a01b0381168114610089578182fd5b9392505050565b610d178061009f6000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80638da5cb5b116100715780638da5cb5b146101415780639ace38c214610149578063b842ec441461016f578063cee3087314610182578063deda649314610195578063ef9253991461019d576100a9565b806319c0b086146100ae5780633085e1ea146100d75780634a0a0c89146100f75780635c73cc20146101175780635c8a76871461012c575b600080fd5b6100c16100bc3660046109f5565b6101b0565b6040516100ce9190610ba1565b60405180910390f35b6100ea6100e5366004610acb565b61039d565b6040516100ce9190610c7c565b61010a610105366004610a8a565b610455565b6040516100ce9190610c90565b61012a6101253660046109f5565b610486565b005b6101346104db565b6040516100ce9190610b45565b6101346104ea565b61015c610157366004610ab3565b6104f9565b6040516100ce9796959493929190610b59565b61010a61017d366004610a8a565b610564565b61012a610190366004610a16565b610580565b61013461079c565b6100c16101ab3660046109f5565b6107ab565b6001600160a01b038116600090815260026020908152604080832080548251818502810185019093528083526060949383018282801561020f57602002820191906000526020600020905b8154815260200190600101908083116101fb575b505050505090506000815167ffffffffffffffff81111561024057634e487b7160e01b600052604160045260246000fd5b60405190808252806020026020018201604052801561027957816020015b61026661098e565b81526020019060019003908161025e5790505b50905060005b82518110156103935760008382815181106102aa57634e487b7160e01b600052603260045260246000fd5b6020026020010151815481106102d057634e487b7160e01b600052603260045260246000fd5b60009182526020918290206040805160e08101825260059390930290910180546001600160a01b039081168452600182015490811694840194909452600160a01b840463ffffffff90811692840192909252600160c01b90930461ffff1660608301526002830154608083015260038301541660a082015260049091015460c0820152825183908390811061037557634e487b7160e01b600052603260045260246000fd5b6020026020010181905250808061038b90610cb0565b91505061027f565b509150505b919050565b6103a561098e565b60008263ffffffff16815481106103cc57634e487b7160e01b600052603260045260246000fd5b60009182526020918290206040805160e08101825260059390930290910180546001600160a01b039081168452600182015490811694840194909452600160a01b840463ffffffff90811692840192909252600160c01b90930461ffff1660608301526002830154608083015260038301541660a082015260049091015460c082015292915050565b6002602052816000526040600020818154811061047157600080fd5b90600052602060002001600091509150505481565b6005546001600160a01b031633146104b95760405162461bcd60e51b81526004016104b090610bef565b60405180910390fd5b600380546001600160a01b0319166001600160a01b0392909216919091179055565b6004546001600160a01b031681565b6005546001600160a01b031681565b6000818154811061050957600080fd5b6000918252602090912060059091020180546001820154600283015460038401546004909401546001600160a01b03938416955092821693600160a01b830463ffffffff90811694600160c01b90940461ffff169391169087565b6001602052816000526040600020818154811061047157600080fd5b6003546001600160a01b031633146105aa5760405162461bcd60e51b81526004016104b090610c30565b6040805160e0810182526001600160a01b0388811682528781166020830190815263ffffffff88811694840194855261ffff888116606086019081526080860189815288841660a088019081524260c0890190815260008054600180820183558280529a517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563600590920291820180546001600160a01b0319908116928d1692909217905598517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e564820180549d5197519d909a169a169990991763ffffffff60a01b1916600160a01b958816959095029490941761ffff60c01b1916600160c01b9a909516999099029390931790945592517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e565850155517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5668401805463ffffffff19169190921617905592517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5679091015581546107479190610c99565b6001600160a01b039788166000908152600160208181526040808420805480850182559085528285200185905599909a16825260028a5297812080549889018155815297909720909501959095555050505050565b6003546001600160a01b031681565b6001600160a01b038116600090815260016020908152604080832080548251818502810185019093528083526060949383018282801561080a57602002820191906000526020600020905b8154815260200190600101908083116107f6575b505050505090506000815167ffffffffffffffff81111561083b57634e487b7160e01b600052604160045260246000fd5b60405190808252806020026020018201604052801561087457816020015b61086161098e565b8152602001906001900390816108595790505b50905060005b82518110156103935760008382815181106108a557634e487b7160e01b600052603260045260246000fd5b6020026020010151815481106108cb57634e487b7160e01b600052603260045260246000fd5b60009182526020918290206040805160e08101825260059390930290910180546001600160a01b039081168452600182015490811694840194909452600160a01b840463ffffffff90811692840192909252600160c01b90930461ffff1660608301526002830154608083015260038301541660a082015260049091015460c0820152825183908390811061097057634e487b7160e01b600052603260045260246000fd5b6020026020010181905250808061098690610cb0565b91505061087a565b6040805160e081018252600080825260208201819052918101829052606081018290526080810182905260a0810182905260c081019190915290565b80356001600160a01b038116811461039857600080fd5b803563ffffffff8116811461039857600080fd5b600060208284031215610a06578081fd5b610a0f826109ca565b9392505050565b60008060008060008060c08789031215610a2e578182fd5b610a37876109ca565b9550610a45602088016109ca565b9450610a53604088016109e1565b9350606087013561ffff81168114610a69578283fd5b925060808701359150610a7e60a088016109e1565b90509295509295509295565b60008060408385031215610a9c578182fd5b610aa5836109ca565b946020939093013593505050565b600060208284031215610ac4578081fd5b5035919050565b600060208284031215610adc578081fd5b610a0f826109e1565b60018060a01b0380825116835280602083015116602084015250604081015163ffffffff808216604085015261ffff6060840151166060850152608083015160808501528060a08401511660a0850152505060c081015160c08301525050565b6001600160a01b0391909116815260200190565b6001600160a01b03978816815295909616602086015263ffffffff938416604086015261ffff92909216606085015260808401521660a082015260c081019190915260e00190565b6020808252825182820181905260009190848201906040850190845b81811015610be357610bd0838551610ae5565b9284019260e09290920191600101610bbd565b50909695505050505050565b60208082526021908201527f4f6e6c79206f776e65722063616e2063616c6c20746869732066756e6374696f6040820152603760f91b606082015260800190565b6020808252602c908201527f4f6e6c7920496e76656e746f72794d616e616765722063616e2063616c6c207460408201526b3434b990333ab731ba34b7b760a11b606082015260800190565b60e08101610c8a8284610ae5565b92915050565b90815260200190565b600082821015610cab57610cab610ccb565b500390565b6000600019821415610cc457610cc4610ccb565b5060010190565b634e487b7160e01b600052601160045260246000fdfea26469706673582212205b75e74db50467f4d8e8ab5747c24511a09a6023e5bf3df8066b9c78540da5e564736f6c63430008000033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100a95760003560e01c80638da5cb5b116100715780638da5cb5b146101415780639ace38c214610149578063b842ec441461016f578063cee3087314610182578063deda649314610195578063ef9253991461019d576100a9565b806319c0b086146100ae5780633085e1ea146100d75780634a0a0c89146100f75780635c73cc20146101175780635c8a76871461012c575b600080fd5b6100c16100bc3660046109f5565b6101b0565b6040516100ce9190610ba1565b60405180910390f35b6100ea6100e5366004610acb565b61039d565b6040516100ce9190610c7c565b61010a610105366004610a8a565b610455565b6040516100ce9190610c90565b61012a6101253660046109f5565b610486565b005b6101346104db565b6040516100ce9190610b45565b6101346104ea565b61015c610157366004610ab3565b6104f9565b6040516100ce9796959493929190610b59565b61010a61017d366004610a8a565b610564565b61012a610190366004610a16565b610580565b61013461079c565b6100c16101ab3660046109f5565b6107ab565b6001600160a01b038116600090815260026020908152604080832080548251818502810185019093528083526060949383018282801561020f57602002820191906000526020600020905b8154815260200190600101908083116101fb575b505050505090506000815167ffffffffffffffff81111561024057634e487b7160e01b600052604160045260246000fd5b60405190808252806020026020018201604052801561027957816020015b61026661098e565b81526020019060019003908161025e5790505b50905060005b82518110156103935760008382815181106102aa57634e487b7160e01b600052603260045260246000fd5b6020026020010151815481106102d057634e487b7160e01b600052603260045260246000fd5b60009182526020918290206040805160e08101825260059390930290910180546001600160a01b039081168452600182015490811694840194909452600160a01b840463ffffffff90811692840192909252600160c01b90930461ffff1660608301526002830154608083015260038301541660a082015260049091015460c0820152825183908390811061037557634e487b7160e01b600052603260045260246000fd5b6020026020010181905250808061038b90610cb0565b91505061027f565b509150505b919050565b6103a561098e565b60008263ffffffff16815481106103cc57634e487b7160e01b600052603260045260246000fd5b60009182526020918290206040805160e08101825260059390930290910180546001600160a01b039081168452600182015490811694840194909452600160a01b840463ffffffff90811692840192909252600160c01b90930461ffff1660608301526002830154608083015260038301541660a082015260049091015460c082015292915050565b6002602052816000526040600020818154811061047157600080fd5b90600052602060002001600091509150505481565b6005546001600160a01b031633146104b95760405162461bcd60e51b81526004016104b090610bef565b60405180910390fd5b600380546001600160a01b0319166001600160a01b0392909216919091179055565b6004546001600160a01b031681565b6005546001600160a01b031681565b6000818154811061050957600080fd5b6000918252602090912060059091020180546001820154600283015460038401546004909401546001600160a01b03938416955092821693600160a01b830463ffffffff90811694600160c01b90940461ffff169391169087565b6001602052816000526040600020818154811061047157600080fd5b6003546001600160a01b031633146105aa5760405162461bcd60e51b81526004016104b090610c30565b6040805160e0810182526001600160a01b0388811682528781166020830190815263ffffffff88811694840194855261ffff888116606086019081526080860189815288841660a088019081524260c0890190815260008054600180820183558280529a517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563600590920291820180546001600160a01b0319908116928d1692909217905598517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e564820180549d5197519d909a169a169990991763ffffffff60a01b1916600160a01b958816959095029490941761ffff60c01b1916600160c01b9a909516999099029390931790945592517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e565850155517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5668401805463ffffffff19169190921617905592517f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e5679091015581546107479190610c99565b6001600160a01b039788166000908152600160208181526040808420805480850182559085528285200185905599909a16825260028a5297812080549889018155815297909720909501959095555050505050565b6003546001600160a01b031681565b6001600160a01b038116600090815260016020908152604080832080548251818502810185019093528083526060949383018282801561080a57602002820191906000526020600020905b8154815260200190600101908083116107f6575b505050505090506000815167ffffffffffffffff81111561083b57634e487b7160e01b600052604160045260246000fd5b60405190808252806020026020018201604052801561087457816020015b61086161098e565b8152602001906001900390816108595790505b50905060005b82518110156103935760008382815181106108a557634e487b7160e01b600052603260045260246000fd5b6020026020010151815481106108cb57634e487b7160e01b600052603260045260246000fd5b60009182526020918290206040805160e08101825260059390930290910180546001600160a01b039081168452600182015490811694840194909452600160a01b840463ffffffff90811692840192909252600160c01b90930461ffff1660608301526002830154608083015260038301541660a082015260049091015460c0820152825183908390811061097057634e487b7160e01b600052603260045260246000fd5b6020026020010181905250808061098690610cb0565b91505061087a565b6040805160e081018252600080825260208201819052918101829052606081018290526080810182905260a0810182905260c081019190915290565b80356001600160a01b038116811461039857600080fd5b803563ffffffff8116811461039857600080fd5b600060208284031215610a06578081fd5b610a0f826109ca565b9392505050565b60008060008060008060c08789031215610a2e578182fd5b610a37876109ca565b9550610a45602088016109ca565b9450610a53604088016109e1565b9350606087013561ffff81168114610a69578283fd5b925060808701359150610a7e60a088016109e1565b90509295509295509295565b60008060408385031215610a9c578182fd5b610aa5836109ca565b946020939093013593505050565b600060208284031215610ac4578081fd5b5035919050565b600060208284031215610adc578081fd5b610a0f826109e1565b60018060a01b0380825116835280602083015116602084015250604081015163ffffffff808216604085015261ffff6060840151166060850152608083015160808501528060a08401511660a0850152505060c081015160c08301525050565b6001600160a01b0391909116815260200190565b6001600160a01b03978816815295909616602086015263ffffffff938416604086015261ffff92909216606085015260808401521660a082015260c081019190915260e00190565b6020808252825182820181905260009190848201906040850190845b81811015610be357610bd0838551610ae5565b9284019260e09290920191600101610bbd565b50909695505050505050565b60208082526021908201527f4f6e6c79206f776e65722063616e2063616c6c20746869732066756e6374696f6040820152603760f91b606082015260800190565b6020808252602c908201527f4f6e6c7920496e76656e746f72794d616e616765722063616e2063616c6c207460408201526b3434b990333ab731ba34b7b760a11b606082015260800190565b60e08101610c8a8284610ae5565b92915050565b90815260200190565b600082821015610cab57610cab610ccb565b500390565b6000600019821415610cc457610cc4610ccb565b5060010190565b634e487b7160e01b600052601160045260246000fdfea26469706673582212205b75e74db50467f4d8e8ab5747c24511a09a6023e5bf3df8066b9c78540da5e564736f6c63430008000033",
+  "devdoc": {
+    "details": "This contract allows for recording of retail transactions, linking products, buyers, and retailers with financial and loyalty data.",
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "details": "Sets the owner to the message sender and initializes the UserManager contract.",
+        "params": {
+          "userManagerAddress": "Address of the UserManager contract."
+        }
+      },
+      "getRetailerTransactions(address)": {
+        "params": {
+          "retailerAddress": "Address of the retailer."
+        },
+        "returns": {
+          "_0": "An array of transactions involving the retailer."
+        }
+      },
+      "getTransaction(uint32)": {
+        "params": {
+          "index": "Index of the transaction in the array."
+        },
+        "returns": {
+          "_0": "Transaction data structure containing all transaction details."
+        }
+      },
+      "getUserTransactions(address)": {
+        "params": {
+          "userAddress": "Address of the user."
+        },
+        "returns": {
+          "_0": "An array of transactions made by the user."
+        }
+      },
+      "recordTransaction(address,address,uint32,uint16,uint256,uint32)": {
+        "details": "Stores transaction details and updates mappings for user and retailer transaction lists. Can only be called by InventoryManagement.",
+        "params": {
+          "buyerAddress": "Address of the buyer.",
+          "productIndex": "Index of the product being purchased.",
+          "quantity": "Quantity of the product being purchased.",
+          "retailerAddress": "Address of the retailer.",
+          "totalCost": "Total cost of the transaction.",
+          "totalScore": "Total loyalty score associated with the transaction."
+        }
+      },
+      "setInventoryManagement(address)": {
+        "details": "Can only be called by the contract owner.",
+        "params": {
+          "inventoryManagementAddress": "Address of the InventoryManagement contract to be linked."
+        }
+      }
+    },
+    "title": "Transaction Manager",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "constructor": {
+        "notice": "Initializes the contract with the address of the UserManager contract."
+      },
+      "getRetailerTransactions(address)": {
+        "notice": "Retrieves all transactions associated with a specific retailer."
+      },
+      "getTransaction(uint32)": {
+        "notice": "Retrieves a transaction by its index."
+      },
+      "getUserTransactions(address)": {
+        "notice": "Retrieves all transactions associated with a specific user."
+      },
+      "recordTransaction(address,address,uint32,uint16,uint256,uint32)": {
+        "notice": "Records a transaction in the system."
+      },
+      "setInventoryManagement(address)": {
+        "notice": "Sets the InventoryManagement contract address."
+      }
+    },
+    "notice": "Manages recording and retrieving transactions in a retail environment",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1535,
+        "contract": "contracts/TransactionManager.sol:TransactionManager",
+        "label": "transactions",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_array(t_struct(Transaction)1530_storage)dyn_storage"
+      },
+      {
+        "astId": 1540,
+        "contract": "contracts/TransactionManager.sol:TransactionManager",
+        "label": "userTransactions",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)"
+      },
+      {
+        "astId": 1545,
+        "contract": "contracts/TransactionManager.sol:TransactionManager",
+        "label": "retailerTransactions",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)"
+      },
+      {
+        "astId": 1548,
+        "contract": "contracts/TransactionManager.sol:TransactionManager",
+        "label": "inventoryManagement",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_contract(InventoryManagement)567"
+      },
+      {
+        "astId": 1551,
+        "contract": "contracts/TransactionManager.sol:TransactionManager",
+        "label": "userManager",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_contract(UserManager)2222"
+      },
+      {
+        "astId": 1553,
+        "contract": "contracts/TransactionManager.sol:TransactionManager",
+        "label": "owner",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_struct(Transaction)1530_storage)dyn_storage": {
+        "base": "t_struct(Transaction)1530_storage",
+        "encoding": "dynamic_array",
+        "label": "struct Transaction[]",
+        "numberOfBytes": "32"
+      },
+      "t_array(t_uint256)dyn_storage": {
+        "base": "t_uint256",
+        "encoding": "dynamic_array",
+        "label": "uint256[]",
+        "numberOfBytes": "32"
+      },
+      "t_contract(InventoryManagement)567": {
+        "encoding": "inplace",
+        "label": "contract InventoryManagement",
+        "numberOfBytes": "20"
+      },
+      "t_contract(UserManager)2222": {
+        "encoding": "inplace",
+        "label": "contract UserManager",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_uint256)dyn_storage"
+      },
+      "t_struct(Transaction)1530_storage": {
+        "encoding": "inplace",
+        "label": "struct Transaction",
+        "members": [
+          {
+            "astId": 1517,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "buyer",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 1519,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "retailer",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address"
+          },
+          {
+            "astId": 1521,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "productIndex",
+            "offset": 20,
+            "slot": "1",
+            "type": "t_uint32"
+          },
+          {
+            "astId": 1523,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "quantity",
+            "offset": 24,
+            "slot": "1",
+            "type": "t_uint16"
+          },
+          {
+            "astId": 1525,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "totalPrice",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1527,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "totalScore",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint32"
+          },
+          {
+            "astId": 1529,
+            "contract": "contracts/TransactionManager.sol:TransactionManager",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "160"
+      },
+      "t_uint16": {
+        "encoding": "inplace",
+        "label": "uint16",
+        "numberOfBytes": "2"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint32": {
+        "encoding": "inplace",
+        "label": "uint32",
+        "numberOfBytes": "4"
+      }
+    }
+  }
+}

@@ -1,0 +1,678 @@
+{
+  "address": "0xc27cc7153E1788F3d3A91aF0518fcE01872C0810",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_paymentTokenAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        }
+      ],
+      "name": "AddScore",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ContributeToPool",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "redeemTokens",
+          "type": "uint256"
+        }
+      ],
+      "name": "RedeemScore",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        }
+      ],
+      "name": "TransferScore",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        }
+      ],
+      "name": "addScore",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        }
+      ],
+      "name": "calculateRedeemTokens",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "vault",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "contributeToPool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        }
+      ],
+      "name": "createWalletIfNotExists",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        }
+      ],
+      "name": "getRedeemPool",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getScore",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        }
+      ],
+      "name": "getScorePool",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        }
+      ],
+      "name": "getWalletAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paymentToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        }
+      ],
+      "name": "redeemScore",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "retailerWallets",
+      "outputs": [
+        {
+          "internalType": "contract RetailerWallet",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "scorePool",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "scores",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_authorizedContract",
+          "type": "address"
+        }
+      ],
+      "name": "setAuthorizedContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "retailer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "score",
+          "type": "uint32"
+        }
+      ],
+      "name": "transferScore",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x4d934d08c5fe3bcd6b10a213a6b55cc80b56109f6153de5f1839f5662020dac3",
+  "receipt": {
+    "to": null,
+    "from": "0x72ac37F2B8685300a6B3781669a487eBb94a5CCd",
+    "contractAddress": "0xc27cc7153E1788F3d3A91aF0518fcE01872C0810",
+    "transactionIndex": 4,
+    "gasUsed": "1294615",
+    "logsBloom": "0x40000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000800000000000000000000100000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000010000000000000000000040000000000000000000000000200000000000000000000000000000000000000000000000000000000000004000000000000000000001000000000000000002000000000000100000000000000000000000000000000000000000000000000000400000000000000000100000",
+    "blockHash": "0x67cddfd73ac53bc04a2f47eead300ccb87e43a08aa079bcb27293d8489e03281",
+    "transactionHash": "0x4d934d08c5fe3bcd6b10a213a6b55cc80b56109f6153de5f1839f5662020dac3",
+    "logs": [
+      {
+        "transactionIndex": 4,
+        "blockNumber": 6681759,
+        "transactionHash": "0x4d934d08c5fe3bcd6b10a213a6b55cc80b56109f6153de5f1839f5662020dac3",
+        "address": "0x0000000000000000000000000000000000001010",
+        "topics": [
+          "0x4dfe1bbbcf077ddc3e01291eea2d5c70c2b422b415d95645b9adcfd678cb1d63",
+          "0x0000000000000000000000000000000000000000000000000000000000001010",
+          "0x00000000000000000000000072ac37f2b8685300a6b3781669a487ebb94a5ccd",
+          "0x000000000000000000000000915a2284d28bd93de7d6f31173b981204bb666e6"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000050f30a5ea5d000000000000000000000000000000000000000000000000001115588a0ece8a10000000000000000000000000000000000000000000000118c93ebab5c14ab6ce0000000000000000000000000000000000000000000000001110495968e42d10000000000000000000000000000000000000000000000118c943c9e6673513ce",
+        "logIndex": 23,
+        "blockHash": "0x67cddfd73ac53bc04a2f47eead300ccb87e43a08aa079bcb27293d8489e03281"
+      }
+    ],
+    "blockNumber": 6681759,
+    "cumulativeGasUsed": "2126562",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x2bc91c73AC7d2c1D22F1be0c035BD59148ed328F"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "5869acd66d1fcfb8be90f59616081ff7",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_paymentTokenAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"}],\"name\":\"AddScore\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"ContributeToPool\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"redeemTokens\",\"type\":\"uint256\"}],\"name\":\"RedeemScore\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"}],\"name\":\"TransferScore\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"}],\"name\":\"addScore\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"}],\"name\":\"calculateRedeemTokens\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"vault\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"contributeToPool\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"}],\"name\":\"createWalletIfNotExists\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"}],\"name\":\"getRedeemPool\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getScore\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"}],\"name\":\"getScorePool\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"}],\"name\":\"getWalletAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paymentToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"}],\"name\":\"redeemScore\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"retailerWallets\",\"outputs\":[{\"internalType\":\"contract RetailerWallet\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"scorePool\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"scores\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_authorizedContract\",\"type\":\"address\"}],\"name\":\"setAuthorizedContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"retailer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"score\",\"type\":\"uint32\"}],\"name\":\"transferScore\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract handles loyalty points accrual, redemption, and inter-user transfers, along with retailer-specific wallets management.\",\"kind\":\"dev\",\"methods\":{\"addScore(address,address,uint32)\":{\"details\":\"Credits loyalty points to both the user's and retailer's total scores. Emits an AddScore event.\",\"params\":{\"retailer\":\"Address of the retailer.\",\"score\":\"Amount of loyalty score to add.\",\"userAddress\":\"Address of the user receiving the points.\"}},\"calculateRedeemTokens(address,uint32)\":{\"details\":\"Determines how many tokens a score is worth based on the current pool balance and total score.\",\"params\":{\"retailer\":\"Address of the retailer.\",\"score\":\"Amount of loyalty score to calculate tokens for.\"},\"returns\":{\"_0\":\"redeemTokens The number of tokens that the score is worth.\"}},\"constructor\":{\"params\":{\"_paymentTokenAddress\":\"Address of the ERC20 token used for payments and rewards.\"}},\"contributeToPool(address,address,uint256)\":{\"details\":\"Adds funds to the retailer's wallet for future redemptions. Requires authorization. Emits ContributeToPool event.\",\"params\":{\"amount\":\"Amount of tokens to contribute.\",\"retailer\":\"Address of the retailer.\",\"vault\":\"Address from which tokens are transferred.\"}},\"createWalletIfNotExists(address)\":{\"details\":\"Ensures a single wallet is associated with each retailer for managing redemption funds.\",\"params\":{\"retailer\":\"Address of the retailer.\"}},\"getRedeemPool(address)\":{\"params\":{\"retailer\":\"Address of the retailer.\"},\"returns\":{\"_0\":\"The balance of redeemable tokens available.\"}},\"getScore(address,address)\":{\"params\":{\"retailer\":\"Address of the retailer.\",\"user\":\"Address of the user.\"},\"returns\":{\"_0\":\"The loyalty score of the user.\"}},\"getScorePool(address)\":{\"params\":{\"retailer\":\"Address of the retailer.\"},\"returns\":{\"_0\":\"The total score pool of the retailer.\"}},\"getWalletAddress(address)\":{\"params\":{\"retailer\":\"Address of the retailer.\"},\"returns\":{\"_0\":\"The address of the retailer's wallet.\"}},\"redeemScore(address,uint32)\":{\"details\":\"Deducts loyalty points from the user's balance and transfers equivalent tokens from the retailer's wallet. Emits a RedeemScore event.\",\"params\":{\"retailer\":\"Address of the retailer.\",\"score\":\"Amount of loyalty score to redeem.\"}},\"setAuthorizedContract(address)\":{\"details\":\"Updates the authorized contract address. Can only be called by the current authorized contract.\",\"params\":{\"_authorizedContract\":\"New authorized contract address.\"}},\"transferScore(address,address,uint32)\":{\"details\":\"Allows users to transfer loyalty points to each other, ensuring sufficient balance before proceeding. Emits a TransferScore event.\",\"params\":{\"retailer\":\"Address of the retailer where both users are registered.\",\"score\":\"Amount of loyalty score to transfer.\",\"to\":\"Address of the recipient receiving the score.\"}}},\"title\":\"Loyalty Rewards System\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addScore(address,address,uint32)\":{\"notice\":\"Adds loyalty score to a user under a specific retailer.\"},\"calculateRedeemTokens(address,uint32)\":{\"notice\":\"Calculates the amount of tokens that can be redeemed for a given score.\"},\"constructor\":{\"notice\":\"Initializes the LoyaltyRewards contract with a specific payment token.\"},\"contributeToPool(address,address,uint256)\":{\"notice\":\"Contributes tokens to a retailer's loyalty pool.\"},\"createWalletIfNotExists(address)\":{\"notice\":\"Creates a wallet for the retailer if it does not already exist.\"},\"getRedeemPool(address)\":{\"notice\":\"Retrieves the total redeemable tokens available in a retailer's wallet.\"},\"getScore(address,address)\":{\"notice\":\"Retrieves the loyalty score of a user under a specific retailer.\"},\"getScorePool(address)\":{\"notice\":\"Retrieves the total loyalty score pool of a retailer.\"},\"getWalletAddress(address)\":{\"notice\":\"Gets the wallet address associated with a retailer.\"},\"redeemScore(address,uint32)\":{\"notice\":\"Redeems loyalty score for tokens.\"},\"setAuthorizedContract(address)\":{\"notice\":\"Sets a new authorized contract address.\"},\"transferScore(address,address,uint32)\":{\"notice\":\"Transfers loyalty score from one user to another under the same retailer.\"}},\"notice\":\"Manages the allocation, redemption, and transfer of loyalty points within a retail ecosystem\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/LoyaltyRewards.sol\":\"LoyaltyRewards\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/LoyaltyRewards.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./Tether.sol\\\";\\nimport \\\"./RetailerWallet.sol\\\";\\n\\n/**\\n * @title Loyalty Rewards System\\n * @notice Manages the allocation, redemption, and transfer of loyalty points within a retail ecosystem\\n * @dev This contract handles loyalty points accrual, redemption, and inter-user transfers, along with retailer-specific wallets management.\\n */\\ncontract LoyaltyRewards {\\n\\t// State variables\\n\\tmapping(address => mapping(address => uint32)) public scores; // Nested mapping of retailers to users to loyalty points\\n\\tmapping(address => uint64) public scorePool; // Total available loyalty points per retailer\\n\\tmapping(address => RetailerWallet) public retailerWallets; // Mapping of retailer addresses to their associated wallet contracts\\n\\n\\taddress private authorizedContract; // Address of the contract authorized to call restricted functions\\n\\tIERC20 public paymentToken; // ERC20 token used for transactions within the system\\n\\n\\t// Events\\n\\tevent RedeemScore(address indexed user, uint32 score, uint256 redeemTokens);\\n\\tevent ContributeToPool(address indexed retailer, uint256 amount);\\n\\tevent AddScore(address indexed user, uint32 score);\\n\\tevent TransferScore(address from, address to, uint32 score);\\n\\n\\t// Modifiers\\n\\t/**\\n\\t * @notice Ensures only the authorized contract can execute certain functions\\n\\t * @dev Restricts function calls to the address stored in `authorizedContract`.\\n\\t */\\n\\tmodifier onlyAuthorized() {\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == authorizedContract,\\n\\t\\t\\t\\\"Unauthorized: caller is not the authorized contract\\\"\\n\\t\\t);\\n\\t\\t_;\\n\\t}\\n\\n\\t// Constructor\\n\\t/**\\n\\t * @notice Initializes the LoyaltyRewards contract with a specific payment token.\\n\\t * @param _paymentTokenAddress Address of the ERC20 token used for payments and rewards.\\n\\t */\\n\\tconstructor(address _paymentTokenAddress) {\\n\\t\\tpaymentToken = IERC20(_paymentTokenAddress);\\n\\t\\tauthorizedContract = msg.sender; // Typically, this contract would be deployed by a factory or main contract managing the ecosystem.\\n\\t}\\n\\n\\t// Functions\\n\\t/**\\n\\t * @notice Sets a new authorized contract address.\\n\\t * @dev Updates the authorized contract address. Can only be called by the current authorized contract.\\n\\t * @param _authorizedContract New authorized contract address.\\n\\t */\\n\\tfunction setAuthorizedContract(\\n\\t\\taddress _authorizedContract\\n\\t) public onlyAuthorized {\\n\\t\\tauthorizedContract = _authorizedContract;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Adds loyalty score to a user under a specific retailer.\\n\\t * @dev Credits loyalty points to both the user's and retailer's total scores. Emits an AddScore event.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param userAddress Address of the user receiving the points.\\n\\t * @param score Amount of loyalty score to add.\\n\\t */\\n\\tfunction addScore(\\n\\t\\taddress retailer,\\n\\t\\taddress userAddress,\\n\\t\\tuint32 score\\n\\t) public onlyAuthorized {\\n\\t\\tscores[retailer][userAddress] += score;\\n\\t\\tscorePool[retailer] += score;\\n\\t\\temit AddScore(userAddress, score);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Creates a wallet for the retailer if it does not already exist.\\n\\t * @dev Ensures a single wallet is associated with each retailer for managing redemption funds.\\n\\t * @param retailer Address of the retailer.\\n\\t */\\n\\tfunction createWalletIfNotExists(address retailer) public onlyAuthorized {\\n\\t\\tif (address(retailerWallets[retailer]) == address(0)) {\\n\\t\\t\\tretailerWallets[retailer] = new RetailerWallet(\\n\\t\\t\\t\\taddress(this),\\n\\t\\t\\t\\taddress(paymentToken)\\n\\t\\t\\t);\\n\\t\\t}\\n\\t}\\n\\n\\t/**\\n\\t * @notice Redeems loyalty score for tokens.\\n\\t * @dev Deducts loyalty points from the user's balance and transfers equivalent tokens from the retailer's wallet. Emits a RedeemScore event.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param score Amount of loyalty score to redeem.\\n\\t */\\n\\tfunction redeemScore(address retailer, uint32 score) public {\\n\\t\\trequire(scores[retailer][msg.sender] >= score, \\\"Insufficient score\\\");\\n\\t\\tuint256 redeemTokens = calculateRedeemTokens(retailer, score);\\n\\t\\trequire(redeemTokens > 0, \\\"Redeem amount invalid\\\");\\n\\n\\t\\tRetailerWallet wallet = retailerWallets[retailer];\\n\\t\\trequire(wallet.balance() >= redeemTokens, \\\"Insufficient funds in pool\\\");\\n\\n\\t\\tscores[retailer][msg.sender] -= score;\\n\\t\\tscorePool[retailer] -= score;\\n\\t\\twallet.withdrawTokens(msg.sender, redeemTokens);\\n\\n\\t\\temit RedeemScore(msg.sender, score, redeemTokens);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Transfers loyalty score from one user to another under the same retailer.\\n\\t * @dev Allows users to transfer loyalty points to each other, ensuring sufficient balance before proceeding. Emits a TransferScore event.\\n\\t * @param retailer Address of the retailer where both users are registered.\\n\\t * @param to Address of the recipient receiving the score.\\n\\t * @param score Amount of loyalty score to transfer.\\n\\t */\\n\\tfunction transferScore(address retailer, address to, uint32 score) public {\\n\\t\\trequire(scores[retailer][msg.sender] >= score, \\\"Insufficient score\\\");\\n\\t\\tscores[retailer][msg.sender] -= score;\\n\\t\\tscores[retailer][to] += score;\\n\\t\\temit TransferScore(msg.sender, to, score);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Calculates the amount of tokens that can be redeemed for a given score.\\n\\t * @dev Determines how many tokens a score is worth based on the current pool balance and total score.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param score Amount of loyalty score to calculate tokens for.\\n\\t * @return redeemTokens The number of tokens that the score is worth.\\n\\t */\\n\\tfunction calculateRedeemTokens(\\n\\t\\taddress retailer,\\n\\t\\tuint32 score\\n\\t) public view returns (uint256) {\\n\\t\\tuint256 balance = retailerWallets[retailer].balance();\\n\\t\\tif (scorePool[retailer] == 0) return 0; // Prevents division by zero errors\\n\\t\\treturn (balance * score) / scorePool[retailer];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Contributes tokens to a retailer's loyalty pool.\\n\\t * @dev Adds funds to the retailer's wallet for future redemptions. Requires authorization. Emits ContributeToPool event.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param vault Address from which tokens are transferred.\\n\\t * @param amount Amount of tokens to contribute.\\n\\t */\\n\\tfunction contributeToPool(\\n\\t\\taddress retailer,\\n\\t\\taddress vault,\\n\\t\\tuint256 amount\\n\\t) public onlyAuthorized {\\n\\t\\tRetailerWallet wallet = retailerWallets[retailer];\\n\\t\\trequire(\\n\\t\\t\\twallet != RetailerWallet(address(0)),\\n\\t\\t\\t\\\"Retailer wallet does not exist\\\"\\n\\t\\t);\\n\\t\\twallet.receiveTokens(vault, address(wallet), amount);\\n\\t\\temit ContributeToPool(retailer, amount);\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the loyalty score of a user under a specific retailer.\\n\\t * @param retailer Address of the retailer.\\n\\t * @param user Address of the user.\\n\\t * @return The loyalty score of the user.\\n\\t */\\n\\tfunction getScore(\\n\\t\\taddress retailer,\\n\\t\\taddress user\\n\\t) public view returns (uint32) {\\n\\t\\treturn scores[retailer][user];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the total loyalty score pool of a retailer.\\n\\t * @param retailer Address of the retailer.\\n\\t * @return The total score pool of the retailer.\\n\\t */\\n\\tfunction getScorePool(address retailer) public view returns (uint64) {\\n\\t\\treturn scorePool[retailer];\\n\\t}\\n\\n\\t/**\\n\\t * @notice Retrieves the total redeemable tokens available in a retailer's wallet.\\n\\t * @param retailer Address of the retailer.\\n\\t * @return The balance of redeemable tokens available.\\n\\t */\\n\\tfunction getRedeemPool(address retailer) public view returns (uint256) {\\n\\t\\treturn retailerWallets[retailer].balance();\\n\\t}\\n\\n\\t/**\\n\\t * @notice Gets the wallet address associated with a retailer.\\n\\t * @param retailer Address of the retailer.\\n\\t * @return The address of the retailer's wallet.\\n\\t */\\n\\tfunction getWalletAddress(address retailer) public view returns (address) {\\n\\t\\trequire(\\n\\t\\t\\taddress(retailerWallets[retailer]) != address(0),\\n\\t\\t\\t\\\"No wallet for retailer\\\"\\n\\t\\t);\\n\\t\\treturn address(retailerWallets[retailer]);\\n\\t}\\n}\\n\",\"keccak256\":\"0xf53f9a6f45885f968cf6b1af708a35aef268c8f102f438ccef3370f017cc69c2\",\"license\":\"MIT\"},\"contracts/RetailerWallet.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./Tether.sol\\\";\\n\\n/**\\n * @title RetailerWallet\\n * @dev Manages the wallet functionalities for a retailer, allowing them to\\n * withdraw and receive ERC20 tokens.\\n */\\ncontract RetailerWallet {\\n\\t// Public state variable to store the owner of the wallet. The owner is\\n\\t// the only entity that can perform certain actions like withdrawing tokens.\\n\\taddress public owner;\\n\\n\\t// Interface variable for interacting with ERC20 tokens.\\n\\tIERC20 public paymentToken;\\n\\n\\t/**\\n\\t * @dev Constructor that sets the owner and token address upon deployment.\\n\\t * @param _owner The address of the owner of this wallet.\\n\\t * @param _token The address of the ERC20 token that this wallet will manage.\\n\\t */\\n\\tconstructor(address _owner, address _token) {\\n\\t\\towner = _owner; // Set the owner of the wallet\\n\\t\\tpaymentToken = IERC20(_token); // Set the ERC20 token to be used by this wallet\\n\\t}\\n\\n\\t/**\\n\\t * @dev Allows the owner to withdraw tokens to a specified address.\\n\\t * @param to The address to which the tokens will be sent.\\n\\t * @param amount The amount of tokens to send.\\n\\t */\\n\\tfunction withdrawTokens(address to, uint256 amount) public {\\n\\t\\trequire(msg.sender == owner, \\\"Only owner can withdraw tokens\\\");\\n\\n\\t\\trequire(paymentToken.transfer(to, amount), \\\"Transfer failed\\\");\\n\\t}\\n\\n\\t/**\\n\\t * @dev Receives tokens from a specified address. This can be used to fund\\n\\t * the wallet.\\n\\t * @param from The address from which tokens will be pulled.\\n\\t * @param to The address to which the tokens will be sent (should be this wallet).\\n\\t * @param amount The amount of tokens to be transferred.\\n\\t */\\n\\tfunction receiveTokens(address from, address to, uint256 amount) public {\\n\\t\\trequire(paymentToken.transferFrom(from, to, amount), \\\"Transfer failed\\\");\\n\\t}\\n\\n\\t/**\\n\\t * @dev Returns the balance of ERC20 tokens held by this wallet.\\n\\t * @return The balance of tokens.\\n\\t */\\n\\tfunction balance() public view returns (uint256) {\\n\\t\\treturn paymentToken.balanceOf(address(this));\\n\\t}\\n}\\n\",\"keccak256\":\"0xd564fa4d981ef867b170a713cdd288950eee2a1e9fe45a98ffaaee9ae34d408d\",\"license\":\"MIT\"},\"contracts/Tether.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\n/**\\n * @title IERC20\\n * @notice Interface for the ERC20 standard as defined in the EIP.\\n * @dev Defines the standard functions for ERC20 tokens, including balance, allowance, transfer functionalities, and associated events.\\n */\\ninterface IERC20 {\\n\\tfunction totalSupply() external view returns (uint256);\\n\\tfunction balanceOf(address account) external view returns (uint256);\\n\\tfunction transfer(\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external returns (bool);\\n\\tfunction allowance(\\n\\t\\taddress owner,\\n\\t\\taddress spender\\n\\t) external view returns (uint256);\\n\\tfunction approve(address spender, uint256 amount) external returns (bool);\\n\\tfunction transferFrom(\\n\\t\\taddress sender,\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external returns (bool);\\n\\n\\tevent Transfer(address indexed from, address indexed to, uint256 value);\\n\\tevent Approval(\\n\\t\\taddress indexed owner,\\n\\t\\taddress indexed spender,\\n\\t\\tuint256 value\\n\\t);\\n\\tevent Burn(address indexed burner, uint256 value);\\n}\\n\\n/**\\n * @title Tether\\n * @notice Simulates the Tether USD (USDT) token with ERC20 functionalities.\\n * @dev This contract implements the IERC20 interface and adds additional functionalities like token burning.\\n * It is initialized with a fixed supply of tokens credited to the owner's address.\\n */\\ncontract Tether is IERC20 {\\n\\tstring public name = \\\"Tether\\\";\\n\\tstring public symbol = \\\"USDT\\\";\\n\\tuint8 public decimals = 18;\\n\\tuint256 private _totalSupply = 1_000_000_000 * 10 ** uint256(decimals);\\n\\taddress private _owner;\\n\\tmapping(address => uint256) private _balances;\\n\\tmapping(address => mapping(address => uint256)) private _allowances;\\n\\n\\t/**\\n\\t * @notice Constructs the Tether contract and assigns initial total supply to the owner.\\n\\t * @dev Sets the token name, symbol, decimals, and mints the total supply to the deployer.\\n\\t */\\n\\tconstructor() {\\n\\t\\t_owner = msg.sender;\\n\\t\\t_balances[_owner] = _totalSupply;\\n\\t\\temit Transfer(address(0), _owner, _totalSupply);\\n\\t}\\n\\n\\tmodifier onlyOwner() {\\n\\t\\trequire(msg.sender == _owner, \\\"Only the owner can call this function\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\tfunction totalSupply() external view override returns (uint256) {\\n\\t\\treturn _totalSupply;\\n\\t}\\n\\n\\tfunction balanceOf(\\n\\t\\taddress account\\n\\t) external view override returns (uint256) {\\n\\t\\treturn _balances[account];\\n\\t}\\n\\n\\tfunction transfer(\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\trequire(recipient != address(0), \\\"Invalid recipient\\\");\\n\\t\\trequire(_balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\n\\t\\t_balances[msg.sender] -= amount;\\n\\t\\t_balances[recipient] += amount;\\n\\t\\temit Transfer(msg.sender, recipient, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\tfunction allowance(\\n\\t\\taddress owner,\\n\\t\\taddress spender\\n\\t) external view override returns (uint256) {\\n\\t\\treturn _allowances[owner][spender];\\n\\t}\\n\\n\\tfunction approve(\\n\\t\\taddress spender,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\t_allowances[msg.sender][spender] = amount;\\n\\t\\temit Approval(msg.sender, spender, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\tfunction transferFrom(\\n\\t\\taddress sender,\\n\\t\\taddress recipient,\\n\\t\\tuint256 amount\\n\\t) external override returns (bool) {\\n\\t\\trequire(sender != address(0), \\\"Invalid sender\\\");\\n\\t\\trequire(recipient != address(0), \\\"Invalid recipient\\\");\\n\\t\\trequire(_balances[sender] >= amount, \\\"Insufficient balance\\\");\\n\\t\\trequire(\\n\\t\\t\\t_allowances[sender][msg.sender] >= amount,\\n\\t\\t\\t\\\"Allowance exceeded\\\"\\n\\t\\t);\\n\\n\\t\\t_balances[sender] -= amount;\\n\\t\\t_balances[recipient] += amount;\\n\\t\\t_allowances[sender][msg.sender] -= amount;\\n\\t\\temit Transfer(sender, recipient, amount);\\n\\t\\treturn true;\\n\\t}\\n\\n\\t/**\\n\\t * @notice Burns a specific amount of tokens from the caller's account, reducing the total supply.\\n\\t * @dev Removes tokens from the circulating supply by reducing the caller's balance and the total supply count.\\n\\t * Emits a Burn event alongside a Transfer event to the zero address.\\n\\t * @param amount The amount of tokens to be burned.\\n\\t */\\n\\tfunction burn(uint256 amount) external {\\n\\t\\trequire(_balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\t\\t_balances[msg.sender] -= amount;\\n\\t\\t_totalSupply -= amount;\\n\\t\\temit Transfer(msg.sender, address(0), amount);\\n\\t\\temit Burn(msg.sender, amount);\\n\\t}\\n}\\n\",\"keccak256\":\"0x7666ca1a82074dac836dcd19b12af7351b321dd4d583366f2672d10007d17444\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161163638038061163683398101604081905261002f9161005d565b600480546001600160a01b039092166001600160a01b0319928316179055600380549091163317905561008b565b60006020828403121561006e578081fd5b81516001600160a01b0381168114610084578182fd5b9392505050565b61159c8061009a6000396000f3fe608060405234801561001057600080fd5b50600436106100f55760003560e01c80637663979211610097578063b398579a11610066578063b398579a146101ff578063c449706b14610212578063e4d0c9d814610225578063ffe1ec1314610238576100f5565b806376639792146101a65780637c5abd51146101c657806399abbc47146101d95780639aad69e7146101ec576100f5565b80632793348f116100d35780632793348f146101565780633013ce291461016b57806353fe64f61461017357806359c7716814610193576100f5565b80630e3c1fb4146100fa5780631fd9afa51461012357806327276a6214610143575b600080fd5b61010d610108366004610c04565b61024b565b60405161011a9190610ef5565b60405180910390f35b610136610131366004610c04565b6102dd565b60405161011a9190610d15565b610136610151366004610c04565b61033e565b610169610164366004610c92565b610359565b005b61013661048d565b610186610181366004610c25565b61049c565b60405161011a9190610efe565b6101866101a1366004610c25565b6104cd565b6101b96101b4366004610c04565b6104ed565b60405161011a9190610f25565b61010d6101d4366004610cd4565b610508565b6101b96101e7366004610c04565b61060a565b6101696101fa366004610c04565b61062e565b61016961020d366004610c57565b61067a565b610169610220366004610c04565b610785565b610169610233366004610cd4565b610844565b610169610246366004610c92565b610aac565b6001600160a01b0380821660009081526002602090815260408083205481516316d3df1560e31b815291519394169263b69ef8a892600480840193919291829003018186803b15801561029d57600080fd5b505afa1580156102b1573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102d59190610cfd565b90505b919050565b6001600160a01b0381811660009081526002602052604081205490911661031f5760405162461bcd60e51b815260040161031690610da9565b60405180910390fd5b506001600160a01b039081166000908152600260205260409020541690565b6002602052600090815260409020546001600160a01b031681565b6001600160a01b03831660009081526020818152604080832033845290915290205463ffffffff808316911610156103a35760405162461bcd60e51b815260040161031690610e92565b6001600160a01b038316600090815260208181526040808320338452909152812080548392906103da90849063ffffffff16610fc2565b82546101009290920a63ffffffff8181021990931691831602179091556001600160a01b0385811660009081526020818152604080832093881683529290529081208054859450909261042f91859116610f39565b92506101000a81548163ffffffff021916908363ffffffff1602179055507f0b929ef9ac6d0f920b3eeb8ad8e2812950b17de02676a28e6e854c201a5a82c933838360405161048093929190610d67565b60405180910390a1505050565b6004546001600160a01b031681565b6001600160a01b038083166000908152602081815260408083209385168352929052205463ffffffff165b92915050565b600060208181529281526040808220909352908152205463ffffffff1681565b6001602052600090815260409020546001600160401b031681565b6001600160a01b0380831660009081526002602090815260408083205481516316d3df1560e31b815291519394859491169263b69ef8a89260048082019391829003018186803b15801561055b57600080fd5b505afa15801561056f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105939190610cfd565b6001600160a01b0385166000908152600160205260409020549091506001600160401b03166105c65760009150506104c7565b6001600160a01b0384166000908152600160205260409020546001600160401b03166105f863ffffffff851683610fa3565b6106029190610f83565b949350505050565b6001600160a01b03166000908152600160205260409020546001600160401b031690565b6003546001600160a01b031633146106585760405162461bcd60e51b815260040161031690610e3f565b600380546001600160a01b0319166001600160a01b0392909216919091179055565b6003546001600160a01b031633146106a45760405162461bcd60e51b815260040161031690610e3f565b6001600160a01b0380841660009081526002602052604090205416806106dc5760405162461bcd60e51b815260040161031690610ebe565b604051632ccbef8b60e01b81526001600160a01b03821690632ccbef8b9061070c90869085908790600401610d43565b600060405180830381600087803b15801561072657600080fd5b505af115801561073a573d6000803e3d6000fd5b50505050836001600160a01b03167fc44237139b07ba1884248fbae9915928c7b70e5fc83975248a01ac13b991adac836040516107779190610ef5565b60405180910390a250505050565b6003546001600160a01b031633146107af5760405162461bcd60e51b815260040161031690610e3f565b6001600160a01b03818116600090815260026020526040902054166108415760045460405130916001600160a01b0316906107e990610bcc565b6107f4929190610d29565b604051809103906000f080158015610810573d6000803e3d6000fd5b506001600160a01b03828116600090815260026020526040902080546001600160a01b031916929091169190911790555b50565b6001600160a01b03821660009081526020818152604080832033845290915290205463ffffffff8083169116101561088e5760405162461bcd60e51b815260040161031690610e92565b600061089a8383610508565b9050600081116108bc5760405162461bcd60e51b815260040161031690610e10565b6001600160a01b038084166000908152600260209081526040918290205482516316d3df1560e31b815292519316928492849263b69ef8a892600480840193829003018186803b15801561090f57600080fd5b505afa158015610923573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109479190610cfd565b10156109655760405162461bcd60e51b815260040161031690610dd9565b6001600160a01b0384166000908152602081815260408083203384529091528120805485929061099c90849063ffffffff16610fc2565b82546101009290920a63ffffffff8181021990931691831602179091556001600160a01b038616600090815260016020526040812080549287169350916109ed9084906001600160401b0316610fe7565b92506101000a8154816001600160401b0302191690836001600160401b03160217905550806001600160a01b03166306b091f933846040518363ffffffff1660e01b8152600401610a3f929190610d90565b600060405180830381600087803b158015610a5957600080fd5b505af1158015610a6d573d6000803e3d6000fd5b50505050336001600160a01b03167f83382556d02189602642cd9bc3d50ae396210afa2a3ad4395f1c5ff18cb2b0c08484604051610777929190610f0f565b6003546001600160a01b03163314610ad65760405162461bcd60e51b815260040161031690610e3f565b6001600160a01b0380841660009081526020818152604080832093861683529290529081208054839290610b1190849063ffffffff16610f39565b82546101009290920a63ffffffff8181021990931691831602179091556001600160a01b03851660009081526001602052604081208054928516935091610b629084906001600160401b0316610f61565b92506101000a8154816001600160401b0302191690836001600160401b03160217905550816001600160a01b03167f2553efa1a830ccbc3cdd634dae8d3a0db0428812531915bc959046545b86a14a82604051610bbf9190610efe565b60405180910390a2505050565b61054d8061101a83390190565b80356001600160a01b03811681146102d857600080fd5b803563ffffffff811681146102d857600080fd5b600060208284031215610c15578081fd5b610c1e82610bd9565b9392505050565b60008060408385031215610c37578081fd5b610c4083610bd9565b9150610c4e60208401610bd9565b90509250929050565b600080600060608486031215610c6b578081fd5b610c7484610bd9565b9250610c8260208501610bd9565b9150604084013590509250925092565b600080600060608486031215610ca6578283fd5b610caf84610bd9565b9250610cbd60208501610bd9565b9150610ccb60408501610bf0565b90509250925092565b60008060408385031215610ce6578182fd5b610cef83610bd9565b9150610c4e60208401610bf0565b600060208284031215610d0e578081fd5b5051919050565b6001600160a01b0391909116815260200190565b6001600160a01b0392831681529116602082015260400190565b6001600160a01b039384168152919092166020820152604081019190915260600190565b6001600160a01b03938416815291909216602082015263ffffffff909116604082015260600190565b6001600160a01b03929092168252602082015260400190565b6020808252601690820152752737903bb0b63632ba103337b9103932ba30b4b632b960511b604082015260600190565b6020808252601a908201527f496e73756666696369656e742066756e647320696e20706f6f6c000000000000604082015260600190565b60208082526015908201527414995919595b48185b5bdd5b9d081a5b9d985b1a59605a1b604082015260600190565b60208082526033908201527f556e617574686f72697a65643a2063616c6c6572206973206e6f742074686520604082015272185d5d1a1bdc9a5e99590818dbdb9d1c9858dd606a1b606082015260800190565b602080825260129082015271496e73756666696369656e742073636f726560701b604082015260600190565b6020808252601e908201527f52657461696c65722077616c6c657420646f6573206e6f742065786973740000604082015260600190565b90815260200190565b63ffffffff91909116815260200190565b63ffffffff929092168252602082015260400190565b6001600160401b0391909116815260200190565b600063ffffffff808316818516808303821115610f5857610f58611003565b01949350505050565b60006001600160401b03808316818516808303821115610f5857610f58611003565b600082610f9e57634e487b7160e01b81526012600452602481fd5b500490565b6000816000190483118215151615610fbd57610fbd611003565b500290565b600063ffffffff83811690831681811015610fdf57610fdf611003565b039392505050565b60006001600160401b0383811690831681811015610fdf57610fdf5b634e487b7160e01b600052601160045260246000fdfe608060405234801561001057600080fd5b5060405161054d38038061054d83398101604081905261002f9161007c565b600080546001600160a01b039384166001600160a01b031991821617909155600180549290931691161790556100ae565b80516001600160a01b038116811461007757600080fd5b919050565b6000806040838503121561008e578182fd5b61009783610060565b91506100a560208401610060565b90509250929050565b610490806100bd6000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806306b091f91461005c5780632ccbef8b146100715780633013ce29146100845780638da5cb5b146100a2578063b69ef8a8146100aa575b600080fd5b61006f61006a366004610338565b6100bf565b005b61006f61007f3660046102fd565b610196565b61008c61023d565b60405161009991906103a0565b60405180910390f35b61008c61024c565b6100b261025b565b6040516100999190610451565b6000546001600160a01b031633146100f25760405162461bcd60e51b81526004016100e99061041a565b60405180910390fd5b60015460405163a9059cbb60e01b81526001600160a01b039091169063a9059cbb9061012490859085906004016103d8565b602060405180830381600087803b15801561013e57600080fd5b505af1158015610152573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101769190610361565b6101925760405162461bcd60e51b81526004016100e9906103f1565b5050565b6001546040516323b872dd60e01b81526001600160a01b03909116906323b872dd906101ca908690869086906004016103b4565b602060405180830381600087803b1580156101e457600080fd5b505af11580156101f8573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061021c9190610361565b6102385760405162461bcd60e51b81526004016100e9906103f1565b505050565b6001546001600160a01b031681565b6000546001600160a01b031681565b6001546040516370a0823160e01b81526000916001600160a01b0316906370a082319061028c9030906004016103a0565b60206040518083038186803b1580156102a457600080fd5b505afa1580156102b8573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102dc9190610388565b905090565b80356001600160a01b03811681146102f857600080fd5b919050565b600080600060608486031215610311578283fd5b61031a846102e1565b9250610328602085016102e1565b9150604084013590509250925092565b6000806040838503121561034a578182fd5b610353836102e1565b946020939093013593505050565b600060208284031215610372578081fd5b81518015158114610381578182fd5b9392505050565b600060208284031215610399578081fd5b5051919050565b6001600160a01b0391909116815260200190565b6001600160a01b039384168152919092166020820152604081019190915260600190565b6001600160a01b03929092168252602082015260400190565b6020808252600f908201526e151c985b9cd9995c8819985a5b1959608a1b604082015260600190565b6020808252601e908201527f4f6e6c79206f776e65722063616e20776974686472617720746f6b656e730000604082015260600190565b9081526020019056fea264697066735822122069842542ab8b4d81208faa328441e17e91a8571a23c59d7692f5a149fb559e4764736f6c63430008000033a2646970667358221220796732f4e9e42eceee6d4ea1e821477fcfd0e6700949b2cbe7d9681689aa9cf864736f6c63430008000033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100f55760003560e01c80637663979211610097578063b398579a11610066578063b398579a146101ff578063c449706b14610212578063e4d0c9d814610225578063ffe1ec1314610238576100f5565b806376639792146101a65780637c5abd51146101c657806399abbc47146101d95780639aad69e7146101ec576100f5565b80632793348f116100d35780632793348f146101565780633013ce291461016b57806353fe64f61461017357806359c7716814610193576100f5565b80630e3c1fb4146100fa5780631fd9afa51461012357806327276a6214610143575b600080fd5b61010d610108366004610c04565b61024b565b60405161011a9190610ef5565b60405180910390f35b610136610131366004610c04565b6102dd565b60405161011a9190610d15565b610136610151366004610c04565b61033e565b610169610164366004610c92565b610359565b005b61013661048d565b610186610181366004610c25565b61049c565b60405161011a9190610efe565b6101866101a1366004610c25565b6104cd565b6101b96101b4366004610c04565b6104ed565b60405161011a9190610f25565b61010d6101d4366004610cd4565b610508565b6101b96101e7366004610c04565b61060a565b6101696101fa366004610c04565b61062e565b61016961020d366004610c57565b61067a565b610169610220366004610c04565b610785565b610169610233366004610cd4565b610844565b610169610246366004610c92565b610aac565b6001600160a01b0380821660009081526002602090815260408083205481516316d3df1560e31b815291519394169263b69ef8a892600480840193919291829003018186803b15801561029d57600080fd5b505afa1580156102b1573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102d59190610cfd565b90505b919050565b6001600160a01b0381811660009081526002602052604081205490911661031f5760405162461bcd60e51b815260040161031690610da9565b60405180910390fd5b506001600160a01b039081166000908152600260205260409020541690565b6002602052600090815260409020546001600160a01b031681565b6001600160a01b03831660009081526020818152604080832033845290915290205463ffffffff808316911610156103a35760405162461bcd60e51b815260040161031690610e92565b6001600160a01b038316600090815260208181526040808320338452909152812080548392906103da90849063ffffffff16610fc2565b82546101009290920a63ffffffff8181021990931691831602179091556001600160a01b0385811660009081526020818152604080832093881683529290529081208054859450909261042f91859116610f39565b92506101000a81548163ffffffff021916908363ffffffff1602179055507f0b929ef9ac6d0f920b3eeb8ad8e2812950b17de02676a28e6e854c201a5a82c933838360405161048093929190610d67565b60405180910390a1505050565b6004546001600160a01b031681565b6001600160a01b038083166000908152602081815260408083209385168352929052205463ffffffff165b92915050565b600060208181529281526040808220909352908152205463ffffffff1681565b6001602052600090815260409020546001600160401b031681565b6001600160a01b0380831660009081526002602090815260408083205481516316d3df1560e31b815291519394859491169263b69ef8a89260048082019391829003018186803b15801561055b57600080fd5b505afa15801561056f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105939190610cfd565b6001600160a01b0385166000908152600160205260409020549091506001600160401b03166105c65760009150506104c7565b6001600160a01b0384166000908152600160205260409020546001600160401b03166105f863ffffffff851683610fa3565b6106029190610f83565b949350505050565b6001600160a01b03166000908152600160205260409020546001600160401b031690565b6003546001600160a01b031633146106585760405162461bcd60e51b815260040161031690610e3f565b600380546001600160a01b0319166001600160a01b0392909216919091179055565b6003546001600160a01b031633146106a45760405162461bcd60e51b815260040161031690610e3f565b6001600160a01b0380841660009081526002602052604090205416806106dc5760405162461bcd60e51b815260040161031690610ebe565b604051632ccbef8b60e01b81526001600160a01b03821690632ccbef8b9061070c90869085908790600401610d43565b600060405180830381600087803b15801561072657600080fd5b505af115801561073a573d6000803e3d6000fd5b50505050836001600160a01b03167fc44237139b07ba1884248fbae9915928c7b70e5fc83975248a01ac13b991adac836040516107779190610ef5565b60405180910390a250505050565b6003546001600160a01b031633146107af5760405162461bcd60e51b815260040161031690610e3f565b6001600160a01b03818116600090815260026020526040902054166108415760045460405130916001600160a01b0316906107e990610bcc565b6107f4929190610d29565b604051809103906000f080158015610810573d6000803e3d6000fd5b506001600160a01b03828116600090815260026020526040902080546001600160a01b031916929091169190911790555b50565b6001600160a01b03821660009081526020818152604080832033845290915290205463ffffffff8083169116101561088e5760405162461bcd60e51b815260040161031690610e92565b600061089a8383610508565b9050600081116108bc5760405162461bcd60e51b815260040161031690610e10565b6001600160a01b038084166000908152600260209081526040918290205482516316d3df1560e31b815292519316928492849263b69ef8a892600480840193829003018186803b15801561090f57600080fd5b505afa158015610923573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109479190610cfd565b10156109655760405162461bcd60e51b815260040161031690610dd9565b6001600160a01b0384166000908152602081815260408083203384529091528120805485929061099c90849063ffffffff16610fc2565b82546101009290920a63ffffffff8181021990931691831602179091556001600160a01b038616600090815260016020526040812080549287169350916109ed9084906001600160401b0316610fe7565b92506101000a8154816001600160401b0302191690836001600160401b03160217905550806001600160a01b03166306b091f933846040518363ffffffff1660e01b8152600401610a3f929190610d90565b600060405180830381600087803b158015610a5957600080fd5b505af1158015610a6d573d6000803e3d6000fd5b50505050336001600160a01b03167f83382556d02189602642cd9bc3d50ae396210afa2a3ad4395f1c5ff18cb2b0c08484604051610777929190610f0f565b6003546001600160a01b03163314610ad65760405162461bcd60e51b815260040161031690610e3f565b6001600160a01b0380841660009081526020818152604080832093861683529290529081208054839290610b1190849063ffffffff16610f39565b82546101009290920a63ffffffff8181021990931691831602179091556001600160a01b03851660009081526001602052604081208054928516935091610b629084906001600160401b0316610f61565b92506101000a8154816001600160401b0302191690836001600160401b03160217905550816001600160a01b03167f2553efa1a830ccbc3cdd634dae8d3a0db0428812531915bc959046545b86a14a82604051610bbf9190610efe565b60405180910390a2505050565b61054d8061101a83390190565b80356001600160a01b03811681146102d857600080fd5b803563ffffffff811681146102d857600080fd5b600060208284031215610c15578081fd5b610c1e82610bd9565b9392505050565b60008060408385031215610c37578081fd5b610c4083610bd9565b9150610c4e60208401610bd9565b90509250929050565b600080600060608486031215610c6b578081fd5b610c7484610bd9565b9250610c8260208501610bd9565b9150604084013590509250925092565b600080600060608486031215610ca6578283fd5b610caf84610bd9565b9250610cbd60208501610bd9565b9150610ccb60408501610bf0565b90509250925092565b60008060408385031215610ce6578182fd5b610cef83610bd9565b9150610c4e60208401610bf0565b600060208284031215610d0e578081fd5b5051919050565b6001600160a01b0391909116815260200190565b6001600160a01b0392831681529116602082015260400190565b6001600160a01b039384168152919092166020820152604081019190915260600190565b6001600160a01b03938416815291909216602082015263ffffffff909116604082015260600190565b6001600160a01b03929092168252602082015260400190565b6020808252601690820152752737903bb0b63632ba103337b9103932ba30b4b632b960511b604082015260600190565b6020808252601a908201527f496e73756666696369656e742066756e647320696e20706f6f6c000000000000604082015260600190565b60208082526015908201527414995919595b48185b5bdd5b9d081a5b9d985b1a59605a1b604082015260600190565b60208082526033908201527f556e617574686f72697a65643a2063616c6c6572206973206e6f742074686520604082015272185d5d1a1bdc9a5e99590818dbdb9d1c9858dd606a1b606082015260800190565b602080825260129082015271496e73756666696369656e742073636f726560701b604082015260600190565b6020808252601e908201527f52657461696c65722077616c6c657420646f6573206e6f742065786973740000604082015260600190565b90815260200190565b63ffffffff91909116815260200190565b63ffffffff929092168252602082015260400190565b6001600160401b0391909116815260200190565b600063ffffffff808316818516808303821115610f5857610f58611003565b01949350505050565b60006001600160401b03808316818516808303821115610f5857610f58611003565b600082610f9e57634e487b7160e01b81526012600452602481fd5b500490565b6000816000190483118215151615610fbd57610fbd611003565b500290565b600063ffffffff83811690831681811015610fdf57610fdf611003565b039392505050565b60006001600160401b0383811690831681811015610fdf57610fdf5b634e487b7160e01b600052601160045260246000fdfe608060405234801561001057600080fd5b5060405161054d38038061054d83398101604081905261002f9161007c565b600080546001600160a01b039384166001600160a01b031991821617909155600180549290931691161790556100ae565b80516001600160a01b038116811461007757600080fd5b919050565b6000806040838503121561008e578182fd5b61009783610060565b91506100a560208401610060565b90509250929050565b610490806100bd6000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806306b091f91461005c5780632ccbef8b146100715780633013ce29146100845780638da5cb5b146100a2578063b69ef8a8146100aa575b600080fd5b61006f61006a366004610338565b6100bf565b005b61006f61007f3660046102fd565b610196565b61008c61023d565b60405161009991906103a0565b60405180910390f35b61008c61024c565b6100b261025b565b6040516100999190610451565b6000546001600160a01b031633146100f25760405162461bcd60e51b81526004016100e99061041a565b60405180910390fd5b60015460405163a9059cbb60e01b81526001600160a01b039091169063a9059cbb9061012490859085906004016103d8565b602060405180830381600087803b15801561013e57600080fd5b505af1158015610152573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101769190610361565b6101925760405162461bcd60e51b81526004016100e9906103f1565b5050565b6001546040516323b872dd60e01b81526001600160a01b03909116906323b872dd906101ca908690869086906004016103b4565b602060405180830381600087803b1580156101e457600080fd5b505af11580156101f8573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061021c9190610361565b6102385760405162461bcd60e51b81526004016100e9906103f1565b505050565b6001546001600160a01b031681565b6000546001600160a01b031681565b6001546040516370a0823160e01b81526000916001600160a01b0316906370a082319061028c9030906004016103a0565b60206040518083038186803b1580156102a457600080fd5b505afa1580156102b8573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102dc9190610388565b905090565b80356001600160a01b03811681146102f857600080fd5b919050565b600080600060608486031215610311578283fd5b61031a846102e1565b9250610328602085016102e1565b9150604084013590509250925092565b6000806040838503121561034a578182fd5b610353836102e1565b946020939093013593505050565b600060208284031215610372578081fd5b81518015158114610381578182fd5b9392505050565b600060208284031215610399578081fd5b5051919050565b6001600160a01b0391909116815260200190565b6001600160a01b039384168152919092166020820152604081019190915260600190565b6001600160a01b03929092168252602082015260400190565b6020808252600f908201526e151c985b9cd9995c8819985a5b1959608a1b604082015260600190565b6020808252601e908201527f4f6e6c79206f776e65722063616e20776974686472617720746f6b656e730000604082015260600190565b9081526020019056fea264697066735822122069842542ab8b4d81208faa328441e17e91a8571a23c59d7692f5a149fb559e4764736f6c63430008000033a2646970667358221220796732f4e9e42eceee6d4ea1e821477fcfd0e6700949b2cbe7d9681689aa9cf864736f6c63430008000033",
+  "devdoc": {
+    "details": "This contract handles loyalty points accrual, redemption, and inter-user transfers, along with retailer-specific wallets management.",
+    "kind": "dev",
+    "methods": {
+      "addScore(address,address,uint32)": {
+        "details": "Credits loyalty points to both the user's and retailer's total scores. Emits an AddScore event.",
+        "params": {
+          "retailer": "Address of the retailer.",
+          "score": "Amount of loyalty score to add.",
+          "userAddress": "Address of the user receiving the points."
+        }
+      },
+      "calculateRedeemTokens(address,uint32)": {
+        "details": "Determines how many tokens a score is worth based on the current pool balance and total score.",
+        "params": {
+          "retailer": "Address of the retailer.",
+          "score": "Amount of loyalty score to calculate tokens for."
+        },
+        "returns": {
+          "_0": "redeemTokens The number of tokens that the score is worth."
+        }
+      },
+      "constructor": {
+        "params": {
+          "_paymentTokenAddress": "Address of the ERC20 token used for payments and rewards."
+        }
+      },
+      "contributeToPool(address,address,uint256)": {
+        "details": "Adds funds to the retailer's wallet for future redemptions. Requires authorization. Emits ContributeToPool event.",
+        "params": {
+          "amount": "Amount of tokens to contribute.",
+          "retailer": "Address of the retailer.",
+          "vault": "Address from which tokens are transferred."
+        }
+      },
+      "createWalletIfNotExists(address)": {
+        "details": "Ensures a single wallet is associated with each retailer for managing redemption funds.",
+        "params": {
+          "retailer": "Address of the retailer."
+        }
+      },
+      "getRedeemPool(address)": {
+        "params": {
+          "retailer": "Address of the retailer."
+        },
+        "returns": {
+          "_0": "The balance of redeemable tokens available."
+        }
+      },
+      "getScore(address,address)": {
+        "params": {
+          "retailer": "Address of the retailer.",
+          "user": "Address of the user."
+        },
+        "returns": {
+          "_0": "The loyalty score of the user."
+        }
+      },
+      "getScorePool(address)": {
+        "params": {
+          "retailer": "Address of the retailer."
+        },
+        "returns": {
+          "_0": "The total score pool of the retailer."
+        }
+      },
+      "getWalletAddress(address)": {
+        "params": {
+          "retailer": "Address of the retailer."
+        },
+        "returns": {
+          "_0": "The address of the retailer's wallet."
+        }
+      },
+      "redeemScore(address,uint32)": {
+        "details": "Deducts loyalty points from the user's balance and transfers equivalent tokens from the retailer's wallet. Emits a RedeemScore event.",
+        "params": {
+          "retailer": "Address of the retailer.",
+          "score": "Amount of loyalty score to redeem."
+        }
+      },
+      "setAuthorizedContract(address)": {
+        "details": "Updates the authorized contract address. Can only be called by the current authorized contract.",
+        "params": {
+          "_authorizedContract": "New authorized contract address."
+        }
+      },
+      "transferScore(address,address,uint32)": {
+        "details": "Allows users to transfer loyalty points to each other, ensuring sufficient balance before proceeding. Emits a TransferScore event.",
+        "params": {
+          "retailer": "Address of the retailer where both users are registered.",
+          "score": "Amount of loyalty score to transfer.",
+          "to": "Address of the recipient receiving the score."
+        }
+      }
+    },
+    "title": "Loyalty Rewards System",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "addScore(address,address,uint32)": {
+        "notice": "Adds loyalty score to a user under a specific retailer."
+      },
+      "calculateRedeemTokens(address,uint32)": {
+        "notice": "Calculates the amount of tokens that can be redeemed for a given score."
+      },
+      "constructor": {
+        "notice": "Initializes the LoyaltyRewards contract with a specific payment token."
+      },
+      "contributeToPool(address,address,uint256)": {
+        "notice": "Contributes tokens to a retailer's loyalty pool."
+      },
+      "createWalletIfNotExists(address)": {
+        "notice": "Creates a wallet for the retailer if it does not already exist."
+      },
+      "getRedeemPool(address)": {
+        "notice": "Retrieves the total redeemable tokens available in a retailer's wallet."
+      },
+      "getScore(address,address)": {
+        "notice": "Retrieves the loyalty score of a user under a specific retailer."
+      },
+      "getScorePool(address)": {
+        "notice": "Retrieves the total loyalty score pool of a retailer."
+      },
+      "getWalletAddress(address)": {
+        "notice": "Gets the wallet address associated with a retailer."
+      },
+      "redeemScore(address,uint32)": {
+        "notice": "Redeems loyalty score for tokens."
+      },
+      "setAuthorizedContract(address)": {
+        "notice": "Sets a new authorized contract address."
+      },
+      "transferScore(address,address,uint32)": {
+        "notice": "Transfers loyalty score from one user to another under the same retailer."
+      }
+    },
+    "notice": "Manages the allocation, redemption, and transfer of loyalty points within a retail ecosystem",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 578,
+        "contract": "contracts/LoyaltyRewards.sol:LoyaltyRewards",
+        "label": "scores",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_mapping(t_address,t_uint32))"
+      },
+      {
+        "astId": 582,
+        "contract": "contracts/LoyaltyRewards.sol:LoyaltyRewards",
+        "label": "scorePool",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_uint64)"
+      },
+      {
+        "astId": 587,
+        "contract": "contracts/LoyaltyRewards.sol:LoyaltyRewards",
+        "label": "retailerWallets",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_contract(RetailerWallet)1115)"
+      },
+      {
+        "astId": 589,
+        "contract": "contracts/LoyaltyRewards.sol:LoyaltyRewards",
+        "label": "authorizedContract",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_address"
+      },
+      {
+        "astId": 592,
+        "contract": "contracts/LoyaltyRewards.sol:LoyaltyRewards",
+        "label": "paymentToken",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_contract(IERC20)1191"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IERC20)1191": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_contract(RetailerWallet)1115": {
+        "encoding": "inplace",
+        "label": "contract RetailerWallet",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_contract(RetailerWallet)1115)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => contract RetailerWallet)",
+        "numberOfBytes": "32",
+        "value": "t_contract(RetailerWallet)1115"
+      },
+      "t_mapping(t_address,t_mapping(t_address,t_uint32))": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => mapping(address => uint32))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_uint32)"
+      },
+      "t_mapping(t_address,t_uint32)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint32)",
+        "numberOfBytes": "32",
+        "value": "t_uint32"
+      },
+      "t_mapping(t_address,t_uint64)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint64)",
+        "numberOfBytes": "32",
+        "value": "t_uint64"
+      },
+      "t_uint32": {
+        "encoding": "inplace",
+        "label": "uint32",
+        "numberOfBytes": "4"
+      },
+      "t_uint64": {
+        "encoding": "inplace",
+        "label": "uint64",
+        "numberOfBytes": "8"
+      }
+    }
+  }
+}
