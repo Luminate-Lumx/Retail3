@@ -42,7 +42,7 @@ const SideBar: React.FC = () => {
                 <InboxIcon sx={{ color: selectedItem === 'Orders' ? '#407BFF' : '#5C5F62' }} />
                 <p style={{ color: selectedItem === 'Orders' ? '#407BFF' : '#5C5F62' }}>Orders</p>
             </SideBarItem>
-            <SideBarItem href='/retailerHome' onClick={() => handleItemClick('Customers')}>
+            <SideBarItem href='/retailerCustomers' onClick={() => handleItemClick('Customers')}>
                 <hr style={{backgroundColor: selectedItem != 'Customers' ? '#f5f5f5' : '#407BFF', border: selectedItem != 'Customers' ? '1px solid #f5f5f5' : '1px solid #407BFF'}}></hr>
                 <PersonIcon sx={{ color: selectedItem === 'Customers' ? '#407BFF' : '#5C5F62' }} />
                 <p style={{ color: selectedItem === 'Customers' ? '#407BFF' : '#5C5F62' }}>Customers</p>

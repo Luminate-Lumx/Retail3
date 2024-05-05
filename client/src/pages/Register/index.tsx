@@ -59,6 +59,7 @@ const Register: React.FC = () => {
         const document = form.document.value;
         
         console.log(name, BussinesName, document);
+        console.log(selectedFile);
         
 
         try {
@@ -134,7 +135,7 @@ const Register: React.FC = () => {
                                 </Button>
                             </ButtonContainer>
                         </form>
-                        <p>Have an account? <a>Sign In</a></p>
+                        <p>Have an account? <a href='/'>Sign In</a></p>
                     </PersonalForms>
                 ) : (
                     <PersonalForms>
@@ -157,6 +158,20 @@ const Register: React.FC = () => {
                         <HeaderForms>Infos:</HeaderForms>
                         <form onSubmit={handleCreateRetailerUser}>
                             <ContainerForm>
+                                <label>Profile foto:</label>
+                                <LabelPhoto htmlFor="photo">
+                                    {fileUploaded ? (
+                                        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                                            <CheckIcon sx={{marginRight:'5px', color:'green'}} />
+                                            Image Sent
+                                        </div>
+                                    ) : (
+                                        'Choose Image'
+                                    )}
+                                </LabelPhoto>
+                                <InputFormsPhoto type="file" accept="image/*" name="photo" id="photo" placeholder='' onChange={handlePhotoChange} required></InputFormsPhoto>
+                            </ContainerForm>
+                            <ContainerForm>
                                 <label htmlFor="user_name">Name:</label>
                                 <InputForms id="user_name" placeholder='' required></InputForms>
                             </ContainerForm>
@@ -174,7 +189,7 @@ const Register: React.FC = () => {
                                 </Button>
                             </ButtonContainer>
                         </form>
-                        <p>Have an account? <a>Sign In</a></p>
+                        <p>Have an account? <a href='/'>Sign In</a></p>
                     </PersonalForms>
                 )}
                 </>
@@ -184,7 +199,7 @@ const Register: React.FC = () => {
                         <img src={logo} alt="Logo Retail3" />
                     </LogoImage>
                     <h1>Chosse an account type</h1>
-                    <p>Have an account? <a>Sign In</a></p>
+                    <p>Have an account? <a href='/'>Sign In</a></p>
                     <ButtonChooseType onClick={() => handleAccountTypeSelect('personal')}>
                         <ImageButtonContainer>
                             <PersonIcon sx={{color:'#D9E5FF', width:'85%', height:'85%'}} />

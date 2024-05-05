@@ -17,8 +17,7 @@ interface Product {
     score: number;
 }
 
-// Table
-
+// Table imports
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -30,7 +29,7 @@ import Paper from '@mui/material/Paper';
 const Products: React.FC<Product> = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   
-  // Modal de deleção de atividade
+  // Modal de delete produto
   const [confirmModalOpenProduct, setConfirmModalOpenProduct] = useState<boolean>(false);
 
   const handleDeleteClickProduct = (atividade: Product) => {
