@@ -17,11 +17,8 @@ contract RetailerWallet {
 		require(paymentToken.transfer(to, amount), "Transfer failed");
 	}
 
-	function receiveTokens(address from, uint256 amount) public {
-		require(
-			paymentToken.transferFrom(from, address(this), amount),
-			"Transfer failed"
-		);
+	function receiveTokens(address from, address to, uint256 amount) public {
+		require(paymentToken.transferFrom(from, to, amount), "Transfer failed");
 	}
 
 	function balance() public view returns (uint256) {

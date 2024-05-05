@@ -13,7 +13,7 @@ struct Transaction {
 	Retailer retailer; // Retailer from whom the product was purchased
 	Product product; // Details of the purchased product
 	uint16 quantity; // Quantity of product purchased
-	uint32 totalPrice; // Total price paid for the transaction
+	uint256 totalPrice; // Total price paid for the transaction
 	uint32 totalScore; // Total loyalty score earned from the transaction
 	uint256 timestamp; // Timestamp of when the transaction occurred
 }
@@ -87,7 +87,7 @@ contract TransactionManager {
 		address retailerAddress,
 		uint32 productIndex,
 		uint16 quantity,
-		uint32 totalCost,
+		uint256 totalCost,
 		uint32 totalScore
 	) external onlyInventoryManager {
 		User memory buyer = userManager.getUser(buyerAddress);

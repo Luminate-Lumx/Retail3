@@ -8,7 +8,7 @@ const deployInventoryManagement: DeployFunction = async function (hre: HardhatRu
 
   const UserManager = await hre.ethers.getContract("UserManager", deployer);
   const Tether = await hre.ethers.getContract("Tether", deployer);
-  const LoyaltyRewards = await hre.ethers.getContract("LoyaltyRewards", deployer);
+  const LoyaltyRewards = await hre.ethers.getContract<Contract>("LoyaltyRewards", deployer);
   const TransactionManager = await hre.ethers.getContract<Contract>("TransactionManager", deployer);
 
   await deploy("InventoryManagement", {
@@ -22,8 +22,9 @@ const deployInventoryManagement: DeployFunction = async function (hre: HardhatRu
     log: true,
     autoMine: true,
   });
-
   const InventoryManagement = await hre.ethers.getContract("InventoryManagement", deployer);
+  await LoyaltyRewards.setAuthorizedContract(await InventoryManagement.getAddress());
+
   await TransactionManager.setInventoryManagement(await InventoryManagement.getAddress());
 };
 

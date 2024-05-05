@@ -9,6 +9,7 @@
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/Luminate-Lumx/Retail3?style=default&logo=opensourceinitiative&logoColor=white&color=78DCE8" alt="license">
+	<img src="https://img.shields.io/github/actions/workflow/status/Luminate-Lumx/Retail3/CI.yml" alt="GitHub Actions Workflow Status">
 </p>
 
 <p> A platform that aims to revolutionize the way we interact with retail stores. By using the latest technologies, we are able to provide a seamless experience for both customers and store owners using the <a href="https://docs.lumx.io/get-started/introduction">lumx API</a>. </p>

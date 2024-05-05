@@ -9,7 +9,7 @@ const deployLoyaltyRewards: DeployFunction = async function (hre: HardhatRuntime
 
   await deploy("LoyaltyRewards", {
     from: deployer,
-    args: [deployer, await Tether.getAddress()],
+    args: [await Tether.getAddress()],
     log: true,
     autoMine: true,
   });

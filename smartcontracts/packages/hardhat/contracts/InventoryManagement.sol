@@ -15,7 +15,7 @@ struct Product {
 	string ipfsHash; // IPFS hash for product image or metadata
 	string name;
 	string[] tags; // Product tags for search and categorization
-	uint32 price;
+	uint256 price;
 	uint32 score; // Loyalty score associated with the product
 }
 
@@ -91,7 +91,7 @@ contract InventoryManagement {
 		string memory ipfsHash,
 		string memory name,
 		string[] memory tags,
-		uint32 price,
+		uint256 price,
 		uint32 stock,
 		uint32 score
 	) public onlyRetailer {
@@ -179,13 +179,17 @@ contract InventoryManagement {
 		uint32 stock = productStock[retailerAddress][product.code];
 		require(stock >= quantity, "Not enough stock");
 
-		uint32 totalCost = product.price * quantity;
+		uint256 totalCost = product.price * quantity;
 		uint32 totalScore = product.score * quantity;
-		uint32 pollContribution = totalCost / 100;
+		uint256 pollContribution = totalCost / 100;
 
 		require(
-			paymentToken.transferFrom(
-				msg.sender,
+			paymentToken.transferFrom(msg.sender, address(this), totalCost),
+			"Payment failed"
+		);
+
+		require(
+			paymentToken.transfer(
 				retailerAddress,
 				totalCost - pollContribution
 			),
@@ -194,10 +198,14 @@ contract InventoryManagement {
 
 		productStock[retailerAddress][product.code] -= quantity;
 		loyaltyRewards.addScore(retailerAddress, msg.sender, totalScore);
+		paymentToken.approve(
+			loyaltyRewards.getWalletAddressUnsafe(retailerAddress),
+			pollContribution
+		);
 
 		loyaltyRewards.contributeToPool(
 			retailerAddress,
-			msg.sender,
+			address(this),
 			pollContribution
 		);
 

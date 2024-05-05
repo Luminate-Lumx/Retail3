@@ -24,16 +24,15 @@ contract LoyaltyRewards {
 
 	/**
 	 * @dev Constructor to initialize the Loyalty Rewards contract
-	 * @param _authorizedContract Address of the contract authorized to call restricted methods
 	 * @param _paymentTokenAddress ERC20 token address for handling rewards and payments
 	 */
-	constructor(address _authorizedContract, address _paymentTokenAddress) {
+	constructor(address _paymentTokenAddress) {
 		paymentToken = IERC20(_paymentTokenAddress);
-		authorizedContract = _authorizedContract;
+		authorizedContract = msg.sender;
 	}
 
 	// Events to emit on various operations
-	event RedeemScore(address user, uint32 score, uint64 redeemTokens);
+	event RedeemScore(address user, uint32 score, uint256 redeemTokens);
 	event ContributeToPool(uint32 amount);
 	event AddScore(address user, uint32 score);
 	event TransferScore(address from, address to, uint32 score);
@@ -47,6 +46,16 @@ contract LoyaltyRewards {
 			"Unauthorized: caller is not the authorized contract"
 		);
 		_;
+	}
+
+	/**
+	 * @dev Sets the authorized contract that can call restricted functions
+	 * @param _authorizedContract Address of the authorized contract
+	 */
+	function setAuthorizedContract(
+		address _authorizedContract
+	) public onlyAuthorized {
+		authorizedContract = _authorizedContract;
 	}
 
 	/**
@@ -98,6 +107,8 @@ contract LoyaltyRewards {
 		scorePool[retail] -= score;
 
 		wallet.withdrawTokens(msg.sender, redeemTokens);
+
+		emit RedeemScore(msg.sender, score, redeemTokens);
 	}
 
 	/**
@@ -136,16 +147,16 @@ contract LoyaltyRewards {
 	/**
 	 * @dev Contributes tokens to the pool for a retailer
 	 * @param retailer Address of the retailer
-	 * @param user Address of the user
+	 * @param vault Address of the vault
 	 * @param amount Amount of tokens to contribute
 	 */
 	function contributeToPool(
 		address retailer,
-		address user,
+		address vault,
 		uint256 amount
 	) public onlyAuthorized {
 		RetailerWallet wallet = createOrGetWallet(retailer);
-		wallet.receiveTokens(user, amount);
+		wallet.receiveTokens(vault, address(wallet), amount);
 	}
 
 	/**
@@ -177,5 +188,23 @@ contract LoyaltyRewards {
 	 */
 	function getRedeemPool(address retailer) public view returns (uint256) {
 		return retailerWallets[retailer].balance();
+	}
+
+	/**
+	 * @dev Gets the wallet of a retailer
+	 * @param retailer Address of the retailer
+	 * @return wallet The wallet of the retailer
+	 */
+	function getWalletAddress(address retailer) public view returns (address) {
+		return address(retailerWallets[retailer]);
+	}
+
+	/**
+	 * @dev Gets the wallet of a retailer
+	 * @param retailer Address of the retailer
+	 * @return wallet The wallet of the retailer
+	 */
+	function getWalletAddressUnsafe(address retailer) public returns (address) {
+		return address(createOrGetWallet(retailer));
 	}
 }

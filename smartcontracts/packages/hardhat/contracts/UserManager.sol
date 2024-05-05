@@ -73,8 +73,8 @@ contract UserManager {
 
 		usersList.push(msg.sender);
 
-		// Transfer 1000 tokens to the user
-		paymentToken.transfer(msg.sender, 1000);
+		// Transfer 10000 tokens to the user
+		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
 
 		emit UserCreated(msg.sender);
 	}
@@ -106,8 +106,8 @@ contract UserManager {
 
 		retailersList.push(msg.sender);
 
-		// Transfer 1000 tokens to the retailer
-		paymentToken.transfer(msg.sender, 1000);
+		// Transfer 10000 tokens to the retailer
+		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
 
 		emit RetailerCreated(msg.sender);
 	}

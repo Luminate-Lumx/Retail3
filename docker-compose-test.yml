@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+    scaffold-build:
+        extends:
+            file: docker-compose-common.yml
+            service: scaffold-build
+
+    scaffold-test:
+        build:
+            context: .
+            dockerfile: Dockerfile.Node
+        command: yarn test
+        volumes:
+            - ./smartcontracts:/workspace
+        depends_on:
+            scaffold-build:
+                condition: service_completed_successfully
