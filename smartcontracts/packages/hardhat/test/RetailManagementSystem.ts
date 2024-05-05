@@ -49,6 +49,50 @@ describe("Retail Management System", function () {
     await userManager.connect(addr3).createUser("User Two", "user@two.com", "hash2", "wallet2");
   });
 
+  describe("Unique User and Retailer Registrations", function () {
+    it("Should prevent creating a user with an already registered address", async function () {
+      await expect(
+        userManager.connect(addr3).createUser("Duplicate User", "newuser@unique.com", "hashUnique", "walletUnique"),
+      ).to.be.revertedWith("User/retailer already exists");
+    });
+
+    it("Should prevent creating a retailer with an already registered address", async function () {
+      await expect(
+        userManager
+          .connect(addr2)
+          .createRetailer(
+            "Duplicate Retailer",
+            "newretailer@unique.com",
+            "hashRetailerUnique",
+            "Company Unique",
+            "987654321",
+            "walletUnique",
+          ),
+      ).to.be.revertedWith("User/retailer already exists");
+    });
+
+    it("Should prevent creating a user with an already registered email", async function () {
+      await expect(
+        userManager.connect(addr1).createUser("New User", "user@two.com", "hashNewUser", "newWallet"),
+      ).to.be.revertedWith("Email already exists");
+    });
+
+    it("Should prevent creating a retailer with an already registered email", async function () {
+      await expect(
+        userManager
+          .connect(addr1)
+          .createRetailer(
+            "New Retailer",
+            "retailer@one.com",
+            "hashNewRetailer",
+            "New Company",
+            "123987456",
+            "newWallet",
+          ),
+      ).to.be.revertedWith("Email already exists");
+    });
+  });
+
   describe("Product Management", function () {
     it("Allows a retailer to add a product", async function () {
       await expect(
@@ -70,7 +114,7 @@ describe("Retail Management System", function () {
         .to.emit(inventoryManagement, "ProductBought")
         .withArgs(addr3.address, addr2.address, "Product One", 1);
 
-      const updatedStock = await inventoryManagement.productStock(addr2.address, 1);
+      const updatedStock = await inventoryManagement.getProductStock(addr2.address, 1);
       expect(updatedStock).to.equal(49);
       expect(await token.balanceOf(addr3.address)).to.equal(initialBalance - ethers.parseEther("1000"));
     });

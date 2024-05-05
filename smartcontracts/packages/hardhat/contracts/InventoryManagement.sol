@@ -254,4 +254,17 @@ contract InventoryManagement {
 	) public view returns (Product memory) {
 		return retailerProducts[retailerAddress][index];
 	}
+
+	/**
+	 * @dev Retrieves the stock of a specific product
+	 * @param retailerAddress Address of the retailer
+	 * @param productCode Code of the product
+	 * @return Stock quantity
+	 */
+	function getProductStock(
+		address retailerAddress,
+		uint128 productCode
+	) public view returns (uint32) {
+		return productStock[retailerAddress][productCode];
+	}
 }

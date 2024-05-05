@@ -36,6 +36,8 @@ contract UserManager {
 	mapping(address => User) public users;
 	// Maps an address to a Retailer, storing retailer information
 	mapping(address => Retailer) public retailers;
+	// Maps and email to a wallet address
+	mapping(string => address) public emailToWallet;
 
 	// Users address list
 	address[] public usersList;
@@ -58,6 +60,25 @@ contract UserManager {
 	}
 
 	/**
+	 * @dev Modifier to ensure the user and retailer is unique
+	 */
+	modifier isUniqueAddress() {
+		require(
+			!isUser(msg.sender) && !isRetailer(msg.sender),
+			"User/retailer already exists"
+		);
+		_;
+	}
+
+	/**
+	 * @dev Modifier to ensure the email is unique
+	 */
+	modifier isUniqueEmail(string memory email) {
+		require(getWalletByEmail(email) == address(0), "Email already exists");
+		_;
+	}
+
+	/**
 	 * @dev Registers a new user with their details
 	 * @param name Name of the user
 	 * @param ipfsHash IPFS hash containing the user's additional data
@@ -68,10 +89,11 @@ contract UserManager {
 		string memory email,
 		string memory ipfsHash,
 		string memory walletId
-	) public {
+	) public isUniqueAddress isUniqueEmail(email) {
 		users[msg.sender] = User(name, email, ipfsHash, walletId);
 
 		usersList.push(msg.sender);
+		emailToWallet[email] = msg.sender;
 
 		// Transfer 10000 tokens to the user
 		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
@@ -94,7 +116,7 @@ contract UserManager {
 		string memory companyName,
 		string memory cnpj,
 		string memory walletId
-	) public {
+	) public isUniqueAddress isUniqueEmail(email) {
 		retailers[msg.sender] = Retailer(
 			name,
 			email,
@@ -105,6 +127,7 @@ contract UserManager {
 		);
 
 		retailersList.push(msg.sender);
+		emailToWallet[email] = msg.sender;
 
 		// Transfer 10000 tokens to the retailer
 		paymentToken.transfer(msg.sender, 10000 * 10 ** 18);
@@ -164,5 +187,16 @@ contract UserManager {
 	 */
 	function getRetailersList() public view returns (address[] memory) {
 		return retailersList;
+	}
+
+	/**
+	 * @dev Retrieves the wallet address associated with a given email
+	 * @param email Email address to check
+	 * @return address Wallet address associated with the email
+	 */
+	function getWalletByEmail(
+		string memory email
+	) public view returns (address) {
+		return emailToWallet[email];
 	}
 }
