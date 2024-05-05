@@ -33,6 +33,11 @@ contract UserManager {
 	// Maps an address to a Retailer, storing retailer information
 	mapping(address => Retailer) public retailers;
 
+	// Users address list
+	address[] public usersList;
+	// Retailers address list
+	address[] public retailersList;
+
 	/**
 	 * @dev Registers a new user with their details
 	 * @param _name Name of the user
@@ -45,6 +50,8 @@ contract UserManager {
 		string memory _walletId
 	) public {
 		users[msg.sender] = User(_name, _ipfsHash, _walletId);
+
+		usersList.push(msg.sender);
 	}
 
 	/**
@@ -69,6 +76,8 @@ contract UserManager {
 			_cnpj,
 			_walletId
 		);
+
+		retailersList.push(msg.sender);
 	}
 
 	/**
@@ -107,5 +116,21 @@ contract UserManager {
 	 */
 	function isUser(address _walletAddress) public view returns (bool) {
 		return bytes(users[_walletAddress].walletId).length != 0;
+	}
+
+	/**
+	 * @dev Retrieves the list of registered users
+	 * @return address[] List of registered users
+	 */
+	function getUsersList() public view returns (address[] memory) {
+		return usersList;
+	}
+
+	/**
+	 * @dev Retrieves the list of registered retailers
+	 * @return address[] List of registered retailers
+	 */
+	function getRetailersList() public view returns (address[] memory) {
+		return retailersList;
 	}
 }
