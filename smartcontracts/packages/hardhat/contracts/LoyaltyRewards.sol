@@ -33,7 +33,7 @@ contract LoyaltyRewards {
 
 	// Events to emit on various operations
 	event RedeemScore(address user, uint32 score, uint256 redeemTokens);
-	event ContributeToPool(uint32 amount);
+	event ContributeToPool(address retail, uint256 amount);
 	event AddScore(address user, uint32 score);
 	event TransferScore(address from, address to, uint32 score);
 
@@ -157,6 +157,8 @@ contract LoyaltyRewards {
 	) public onlyAuthorized {
 		RetailerWallet wallet = createOrGetWallet(retailer);
 		wallet.receiveTokens(vault, address(wallet), amount);
+
+		emit ContributeToPool(retailer, amount);
 	}
 
 	/**
