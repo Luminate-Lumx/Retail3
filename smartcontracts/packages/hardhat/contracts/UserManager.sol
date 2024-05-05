@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  */
 struct User {
 	string name; // Name of the user
+	string email; // Email address of the user
 	string ipfsHash; // IPFS hash for user-related data
 	string walletId; // Identifier for user's wallet
 }
@@ -19,6 +20,7 @@ struct User {
  */
 struct Retailer {
 	string name; // Name of the retailer
+	string email; // Email address of the retailer
 	string ipfsHash; // IPFS hash for retailer-related data
 	string companyName; // Official company name
 	string cnpj; // CNPJ (tax identification number in Brazil)
