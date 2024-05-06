@@ -11,18 +11,54 @@ import { Line } from 'react-chartjs-2';
 import { createLumxAPI } from '../../utils/lumx';
 import { getContractABI } from '../../utils/contracts';
 import millify from 'millify';
-import { formatUnits } from 'ethers';
+import { formatUnits, parseUnits } from 'ethers';
 
 const Home: React.FC = () => {
   const chartContainer = useRef<HTMLCanvasElement>(null);
   const [renderLineChart, setRenderLineChart] = useState(false);
   const values = [11.77, 9.80, 9.80, 8.82];
   const total = values.reduce((acc, val) => acc + val, 0);
+  const [rendered, setRendered] = useState(false);
 
   const [data, setData] = useState<Data[]>([]);
   const [totalScore, setTotalScore] = useState(0);
   const [totalPoolSize, setTotalPoolSize] = useState(0);
   const [marketValue, setMarketValue] = useState(0);
+
+  function renderChart(values: number[]) {
+    if (chartContainer && chartContainer.current) {
+      const ctx = chartContainer.current.getContext('2d');
+
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Market Value', 'Pool Tokens', 'Pool Value'],
+            datasets: [{
+              label: 'Market Dataset',
+              data: values,
+              backgroundColor: [
+                '#C89EF1',
+                '#DA62C4',
+                '#4B92E5'
+              ],
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+
+        setRenderLineChart(true); // Marca o gráfico de linha para renderização
+      }
+    }
+  }
+
 
   const fetchData = async () => {
     const api = createLumxAPI();
@@ -57,10 +93,18 @@ const Home: React.FC = () => {
         args: [localStorage.getItem('walletAddress')]
       })
     ]);
+    function calculateMarketValue(transactions) {
+      return transactions.reduce((acc, v) => {
+        return acc += Number(formatUnits(v.totalPrice))
+      }, 0)
+    }
+
+    renderChart([calculateMarketValue(transactions), Number(totalScore), Number(formatUnits(totalPoolSize))])
 
     setTotalScore(Number(totalScore))
     setTotalPoolSize(totalPoolSize)
-    setMarketValue(Number(transactions.reduce((acc, v) => { return acc += Number(formatUnits(v.totalPrice)) }, 0)))
+    setMarketValue(calculateMarketValue(transactions))
+    setData(transactions)
   }
 
   const dataLineChart = {
@@ -84,40 +128,6 @@ const Home: React.FC = () => {
     ],
   };
 
-  useEffect(() => {
-    if (chartContainer && chartContainer.current) {
-      const ctx = chartContainer.current.getContext('2d');
-      
-      if (ctx) {
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Market Value', 'Pool Tokens', 'Pool Value'],
-            datasets: [{
-              label: 'Market Dataset',
-              data: [marketValue, totalScore, totalPoolSize],
-              backgroundColor: [
-                '#C89EF1',
-                '#DA62C4',
-                '#4B92E5'
-              ],
-              hoverOffset: 4
-            }]
-          },
-          options: {
-            plugins: {
-              legend: {
-                display: false
-              }
-            }
-          }
-        });
-
-        setRenderLineChart(true); // Marca o gráfico de linha para renderização
-      }
-    }
-  }, []);
-
   useState(async () => {
     await fetchData();
   })
@@ -138,8 +148,8 @@ const Home: React.FC = () => {
               <DoughnutChartImage>
                 <div style={{ position: 'relative', height: '130px' }}>
                   <canvas ref={chartContainer} />
-                  <div style={{ position: 'absolute', top: '42%', left: '35%', textAlign: 'center' }}>
-                    <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'white' }}>${marketValue}</span>
+                  <div style={{ position: 'absolute', top: '42%', left: '42%', textAlign: 'center' }}>
+                    <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'white' }}>${millify(marketValue, { precision: 2 })}</span>
                   </div>
                 </div>
               </DoughnutChartImage>
