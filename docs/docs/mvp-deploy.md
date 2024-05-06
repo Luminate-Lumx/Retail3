@@ -6,7 +6,7 @@ title: MVP Deploy
 We have deployed the MVP on the following services:
 
 -   Frontend: [Vercel](https://vercel.com/) 🌐
--   Contracts: [iExec Sidechain](https://chainlist.org/chain/134), with the ABI's and addresses on [IPFS](https://ipfs.tech/) 🔗
+-   Contracts: [Sepolia ETH](https://chainlist.org/chain/11155111), with the ABI's and addresses on [IPFS](https://ipfs.tech/) 🔗
 
 ## Frontend 💻
 
@@ -14,11 +14,18 @@ The frontend of the MVP is deployed on Vercel, and you can access it by visiting
 
 <iframe src="https://retail3.vercel.app/" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
 
-
 ## Contracts 📄
 
-Here are the current deployed contracts on the `iExec Sidechain`, with the ABI's and addresses on IPFS. You can find the ABI's and the addresses of the [project contracts](https://github.com/Luminate-Lumx/Retail3/tree/main/smartcontracts/packages/hardhat/contracts) by getting the `address` and `abi` properties of the deployed contracts:
+Here are the current deployed contracts on the `Sepolia ETH`, with the ABI's and addresses on IPFS. You can find the ABI's and the addresses of the [project contracts](https://github.com/Luminate-Lumx/Retail3/tree/main/smartcontracts/packages/hardhat/contracts) by getting the `address` and `abi` properties of the deployed contracts:
 
--   [UserRegistry](https://gateway.pinata.cloud/ipfs/QmTfK9PZXJkDXqCmT6rwT7o268jjpwtUkJr7aCFuuCQkgk)
--   [EventManager](https://gateway.pinata.cloud/ipfs/QmP5GCxh9vJHQtQ6gt1nDziXJNtRSgmfjsYZyDtPmacVqo)
--   [CheckInManager](https://gateway.pinata.cloud/ipfs/QmSJKQ1K1Rikxe3m18cC2dWed1sBaxwnwuKbGZptxcQnbB)
+You can get use the base folder of the IPFS to get the ABI's and addresses of the contracts:
+
+-   [Deploy IPFS Main Folder](https://gateway.pinata.cloud/ipfs/QmX3B1GEdrRrnMYgRFz1hCMkkmK6UJNkBKtpKRhoUhtaGy)
+
+or you can get the ABI's and addresses of the contracts directly:
+
+-   [InventoryManagement](https://gateway.pinata.cloud/ipfs/QmX3B1GEdrRrnMYgRFz1hCMkkmK6UJNkBKtpKRhoUhtaGy/InventoryManagement.json)
+-   [LoyaltyRewards](https://gateway.pinata.cloud/ipfs/QmX3B1GEdrRrnMYgRFz1hCMkkmK6UJNkBKtpKRhoUhtaGy/LoyaltyRewards.json)
+-   [TransactionManager](https://gateway.pinata.cloud/ipfs/QmX3B1GEdrRrnMYgRFz1hCMkkmK6UJNkBKtpKRhoUhtaGy/TransactionManager.json)
+-   [UserManager](https://gateway.pinata.cloud/ipfs/QmX3B1GEdrRrnMYgRFz1hCMkkmK6UJNkBKtpKRhoUhtaGy/UserManager.json)
+-   [Tether](https://gateway.pinata.cloud/ipfs/QmX3B1GEdrRrnMYgRFz1hCMkkmK6UJNkBKtpKRhoUhtaGy/Tether.json)
