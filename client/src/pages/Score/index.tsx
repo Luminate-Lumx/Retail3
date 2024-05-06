@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, ContentContainer, HeaderContent, CardsContainer, CardsItem, BoxInfoContainer, BoxInfo, BoxInfoTitle, BoxInfoValue, BoxInfoInput, TableCustomers } from './style';
 import Navbar from '../../components/Navbar';
 import SideBar from '../../components/SideBar';
@@ -12,27 +12,104 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { createLumxAPI } from '../../utils/lumx';
+import { getContractABI } from '../../utils/contracts';
+import { millify } from 'millify'
+import { formatUnits } from 'ethers'
+
+
+interface Data {
+  user: string;
+  product: string;
+  tags: string[];
+  quantity: number;
+  total_price: number;
+  total_score: number;
+  timestamp: number;
+}
 
 const Score: React.FC = () => {
-  function createData(
+  const [data, setData] = useState<Data[]>([]);
+  const [totalScore, setTotalScore] = useState(0);
+  const [totalPoolSize, setTotalPoolSize] = useState(0);
+
+  const createData = (
     user: string,
     product: string,
-    type: string,
+    tags: string[],
     quantity: number,
     total_price: number,
-    total_score: number
-  ) {
-    return { user, product, type, quantity, total_price, total_score };
+    total_score: number,
+    timestamp: number
+  ): Data => {
+    return { user, product, tags, quantity, total_price, total_score, timestamp };
   }
-  
-  const rows = [
-    createData('Bruno', "Apple", 'Fruit', 24, 12, 1),
-    createData('Gustavo', 'Chicken Breast', 'Meat', 14, 70, 3),
-    createData('João', 'Rice', 'Grains', 58, 145, 7),
-    createData('João', 'Tomato', 'Fruit', 39, 39, 3),
-    createData('Gustavo', 'Water', 'Beverages', 30, 22.50, 2),
-    createData('Bruno', 'Potato', 'Vegetables', 26, 15.60, 1)
-  ];
+
+  const fetchUsers = async () => {
+    setTotalPoolSize(0);
+    setTotalScore(0);
+    setData([]);
+
+    const api = createLumxAPI();
+    const loyaltyContract = await getContractABI('LoyaltyRewards');
+    const transactionsContract = await getContractABI('TransactionManager');
+    const inventoryManagementContract = await getContractABI('InventoryManagement');
+    const userManagerContract = await getContractABI('UserManager');
+
+    console.log(`Reading transactions for retailer ${localStorage.getItem('walletAddress')}...`)
+
+    const transactions = await api.web3.read({
+      contractAddress: transactionsContract.address,
+      abi: transactionsContract.abi,
+      method: 'getRetailerTransactions',
+      args: [localStorage.getItem('walletAddress')]
+    });
+
+    console.log(transactions)
+
+    transactions.forEach(async (transaction) => {
+      const product = await api.web3.read({
+        contractAddress: inventoryManagementContract.address,
+        abi: inventoryManagementContract.abi,
+        method: 'getProduct',
+        args: [localStorage.getItem('walletAddress'), transaction.productIndex]
+      });
+      console.log(product)
+
+      const user = await api.web3.read({
+        contractAddress: userManagerContract.address,
+        abi: userManagerContract.abi,
+        method: 'getEntity',
+        args: [transaction.buyer]
+      });
+
+      console.log(user)
+
+      setData((prevData) => [...prevData, createData(user.name, product.name, product.tags.join(','), Number(transaction.quantity), transaction.totalPrice, Number(transaction.totalScore), Number(transaction.timestamp))]);
+    });
+
+    const totalScore = await api.web3.read({
+      contractAddress: loyaltyContract.address,
+      abi: loyaltyContract.abi,
+      method: 'getScorePool',
+      args: [localStorage.getItem('walletAddress')]
+    });
+
+    setTotalScore(totalScore)
+
+    const totalPoolSize = await api.web3.read({
+      contractAddress: loyaltyContract.address,
+      abi: loyaltyContract.abi,
+      method: 'getRedeemPool',
+      args: [localStorage.getItem('walletAddress')]
+    });
+
+    setTotalPoolSize(totalPoolSize)
+  }
+
+  useState(async () => {
+    await fetchUsers();
+  }, [])
 
 
   return (
@@ -50,7 +127,7 @@ const Score: React.FC = () => {
             <BoxInfoContainer>
               <BoxInfo>
                 <BoxInfoTitle>Total pool</BoxInfoTitle>
-                <BoxInfoValue>$ 14,4K</BoxInfoValue>
+                <BoxInfoValue>{millify(formatUnits(totalPoolSize))} USDT</BoxInfoValue> {/* Assuming 6 decimals for USD */}
               </BoxInfo>
             </BoxInfoContainer>
           </CardsItem>
@@ -60,7 +137,7 @@ const Score: React.FC = () => {
             <BoxInfoContainer>
               <BoxInfo>
                 <BoxInfoTitle>Amount</BoxInfoTitle>
-                <BoxInfoValue>14,4K</BoxInfoValue>
+                <BoxInfoValue>{millify(totalScore)}</BoxInfoValue>
               </BoxInfo>
             </BoxInfoContainer>
           </CardsItem>
@@ -77,32 +154,34 @@ const Score: React.FC = () => {
         </CardsContainer>
         <TableCustomers>
           <h3>Customers scores</h3>
-          <TableContainer sx={{borderTopRightRadius:'0px', borderTopLeftRadius:'0px'}} component={Paper}>
-            <Table sx={{ minWidth: 650, backgroundColor:'#010b15'}} size="small" aria-label="a dense table">
+          <TableContainer sx={{ borderTopRightRadius: '0px', borderTopLeftRadius: '0px' }} component={Paper}>
+            <Table sx={{ minWidth: 650, backgroundColor: '#010b15' }} size="small" aria-label="a dense table">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{color:'white'}}>User</TableCell>
-                  <TableCell sx={{color:'white'}} align="center">Product</TableCell>
-                  <TableCell sx={{color:'white'}} align="center">Type</TableCell>
-                  <TableCell sx={{color:'white'}} align="center">Quantity</TableCell>
-                  <TableCell sx={{color:'white'}} align="center">Total price</TableCell>
-                  <TableCell sx={{color:'white'}} align="center">Total score</TableCell>
+                  <TableCell sx={{ color: 'white' }}>User</TableCell>
+                  <TableCell sx={{ color: 'white' }} align="center">Product</TableCell>
+                  <TableCell sx={{ color: 'white' }} align="center">Tags</TableCell>
+                  <TableCell sx={{ color: 'white' }} align="center">Quantity</TableCell>
+                  <TableCell sx={{ color: 'white' }} align="center">Total price</TableCell>
+                  <TableCell sx={{ color: 'white' }} align="center">Total score</TableCell>
+                  <TableCell sx={{ color: 'white' }} align="center">Datetime of purchase</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {data.map((row) => (
                   <TableRow
-                    key={row.user}
+                    key={row.user + row.timestamp}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    <TableCell sx={{color:'white'}} component="th" scope="row">
+                    <TableCell sx={{ color: 'white' }} component="th" scope="row">
                       {row.user}
                     </TableCell>
-                    <TableCell sx={{color:'white'}} align="center">{row.product}</TableCell>
-                    <TableCell sx={{color:'white'}} align="center">{row.type}</TableCell>
-                    <TableCell sx={{color:'white'}} align="center">{row.quantity}</TableCell>
-                    <TableCell sx={{color:'white'}} align="center">{row.total_price}</TableCell>
-                    <TableCell sx={{color:'white'}} align="center">{row.total_score}</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{row.product}</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{row.tags}</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{row.quantity}</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{millify(formatUnits(row.total_price))} USDT</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{row.total_score}</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{new Date(row.timestamp * 1000).toLocaleString()}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

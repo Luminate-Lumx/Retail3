@@ -21,7 +21,7 @@ const Welcome: React.FC = () => {
                 <h2>We are excited to have yout back. Log  in now and access your account.</h2>
                 <ButtonContainer>
                     <Button href="/" target="" icon={<AccountBalanceWalletIcon />}>
-                        Connect with wallet ID
+                        Connect with Email
                     </Button>
                 </ButtonContainer>
                 <p>Don’t have an account? <a href='/register'>Sign Up</a></p>

@@ -72,13 +72,20 @@ export const CardItem = styled.div`
     align-self: center;
     padding-bottom: 15px;
 
-    hr{
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid var(--blue);
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    hr {
         border: 1px solid #2B2B33;
         width: 100%;
         margin-bottom: 10px;
     }
 
-    p{
+    p {
         font-family: "Poppins", sans-serif;
         font-weight: 400;
         font-size: 14px;

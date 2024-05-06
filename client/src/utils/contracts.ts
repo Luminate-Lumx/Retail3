@@ -3,6 +3,7 @@ InventoryManagement.json
 LoyaltyRewards.json
 Tether.json
 TransactionManager.json
+UserManager.json
 */
 
 class ContractABILoaderIPFS {
