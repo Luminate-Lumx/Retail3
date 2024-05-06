@@ -318,11 +318,11 @@ const Register: React.FC = () => {
                                     </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="user_name">Name:</label>
-                                        <InputForms id="user_name" placeholder='' required></InputForms>
+                                        <InputForms id="user_name" placeholder='your name' required></InputForms>
                                     </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="user_email">Email:</label>
-                                        <InputForms id="user_email" placeholder='' required></InputForms>
+                                        <InputForms id="user_email" placeholder='youremail@provider.com' required type='email'></InputForms>
                                     </ContainerForm>
                                     <ButtonContainer>
                                         <Button type='submit' disabled={isProcessing}>
@@ -330,7 +330,7 @@ const Register: React.FC = () => {
                                         </Button>
                                     </ButtonContainer>
                                 </form>
-                                <p>Have an account? <a>Sign In</a></p>
+                                <p>Have an account? <a href='/'>Sign In</a></p>
                             </PersonalForms>
                         ) : (
                             <PersonalForms>
@@ -368,19 +368,19 @@ const Register: React.FC = () => {
                                     </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="user_name">Name:</label>
-                                        <InputForms id="user_name" placeholder='' required></InputForms>
+                                        <InputForms id="user_name" placeholder='your name' required></InputForms>
                                     </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="bussinesname">Bussines name:</label>
-                                        <InputForms id="bussinesname" placeholder='' required></InputForms>
+                                        <InputForms id="bussinesname" placeholder='retail name' required></InputForms>
                                     </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="document">Document:</label>
-                                        <InputForms id="document" placeholder='' required></InputForms>
+                                        <InputForms id="document" placeholder='document name' required></InputForms>
                                     </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="user_email">Email:</label>
-                                        <InputForms id="user_email" placeholder='' required></InputForms>
+                                        <InputForms id="user_email" placeholder='youremail@provider.com' required type='email'></InputForms>
                                     </ContainerForm>
                                     <ButtonContainer>
                                         <Button type='submit' disabled={isProcessing}>
@@ -388,7 +388,7 @@ const Register: React.FC = () => {
                                         </Button>
                                     </ButtonContainer>
                                 </form>
-                                <p>Have an account? <a>Sign In</a></p>
+                                <p>Have an account? <a href='/'>Sign In</a></p>
                             </PersonalForms>
                         )}
                     </>
