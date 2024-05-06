@@ -94,6 +94,10 @@ You can find the smart contracts in the [contracts folder](https://github.com/Lu
     -   Email to wallet address mapping for quick lookups 🔎
     -   Initial token allocation to new entities 💸
 
+## Lumx-Node 🌐
+
+The project uses the [lumx-node package](https://github.com/Luminate-Lumx/lumx-node) created by us to interact with the Lumx API. The package provides a simple interface for interacting with the Lumx API and invoke custom transactions of contracts and make web3 view functions calls with a provider. You also can fin the package in the [npm registry](https://www.npmjs.com/package/lumx-node).
+
 ## Docker 🐳
 
 ### Services 🛠️
