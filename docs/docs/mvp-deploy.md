@@ -6,7 +6,7 @@ title: MVP Deploy
 We have deployed the MVP on the following services:
 
 -   Frontend: [Vercel](https://vercel.com/) 🌐
--   Contracts: [iExec Sidechain](https://chainlist.org/chain/134), with the ABI's and addresses on [IPFS](https://ipfs.tech/) 🔗
+-   Contracts: [Sapolia Sidechain](https://chainlist.org/chain/11155111), with the ABI's and addresses on [IPFS](https://ipfs.tech/) 🔗
 
 ## Frontend 💻
 
