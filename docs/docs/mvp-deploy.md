@@ -32,6 +32,8 @@ or you can get the ABI's and addresses of the contracts directly:
 
 ## Latest Smart Contracts Tests Logs📜
 
+The latest tests logs of the smart contracts from the github actions are shown below:
+
 ```shell
 scaffold-test-1   |
 scaffold-test-1   |   Retail Management System
