@@ -12,7 +12,8 @@ Before you start, you need to have the following prerequisites:
 -   Have a unix-like environment (Linux, macOS, WSL, etc). 💻
 -   [Git](https://git-scm.com/) - Git is a distributed version control system. 🌐
 -   [Docker / Docker compose](https://docs.docker.com/get-docker/) - Docker is a platform for building, running, and shipping applications. Docker Compose is a tool for defining and running multi-container Docker applications. 🐳
--   A wallet or a wallet provider to interact with the blockchain. You can use, for example: [Metamask](https://metamask.io/). 👛
+-   A Wallet with some testnet ETH to deploy the contracts. 💰
+-   A project on [lumx protocol API](https://docs.lumx.io/get-started/introduction) to get the required Access Tokens. 🔑
 -   An account on [Alchemy](https://www.alchemy.com/) and [Pinata](https://pinata.cloud/) to get the required API keys. 🔑
 
 ## Project 📂
@@ -34,7 +35,7 @@ cd Retail3
 On the root of the project, you will find a `.env.example` file. You need to create a `.env` file and copy the content of the `.env.example` file to it. Then, you need to fill in the environment variables with the required values.
 
 ```bash title=".env"
-# Web3 provider
+# Web3 provider scaffold-eth
 ALCHEMY_API_KEY="YOUR_ALCHEMY_API_KEY"
 DEPLOYER_PRIVATE_KEY="YOUR_DEPLOY_WALLET_PRIVATE_KEY"
 
@@ -42,8 +43,55 @@ DEPLOYER_PRIVATE_KEY="YOUR_DEPLOY_WALLET_PRIVATE_KEY"
 PINATA_JWT="YOUR_PINATA_JWT"
 PINATA_GATEWAY="YOUR_PINATA_GATEWAY"
 
+# Frontend
+VITE_DEPLOY_IPFS_FOLDER_URL="YOUR_IPFS_FOLDER_URL"
+VITE_LUMX_BEARER="YOUR_LUMX_BEARER"
+VITE_WEB3_PROVIDER="YOUR_WEB3_HTTP_PROVIDER"
+VITE_WEB3_WSS_PROVIDER="YOUR_WEB3_WSS_PROVIDER"
 ```
 
-You can get the `ALCHEMY_API_KEY` by creating an account on [Alchemy](https://www.alchemy.com/), and [creating an Alchemy app](https://cro-docs.alchemy.com/guides/getting-started#id-1.create-an-alchemy-app). The `DEPLOYER_PRIVATE_KEY` is the private key of the account that will deploy the contracts on the testnet, you can follow the instructions on the [How to export an account's private key](https://support.metamask.io/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key) to get it. The `PINATA_JWT` and `PINATA_GATEWAY` are required to upload images to IPFS, you can get them by creating an account on [Pinata](https://pinata.cloud/), [creating an API key](https://pinata.cloud/keys), and [getting the gateway](https://app.pinata.cloud/gateway).
+### Environment Variables Explanation
 
-_🍀 optional: If you want to use the contracts deployed, you can set the IPFS gateway URL of each contract in the `.env` file. Here are the current deployed contracts IPFS's: [UserRegistry](https://gateway.pinata.cloud/ipfs/QmemAFKSXauKjvGtmJ6g1Q4rAMaMxftgwcZFH9h3422DSJ), [EventManager](https://gateway.pinata.cloud/ipfs/QmaLrH9dMkPNsLfekvmJsnHaeSJ1dwsGoUxsnbyRCyCnsp), [CheckInManager](https://gateway.pinata.cloud/ipfs/QmXKRiVTHygfaPZR6D7pNaSVoS7Ym96g6zLmRWm9PtDLta). If not set, the services of the project will use the contracts in local file mode._
+1. **ALCHEMY_API_KEY**
+
+    - **Purpose**: Used for interacting with the Ethereum blockchain.
+    - **How to Get**:
+        - Create an account at [Alchemy](https://www.alchemy.com/).
+        - Follow the steps to [create an Alchemy app](https://cro-docs.alchemy.com/guides/getting-started#id-1.create-an-alchemy-app).
+        - Your API key will be available in the app dashboard.
+
+2. **DEPLOYER_PRIVATE_KEY**
+
+    - **Purpose**: The private key of the account that will deploy the contracts on the Ethereum testnet.
+    - **How to Get**:
+        - Use MetaMask or another Ethereum wallet.
+        - Follow the instructions on [how to export an account's private key](https://support.metamask.io/vi/managing-my-wallet/secret-recovery-phrase-and-private-keys/how-to-export-an-accounts-private-key/).
+
+3. **PINATA_JWT** and **PINATA_GATEWAY**
+
+    - **Purpose**: Required for uploading images to IPFS.
+    - **How to Get**:
+        - Sign up at [Pinata](https://pinata.cloud/).
+        - Create an API key as described [here](https://pinata.cloud/keys).
+        - Get your gateway information from [Pinata gateway settings](https://app.pinata.cloud/gateway).
+
+4. **VITE_DEPLOY_IPFS_FOLDER_URL**
+
+    - **Purpose**: The IPFS folder URL where the contracts are deployed.
+    - **How to Get**:
+        - Deploy your contracts to the testnet.
+        - Upload the contract artifacts to IPFS.
+        - Your folder URL will be the IPFS link to these artifacts.
+
+5. **VITE_LUMX_BEARER**
+
+    - **Purpose**: The bearer token for the lumx API.
+    - **How to Get**:
+        - Create an account and a project at [lumx](https://docs.lumx.io/api-reference/v2/projects/create-a-project).
+        - Obtain the bearer token as per instructions in the [lumx documentation](https://docs.lumx.io/get-started/introduction).
+
+6. **VITE_WEB3_PROVIDER** and **VITE_WEB3_WSS_PROVIDER**
+    - **Purpose**: Web3 providers used to interact with Ethereum blockchain.
+    - **How to Get**:
+        - Use services like [Alchemy](https://www.alchemy.com/) or [Infura](https://infura.io/).
+        - Create an account and set up a project to obtain these endpoints.

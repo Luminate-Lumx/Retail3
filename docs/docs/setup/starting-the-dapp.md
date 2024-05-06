@@ -1,50 +1,67 @@
 ---
-title: Starting the dapp
+title: Starting the DApp
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## About docker files 🐳
+## About Docker Files 🐳
 
-In this project, we have three Docker Compose main files with one common service.
+In this project, we use multiple Docker Compose files tailored to different stages of the development and deployment lifecycle. Each Docker Compose file leverages services defined in a shared `docker-compose-common.yml` for consistency and maintainability.
 
--   `docker-compose-dev.yml` / **Development mode**: This file is used to run in development mode, operating the scaffold-op Next.js server to interact with the testnet contracts, local off-chain server, and the DApp frontend. It is necessary to set the environment variables in the `.env` file, instructions can be found in the [Environment Variables](./prerequisites#environment-variables) section.
--   `docker-compose-deploy.yml` / **Deploy mode**: This file is used to deploy the contracts to the testnet and run a local off-chain server and the DApp frontend. It is necessary to set the environment variables in the `.env` file, instructions can be found in the [Environment Variables](./prerequisites#environment-variables) section.
--   `docker-compose-test.yml` / **Test mode**: This file is used to run the tests of the off-chain and the contracts in a local environment.
+### Docker Compose Files:
 
-## Starting the dapp ⚙️
+-   **`docker-compose-client.yml`**: Runs the client application in development mode with live reloading.
+-   **`docker-compose-smartcontracts.yml`**: Handles the deployment of smart contracts and starts a local server for the DApp frontend.
+-   **`docker-compose-test.yml`**: Used for running automated tests in a controlled environment.
 
-Now with all the prerequisites installed and the project cloned, you can start the Docker containers to run the DApp. You can do this by running the following command in the terminal, depending on the environment you wish to run the DApp:
+## Starting the DApp ⚙️
 
-<Tabs defaultValue="docker-compose-dev" values={[
-{label: 'Development', value: 'docker-compose-dev'},
-{label: 'Testnet deploy', value: 'docker-compose-deploy'},
-{label: 'Unit tests', value: 'docker-compose-test'}
+With prerequisites installed and the project repository cloned, start the Docker containers using one of the following commands based on the desired environment:
+
+<Tabs defaultValue="dev" values={[
+{ label: 'Development', value: 'dev' },
+{ label: 'Testnet Deploy', value: 'deploy' },
+{ label: 'Unit Tests', value: 'test' }
 ]}>
 
-<TabItem value="docker-compose-dev">
+<TabItem value="dev">
+Instructions for Development Environment:
 
-```bash
-docker compose -f docker-compose-dev.yml up
-```
+1. First, deploy the smart contracts to the testnet using the command below:
+
+    ```bash
+    docker compose -f docker-compose-smartcontracts.yml up
+    ```
+
+2. Store the `smartcontracts/packages/hardhat/deployments` ABIs on IPFS and get the folder URL.
+3. Update the `VITE_DEPLOY_IPFS_FOLDER_URL` environment variable in your `.env` file with the IPFS folder URL.
+4. Start the client application with the command above with:
+
+    ```bash
+    docker compose -f docker-compose-client.yml up --build
+    ```
 
 </TabItem>
 
-<TabItem value="docker-compose-deploy">
+<TabItem value="deploy">
 
 ```bash
-docker compose -f docker-compose-deploy.yml up
+docker compose -f docker-compose-smartcontracts.yml up
 ```
+
+This command deploys your smart contracts to the testnet and runs a local server along with the DApp next frontend to interact with the deployed contracts. The frontend will be available at `http://localhost:3000`.
 
 </TabItem>
 
-<TabItem value="docker-compose-test">
+<TabItem value="test">
 
 ```bash
 docker compose -f docker-compose-test.yml up
 ```
+
+This command is used to execute the unit tests for the smart contracts.
 
 </TabItem>
 </Tabs>
