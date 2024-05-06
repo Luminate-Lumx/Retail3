@@ -140,6 +140,40 @@ List of all services that are in the project and their respective details.
 
 <iframe style={{border: "none"}} width="800" height="450" src="https://whimsical.com/embed/SNvR2rWDKcbymH3tjhwbKa"></iframe>
 
+### Smart Contracts Tests Overview 📜
+
+🔍 **Testing Contracts**: We rigorously test our smart contracts using Hardhat and Chai to ensure top-notch reliability and functionality. Our suite includes contracts for managing inventory, transactions, user accounts, loyalty rewards, and token operations.
+
+👥 **Actors**:
+
+-   **Inventory Management**: 📦 Handles all product-related actions.
+-   **User Management**: 👤 Manages user and retailer registrations and authentications.
+-   **Transaction Management**: 💸 Oversees purchase records and transaction histories.
+-   **Loyalty Rewards**: 🎁 Manages loyalty points and reward redemptions.
+-   **Token (Tether)**: 💰 Facilitates financial transactions with a stablecoin.
+
+🔑 **Setup and Initialization**:
+
+-   **Contracts Deployment**: 🛠 Each key contract is deployed and initialized.
+-   **Permissions & Links**: 🔗 Necessary permissions are set, linking contracts where needed.
+
+### 🚀 Functional Tests
+
+1. **User and Retailer Registrations**: 🆕 Ensures only unique users and retailers can register.
+2. **Product Management**: 🏷️ Retailers can add, update, and remove products.
+3. **Purchasing Products**: 🛒 Customers can buy products; proper adjustments and validations are handled.
+4. **Loyalty and Rewards**: 🎉 Tests the accumulation and redemption of loyalty points.
+5. **Transaction Records**: 📈 Verifies that transactions are recorded correctly for both users and retailers.
+6. **Product Lifecycle**: ♻️ Tests updating and removal of products by authorized users.
+7. **Edge Cases**: ⚠️ Ensures all edge cases like stock shortages and unauthorized actions are handled gracefully.
+
+### 🛡️ Security and Permissions Tests
+
+-   **Permissions Checks**: 🚫 Verifies that only authorized users can perform restricted operations.
+-   **Robustness Against Errors**: 🛡️ Ensures the system behaves correctly under erroneous conditions, preventing unauthorized access and ensuring data integrity.
+
+This suite ensures our Retail Management System is robust, secure, and user-friendly, making shopping a breeze! 🌐🛍️
+
 ### Environments 🌍
 
 Currently, the project has two environments, **development** and **test**, with different configurations for the services. The development environment is used for the frontend and smart contracts development, while the test environment is used for running tests on the smart contracts.
