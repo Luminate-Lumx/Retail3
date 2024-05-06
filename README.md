@@ -20,7 +20,7 @@ You can find more information about the project in the [documentation](https://l
 
 -   [Documentation](https://luminate-lumx.github.io/Retail3/)
 -   [Demo deployment](https://retail3.vercel.app/)
--   [Pitch video]([www.google.com](https://youtu.be/u8ZqOdzZW4A))
+-   [Pitch video]((https://youtu.be/u8ZqOdzZW4A))
 -   [Demo video](https://youtu.be/gfiV4vxAA94)
 
 ## Authors
