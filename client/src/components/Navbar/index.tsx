@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Container>
-     <LogoContainer onClick={() => navigate('/register')} onMouseOver={(e) => e.currentTarget.style.cursor = 'pointer'}>
+     <LogoContainer onClick={() => navigate('/')} onMouseOver={(e) => e.currentTarget.style.cursor = 'pointer'}>
         <LogoPhoto>
           <img src={logo} alt="Company Logo" />
         </LogoPhoto>
@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
           <img src={user?.ipfsHash ? `https://maroon-environmental-sloth-959.mypinata.cloud/ipfs/${user?.ipfsHash}` : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'} alt="Customer" />
         </CustomerPhoto>
         <p>Olá, <span>{user && user?.name}</span></p>
-        <p>Balance: <span style={{ color: 'green' }}>{balance} USD</span></p>
+        <p>Balance: <span style={{ color: 'green' }}>{balance} USDT</span></p>
       </CustomerInfos>
     </Container>
   );

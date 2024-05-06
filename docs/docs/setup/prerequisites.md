@@ -40,8 +40,7 @@ ALCHEMY_API_KEY="YOUR_ALCHEMY_API_KEY"
 DEPLOYER_PRIVATE_KEY="YOUR_DEPLOY_WALLET_PRIVATE_KEY"
 
 # IPFS
-PINATA_JWT="YOUR_PINATA_JWT"
-PINATA_GATEWAY="YOUR_PINATA_GATEWAY"
+VITE_PINATA_JWT="YOUR_PINATA_JWT"
 
 # Frontend
 VITE_DEPLOY_IPFS_FOLDER_URL="YOUR_IPFS_FOLDER_URL"
@@ -67,7 +66,7 @@ VITE_WEB3_WSS_PROVIDER="YOUR_WEB3_WSS_PROVIDER"
         - Use MetaMask or another Ethereum wallet.
         - Follow the instructions on [how to export an account's private key](https://support.metamask.io/vi/managing-my-wallet/secret-recovery-phrase-and-private-keys/how-to-export-an-accounts-private-key/).
 
-3. **PINATA_JWT** and **PINATA_GATEWAY**
+3. **VITE_PINATA_JWT**
 
     - **Purpose**: Required for uploading images to IPFS.
     - **How to Get**:

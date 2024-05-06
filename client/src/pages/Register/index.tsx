@@ -14,6 +14,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { createLumxAPI } from '../../utils/lumx'
 import { getContractABI } from '../../utils/contracts';
 import { useNavigate } from 'react-router-dom';
+import { sendFileToIPFS } from '../../utils/ipfs';
 
 const Register: React.FC = () => {
     const [accountType, setAccountType] = useState<string>('');
@@ -40,20 +41,25 @@ const Register: React.FC = () => {
         const name = form.user_name.value;
         const email = form.user_email.value;
 
-        const walltCreate = Promise.all([createWallet(), getContractABI('UserManager')]);
+        const walletCreate = Promise.all([createWallet(), getContractABI('UserManager')]);
 
-        toast.promise(walltCreate, {
+        toast.promise(walletCreate, {
             loading: 'Creating a wallet for you...',
             success: 'Wallet created!',
             error: "Couldn't create a wallet!",
         });
 
-        const [wallet, contract] = await walltCreate;
+        const [wallet, contract] = await walletCreate;
 
         try {
+
+            const { IpfsHash } = await sendFileToIPFS(selectedFile as File);
+
+            console.log(name, email, IpfsHash, wallet.id)
+
             await lumxApi.lumx.transactions.addOperationToCustomQueue({
                 function: `createUser(string,string,string,string)`,
-                parameters: [name, email, '', wallet.id],
+                parameters: [name, email, "", wallet.id],
             });
 
             const createUser = lumxApi.lumx.transactions.executeCustomTransactionAndWait({
@@ -77,21 +83,46 @@ const Register: React.FC = () => {
                 args: [wallet.address]
             })
 
+            const setProfilePicture = async () => {
+                await lumxApi.lumx.transactions.addOperationToCustomQueue({
+                    function: `updateEntity(string,string)`,
+                    parameters: ["ipfsHash", IpfsHash],
+                });
+
+                const setProfilePicture = lumxApi.lumx.transactions.executeCustomTransactionAndWait({
+                    contractAddress: contract.address,
+                    walletId: wallet.id,
+                    log: true
+                })
+
+                toast.promise(setProfilePicture, {
+                    loading: 'Setting profile picture...',
+                    success: 'Profile picture set!',
+                    error: "Couldn't set profile picture!"
+                })
+
+                await setProfilePicture;
+            }
+
             const verifyWalletIdCallback = async () => {
                 return new Promise((resolve, reject) => {
                     entity.then((data) => {
+                        console.log(data)
                         if (data.walletId === "") {
                             reject('Account not validated!')
                             localStorage.setItem('walletId', null)
                             localStorage.setItem('walletAddress', null);
                         } else {
+
                             resolve('Account validated!')
                             localStorage.setItem('walletId', wallet.id)
                             localStorage.setItem('walletAddress', wallet.address);
 
-                            setTimeout(() => {
-                                navigate('/customerBuy');
-                            }, 1000);
+                            setProfilePicture().then(() => {
+                                setTimeout(() => {
+                                    navigate('/customerBuy');
+                                }, 1000);
+                            });
                         }
                     }).catch((error) => {
                         reject(error)
@@ -137,9 +168,13 @@ const Register: React.FC = () => {
         try {
             const [wallet, contract] = await retailerCreate;
 
+            const { IpfsHash } = await sendFileToIPFS(selectedFile as File);
+
+            console.log(IpfsHash)
+
             lumxApi.lumx.transactions.addOperationToCustomQueue({
                 function: `createRetailer(string,string,string,string,string)`,
-                parameters: [name, email, '', wallet.id, businessName + document],
+                parameters: [name, email, "", wallet.id, businessName + document],
             });
 
             const createUser = lumxApi.lumx.transactions.executeCustomTransactionAndWait({
@@ -163,6 +198,27 @@ const Register: React.FC = () => {
                 args: [wallet.address]
             });
 
+            const setProfilePicture = async () => {
+                await lumxApi.lumx.transactions.addOperationToCustomQueue({
+                    function: `updateEntity(string,string)`,
+                    parameters: ["ipfsHash", IpfsHash],
+                });
+
+                const setProfilePicture = lumxApi.lumx.transactions.executeCustomTransactionAndWait({
+                    contractAddress: contract.address,
+                    walletId: wallet.id,
+                    log: true
+                })
+
+                toast.promise(setProfilePicture, {
+                    loading: 'Setting profile picture...',
+                    success: 'Profile picture set!',
+                    error: "Couldn't set profile picture!"
+                })
+
+                await setProfilePicture;
+            }
+
             const verifyWalletIdCallback = async () => {
                 return new Promise((resolve, reject) => {
                     entity.then((data) => {
@@ -177,9 +233,11 @@ const Register: React.FC = () => {
                             localStorage.setItem('walletId', wallet.id);
                             localStorage.setItem('walletAddress', wallet.address);
 
-                            setTimeout(() => {
-                                navigate('/retailerProducts');
-                            }, 1000);
+                            setProfilePicture().then(() => {
+                                setTimeout(() => {
+                                    navigate('/retailerProducts');
+                                }, 1000);
+                            })
                         }
                     }).catch((error) => {
                         reject(error);
@@ -245,7 +303,7 @@ const Register: React.FC = () => {
                                 <HeaderForms>Infos:</HeaderForms>
                                 <form onSubmit={handleCreateCustomerUser}>
                                     <ContainerForm>
-                                        <label>Profile foto:</label>
+                                        <label>Profile photo:</label>
                                         <LabelPhoto htmlFor="photo">
                                             {fileUploaded ? (
                                                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -294,6 +352,20 @@ const Register: React.FC = () => {
                                 </DoneChooseType>
                                 <HeaderForms>Infos:</HeaderForms>
                                 <form onSubmit={handleCreateRetailerUser}>
+                                    <ContainerForm>
+                                        <label>Business photo:</label>
+                                        <LabelPhoto htmlFor="photo">
+                                            {fileUploaded ? (
+                                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                    <CheckIcon sx={{ marginRight: '5px', color: 'green' }} />
+                                                    Image Sent
+                                                </div>
+                                            ) : (
+                                                'Choose Image'
+                                            )}
+                                        </LabelPhoto>
+                                        <InputFormsPhoto type="file" accept="image/*" name="photo" id="photo" placeholder='' onChange={handlePhotoChange} required></InputFormsPhoto>
+                                    </ContainerForm>
                                     <ContainerForm>
                                         <label htmlFor="user_name">Name:</label>
                                         <InputForms id="user_name" placeholder='' required></InputForms>

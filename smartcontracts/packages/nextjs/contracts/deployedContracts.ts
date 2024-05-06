@@ -5,9 +5,9 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  80002: {
+  11_155_111: {
     InventoryManagement: {
-      address: "0xdC16eE353d8369a716c5350b3b68Af48c97d0771",
+      address: "0x2C87dD542e21A32838E846E51E374EbAaF68C2aE",
       abi: [
         {
           inputs: [
@@ -476,7 +476,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     LoyaltyRewards: {
-      address: "0xc27cc7153E1788F3d3A91aF0518fcE01872C0810",
+      address: "0xcc5fc3F265434b41A7C515e99D748095758F1289",
       abi: [
         {
           inputs: [
@@ -874,7 +874,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     Tether: {
-      address: "0x2bc91c73AC7d2c1D22F1be0c035BD59148ed328F",
+      address: "0x52C87Aa15f6bB75DB74c79a32F9a1dF1f79526Db",
       abi: [
         {
           inputs: [],
@@ -1139,7 +1139,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     TransactionManager: {
-      address: "0xa6984A06a7B975b13dcC9c8F94e125eFD62c5052",
+      address: "0xA277B07De825d0a21D9ad0F3a8FBF5f61a2Ce36F",
       abi: [
         {
           inputs: [
@@ -1511,7 +1511,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     UserManager: {
-      address: "0xC07b17696877180055bc2fD688265b65A3982092",
+      address: "0xe39c13d355C8fdeA36320390127Acf366b1aa7ed",
       abi: [
         {
           inputs: [

@@ -32,6 +32,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { createLumxAPI } from '../../utils/lumx';
 import { getContractABI } from '../../utils/contracts';
+import {sendFileToIPFS} from '../../utils/ipfs';
 
 const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -259,23 +260,14 @@ const Products: React.FC = () => {
     const price = form.new_product_price.value;
     const score = form.new_product_score.value;
     const stock = form.new_product_stock.value;
-    const ipfsHash = form.new_product_ipfshash?.value || '';
 
     try {
-      console.log(code, name, tags, price, score, stock, ipfsHash);
-      console.log(selectedFile);
       handleConfirmModalCloseCreateProduct();
 
       const lumx = createLumxAPI();
       const contract = await getContractABI("InventoryManagement")
 
-      // uint128 productCode,
-      // string memory ipfsHash,
-      // string memory name,
-      // string[] memory tags,
-      // uint256 price,
-      // uint32 stock,
-      // uint32 score
+      const { IpfsHash } = await sendFileToIPFS(selectedFile as File);
 
       lumx.lumx.transactions.addOperationToCustomQueue({
         function: 'addProduct(uint128,string,string,string[],uint256,uint32,uint32)',
@@ -283,7 +275,7 @@ const Products: React.FC = () => {
         abi: contract.abi,
         parameters: [
           Number(code),
-          ipfsHash,
+          IpfsHash,
           name,
           tags.split(',') || [],
           Number(parseEther(price)),
@@ -305,6 +297,8 @@ const Products: React.FC = () => {
         error: 'Error creating product!'
       });
 
+
+      await transaction;
 
       await updateProductList()
 
@@ -329,37 +323,36 @@ const Products: React.FC = () => {
           <h3>All Products</h3>
           <TableContainer sx={{ borderTopRightRadius: '0px', borderTopLeftRadius: '0px' }} component={Paper}>
             <Table sx={{ minWidth: 650, backgroundColor: '#010b15' }} size="small" aria-label="a dense table">
-              <TableHead>
+            <TableHead>
                 <TableRow>
-                  <TableCell sx={{ color: 'white' }}>Code</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="center">Name</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="center">Type</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="center">Score</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="center">Price</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="center">Stock</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="left">Edit</TableCell>
-                  <TableCell sx={{ color: 'white' }} align="left">Delete</TableCell>
+                    <TableCell sx={{ color: 'white' }}>Image</TableCell>
+                    <TableCell sx={{ color: 'white' }}>Code</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">Name</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">Type</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">Score</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">Price</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">Stock</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="left">Edit</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="left">Delete</TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
+                </TableHead>
+                <TableBody>
                 {products.map((row) => (
-                  <TableRow
-                    key={row.code}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell sx={{ color: 'white' }} component="th" scope="row">
-                      {row.code}
+                    <TableRow key={row.code}>
+                    <TableCell component="th" scope="row">
+                        <img src={row.ipfsHash ?  `https://maroon-environmental-sloth-959.mypinata.cloud/ipfs/${row.ipfsHash}` : 'https://demofree.sirv.com/nope-not-here.jpg'} alt={row.name} style={{ width: '100px', height: 'auto' }} />
                     </TableCell>
+                    <TableCell sx={{ color: 'white' }}>{row.code}</TableCell>
                     <TableCell sx={{ color: 'white' }} align="center">{row.name}</TableCell>
-                    <TableCell sx={{ color: 'white' }} align="center">{row.tags}</TableCell>
+                    <TableCell sx={{ color: 'white' }} align="center">{row.tags.join(', ')}</TableCell>
                     <TableCell sx={{ color: 'white' }} align="center">{row.score}</TableCell>
                     <TableCell sx={{ color: 'white' }} align="center">{row.price}</TableCell>
                     <TableCell sx={{ color: 'white' }} align="center">{row.stock}</TableCell>
-                    <TableCell sx={{ color: 'white' }} align="center"><ButtonTable onClick={() => handleDeleteClickEditProduct(row)} style={{ backgroundColor: '#407BFF' }}><EditIcon sx={{ color: '#ABC5FF', width: '18px', height: '18px' }} /></ButtonTable></TableCell>
-                    <TableCell sx={{ color: 'white' }} align="center"><ButtonTable onClick={() => handleDeleteClickProduct(row)} style={{ backgroundColor: '#407BFF' }}><DeleteIcon sx={{ color: '#ABC5FF', width: '18px', height: '18px' }} /></ButtonTable></TableCell>
-                  </TableRow>
+                    <TableCell align="center"><ButtonTable onClick={() => handleDeleteClickEditProduct(row)}><EditIcon sx={{ color: '#ABC5FF', width: '18px', height: '18px' }} /></ButtonTable></TableCell>
+                    <TableCell align="center"><ButtonTable onClick={() => handleDeleteClickProduct(row)}><DeleteIcon sx={{ color: '#ABC5FF', width: '18px', height: '18px' }} /></ButtonTable></TableCell>
+                    </TableRow>
                 ))}
-              </TableBody>
+                </TableBody>
             </Table>
           </TableContainer>
         </TableProducts>
@@ -452,7 +445,6 @@ const Products: React.FC = () => {
           </ContainerForms>
         </CreateProductModal>
       </Modal>
-      {/* Modal de criação */}
       <Modal
         open={confirmModalOpenCreateProduct}
         onClose={handleConfirmModalCloseCreateProduct}

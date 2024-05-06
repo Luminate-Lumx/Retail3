@@ -19,6 +19,7 @@ interface Product {
   name: string;
   price: number;
   score: number;
+  ipfsHash: string;
   removed: boolean;
 }
 
@@ -94,8 +95,8 @@ const CustomerBuy: React.FC = () => {
     setToBuy([]);
   }
 
-  function createProduct(index: number,code: number, name: string, price: number, score: number, removed: boolean) {
-    return { index, code, name, price, score, removed: false };
+  function createProduct(index: number,code: number, name: string, price: number, score: number, ipfsHash: string, removed: boolean = false) {
+    return { index, code, name, price, score, ipfsHash, removed: false };
   }
 
   function createRetailer(name: string, email: string, ipfsHash: string, wallet: string, entityType: string, walletId: string, additionalInfo: string, walletAddress: string) {
@@ -169,7 +170,7 @@ const CustomerBuy: React.FC = () => {
 
     setProducts(products
       .filter((product) => !product.removed)
-      .map((product) => createProduct(products.indexOf(product), Number(product.code), product.name, formatUnits(product.price), product.score)));
+      .map((product) => createProduct(products.indexOf(product), Number(product.code), product.name, formatUnits(product.price), product.score, product.ipfsHash)));
   };
 
   const handleConfirmModalCloseProduct = () => {
@@ -262,57 +263,67 @@ const CustomerBuy: React.FC = () => {
           <ShoppingCart>
             <h4>Available Products</h4>
             {products.map((product, index) => (
-              <CartItem key={index} onClick={() => addToCart(product)}>
-                <InfosProducts>
-                  <BoxInfoContainer>
+                <CartItem key={index} onClick={() => addToCart(product)}>
+                  <InfosProducts style={{ display: 'flex', alignItems: 'center' }}>
+                    <BoxInfoContainer>
+                    <img src={product.ipfsHash ? `https://maroon-environmental-sloth-959.mypinata.cloud/ipfs/${product.ipfsHash}` : 'https://demofree.sirv.com/nope-not-here.jpg'} alt={product.name} style={{ width: '100px', height: '100px', objectFit: 'cover', marginRight: '10px' }} />
                     <BoxInfo>
-                      <BoxInfoTitle>Name</BoxInfoTitle>
-                      <BoxInfoValue>{product.name}</BoxInfoValue>
+                        <BoxInfoTitle>Name</BoxInfoTitle>
+                        <BoxInfoValue>{product.name}</BoxInfoValue>
                     </BoxInfo>
-                  </BoxInfoContainer>
-                  <BoxInfoContainer>
+                    </BoxInfoContainer>
+                    <BoxInfoContainer>
                     <BoxInfo>
-                      <BoxInfoTitle>Price</BoxInfoTitle>
-                      <BoxInfoValue>${product.price}</BoxInfoValue>
+                        <BoxInfoTitle>Price</BoxInfoTitle>
+                        <BoxInfoValue>${product.price}</BoxInfoValue>
                     </BoxInfo>
-                  </BoxInfoContainer>
-                  <Button>Add to Cart</Button>
+                    </BoxInfoContainer>
+                    <Button style={{ height: '50px', marginLeft: 'auto' }}><AddIcon /></Button>
                 </InfosProducts>
-              </CartItem>
+                </CartItem>
             ))}
             <h4>Shopping Cart</h4>
             {toBuy.length === 0 ? (
-              <EmptyList>
+                <EmptyList>
                 <p>No products in cart.</p>
-              </EmptyList>
+                </EmptyList>
             ) : (
-              toBuy.map((item, index) => (
+                toBuy.map((item, index) => (
                 <CartItem key={index}>
-                  <InfosProducts>
+                    <InfosProducts>
+                    <img src={item.product.ipfsHash ? `https://maroon-environmental-sloth-959.mypinata.cloud/ipfs/${item.product.ipfsHash}` : 'https://demofree.sirv.com/nope-not-here.jpg'} alt={item.product.name} style={{ width: '50px', height: '50px', objectFit: 'cover', marginRight: '10px' }} />
                     <BoxInfoContainer>
-                      <BoxInfo>
+                        <BoxInfo>
                         <BoxInfoTitle>Name</BoxInfoTitle>
                         <BoxInfoValue>{item.product.name}</BoxInfoValue>
-                      </BoxInfo>
+                        </BoxInfo>
                     </BoxInfoContainer>
                     <BoxInfoContainer>
-                      <BoxInfo>
+                        <BoxInfo>
                         <BoxInfoTitle>Quantity</BoxInfoTitle>
                         <BoxInfoValue>{item.quantity}</BoxInfoValue>
-                      </BoxInfo>
+                        </BoxInfo>
                     </BoxInfoContainer>
                     <BoxInfoContainer>
-                      <BoxInfo>
+                        <BoxInfo>
                         <BoxInfoTitle>Price</BoxInfoTitle>
-                        <BoxInfoValue>${item.product.price}</BoxInfoValue>
-                      </BoxInfo>
+                        <BoxInfoValue>${(item.quantity * item.product.price).toFixed(2)}</BoxInfoValue>
+                        </BoxInfo>
                     </BoxInfoContainer>
                     <CancelIcon onClick={() => removeProductFromCart(item.product.code)} />
-                  </InfosProducts>
+                    </InfosProducts>
                 </CartItem>
-              ))
+                ))
             )}
-          </ShoppingCart>
+            {toBuy.length > 0 && (
+                <BoxInfoContainer style={{ marginTop: '20px' }}>
+                <BoxInfo>
+                    <BoxInfoTitle>Total</BoxInfoTitle>
+                    <BoxInfoValue>${toBuy.reduce((acc, item) => acc + (item.quantity * item.product.price), 0).toFixed(2)}</BoxInfoValue>
+                </BoxInfo>
+                </BoxInfoContainer>
+            )}
+            </ShoppingCart>
           <ButtonsCreate>
             <CancelButton onClick={handleConfirmModalCloseProduct}>No, cancel</CancelButton>
             <CorfirmButton onClick={() => handleBuyCart()}>Yes, confirm</CorfirmButton>

@@ -25,6 +25,10 @@ const CustomerScore: React.FC = () => {
   const [totalPoolSize, setTotalPoolSize] = useState(0);
   const [userScore, setUserScore] = useState(0);
   const [usdtAmount, setUsdtAmount] = useState(0);
+  const [globalRetailerInfo, setRetailerInfo] = useState({
+    name: 'loading...',
+    additionalInfo: 'loading...'
+  });
 
   function createData(
     product: string,
@@ -76,6 +80,7 @@ const CustomerScore: React.FC = () => {
     const inventoryContract = await getContractABI('InventoryManagement');
     const userManagerContract = await getContractABI('UserManager');
 
+
     const totalScore = await api.web3.read({
       contractAddress: loyaltyContract.address,
       abi: loyaltyContract.abi,
@@ -110,8 +115,6 @@ const CustomerScore: React.FC = () => {
       args: [localStorage.getItem('walletAddress')]
     });
 
-    setTransactions(transactions)
-
     const usdtAmount = await api.web3.read({
       contractAddress: loyaltyContract.address,
       abi: loyaltyContract.abi,
@@ -144,6 +147,8 @@ const CustomerScore: React.FC = () => {
         args: [retailer]
       });
 
+      setRetailerInfo(retailerInfo)
+
       setTransactions(
         [
           ...customerTransactions,
@@ -163,15 +168,17 @@ const CustomerScore: React.FC = () => {
       <ContentContainer>
         <HeaderContent>
           <h1>Score</h1>
+          <h2><b>To see your score of a retailer, go to buy page and click on a retailer, then go back to this page</b></h2>
+          <h3>Redeem your score for USDT</h3>
         </HeaderContent>
         <CardsContainer>
           <CardsItem>
-            <h2>Redeem Date</h2>
+            <h2>Current selected retailer</h2>
             <hr></hr>
             <BoxInfoContainer>
               <BoxInfo>
-                <BoxInfoTitle>Date</BoxInfoTitle>
-                <BoxInfoValue>10/05/2024</BoxInfoValue>
+                <BoxInfoTitle>{globalRetailerInfo.name}</BoxInfoTitle>
+                <BoxInfoValue>{globalRetailerInfo.additionalInfo}</BoxInfoValue>
               </BoxInfo>
             </BoxInfoContainer>
           </CardsItem>
@@ -221,7 +228,7 @@ const CustomerScore: React.FC = () => {
                 {customerTransactions.map((row) => {
                   return (
                     <TableRow
-                      key={row.user}
+                      key={row.user + row.retailer + row.date}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell sx={{ color: 'white' }} component="th" scope="row">
