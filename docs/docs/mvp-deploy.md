@@ -17,7 +17,7 @@ The frontend of the MVP is deployed on Vercel, and you can access it by visiting
 
 ## Contracts 📄
 
-Here are the current deployed contracts on the `iExec Sidechain`, with the ABI's and addresses on IPFS. You can find the ABI's and the addresses of the [project contracts](https://github.com/Luminate-Lumx/Retail3/tree/main/smartcontracts/packages/hardhat/contracts) by getting the `address` and `abi` properties of the deployed contracts:
+Here are the current deployed contracts on the `Sepolia Sidechain`, with the ABI's and addresses on IPFS. You can find the ABI's and the addresses of the [project contracts](https://github.com/Luminate-Lumx/Retail3/tree/main/smartcontracts/packages/hardhat/contracts) by getting the `address` and `abi` properties of the deployed contracts:
 
 -   [UserRegistry](https://gateway.pinata.cloud/ipfs/QmTfK9PZXJkDXqCmT6rwT7o268jjpwtUkJr7aCFuuCQkgk)
 -   [EventManager](https://gateway.pinata.cloud/ipfs/QmP5GCxh9vJHQtQ6gt1nDziXJNtRSgmfjsYZyDtPmacVqo)
